@@ -1,3 +1,5 @@
+-- Connected from PERSON_AD
+
 CREATE TABLE `person_ad`.`gender` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
