@@ -3,6 +3,10 @@
 CREATE TABLE `person_ad`.`person_x_nationality` (
   `id_person` VARCHAR(30) NOT NULL,
   `id_nationality` INT NOT NULL,
+  `creation_date` DATETIME NULL,
+  `creation_user` VARCHAR(45) NULL,
+  `last_change_date` DATETIME NULL,
+  `last_change_user` VARCHAR(45) NULL,
   PRIMARY KEY (`id_person`, `id_nationality`),
   INDEX `fk_personxnationality_nationality_idx` (`id_nationality` ASC) VISIBLE,
   CONSTRAINT `fk_personxnationality_person`
