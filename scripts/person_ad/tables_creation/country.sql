@@ -1,6 +1,6 @@
 -- Connected from PERSON_AD
 
-CREATE TABLE `person_ad`.`gender` (
+CREATE TABLE `person_ad`.`country` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `creation_date` DATETIME NULL,
