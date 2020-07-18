@@ -1,10 +1,12 @@
-CREATE TABLE `app_ad`.`chat` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_order` INT NULL,
+CREATE TABLE `chat` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_order` int DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `creation_user` varchar(45) DEFAULT NULL,
+  `last_change_date` datetime DEFAULT NULL,
+  `last_change_user` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_chat_order_idx` (`id_order` ASC) VISIBLE,
-  CONSTRAINT `fk_chat_order`
-    FOREIGN KEY (`id_order`)
-    REFERENCES `app_ad`.`order` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  UNIQUE KEY `id_order_UNIQUE` (`id_order`),
+  KEY `fk_chat_order_idx` (`id_order`),
+  CONSTRAINT `fk_chat_order` FOREIGN KEY (`id_order`) REFERENCES `order` (`id`)
+)

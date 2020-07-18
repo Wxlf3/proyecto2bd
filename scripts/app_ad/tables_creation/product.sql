@@ -9,6 +9,10 @@ CREATE TABLE `product` (
   `username_seller` varchar(20) DEFAULT NULL,
   `id_delivery_type` int DEFAULT NULL,
   `id_picture` int DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `creation_user` varchar(45) DEFAULT NULL,
+  `last_change_date` datetime DEFAULT NULL,
+  `last_change_user` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_product_category_idx` (`id_category`),
   KEY `fk_product_user_idx` (`username_seller`),
@@ -18,4 +22,4 @@ CREATE TABLE `product` (
   CONSTRAINT `fk_product_deliveryType` FOREIGN KEY (`id_delivery_type`) REFERENCES `delivery_type` (`id`),
   CONSTRAINT `fk_product_picture` FOREIGN KEY (`id_picture`) REFERENCES `picture` (`id`),
   CONSTRAINT `fk_product_user` FOREIGN KEY (`username_seller`) REFERENCES `user` (`username`)
-)
+) 

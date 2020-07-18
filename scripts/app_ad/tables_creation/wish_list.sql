@@ -1,16 +1,13 @@
-CREATE TABLE `app_ad`.`wish_list` (
-  `username` VARCHAR(20) NOT NULL,
-  `id_product` INT NULL,
-  `quantity` VARCHAR(45) NULL,
+CREATE TABLE `wish_list` (
+  `username` varchar(20) NOT NULL,
+  `id_product` int DEFAULT NULL,
+  `quantity` varchar(45) DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `creation_user` varchar(45) DEFAULT NULL,
+  `last_change_date` datetime DEFAULT NULL,
+  `last_change_user` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`username`),
-  INDEX `fk_wishList_product_idx` (`id_product` ASC) VISIBLE,
-  CONSTRAINT `fk_wishList_user`
-    FOREIGN KEY (`username`)
-    REFERENCES `app_ad`.`user` (`username`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wishList_product`
-    FOREIGN KEY (`id_product`)
-    REFERENCES `app_ad`.`product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  KEY `fk_wishList_product_idx` (`id_product`),
+  CONSTRAINT `fk_wishList_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`),
+  CONSTRAINT `fk_wishList_user` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+)

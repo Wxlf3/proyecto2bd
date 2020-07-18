@@ -1,27 +1,20 @@
-CREATE TABLE `app_ad`.`order` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `price` DECIMAL(3) NULL,
-  `quantity` INT NULL,
-  `date` DATETIME NULL,
-  `user_seller` VARCHAR(20) NULL,
-  `user_buyer` VARCHAR(20) NULL,
-  `id_product` INT NULL,
+CREATE TABLE `order` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `price` decimal(3,0) DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `user_seller` varchar(20) DEFAULT NULL,
+  `user_buyer` varchar(20) DEFAULT NULL,
+  `id_product` int DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `creation_user` varchar(45) DEFAULT NULL,
+  `last_change_date` datetime DEFAULT NULL,
+  `last_change_user` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_order_userSeller_idx` (`user_seller` ASC) VISIBLE,
-  INDEX `fk_order_userBuyer_idx` (`user_buyer` ASC) VISIBLE,
-  INDEX `fk_order_product_idx` (`id_product` ASC) VISIBLE,
-  CONSTRAINT `fk_order_userSeller`
-    FOREIGN KEY (`user_seller`)
-    REFERENCES `app_ad`.`user` (`username`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_userBuyer`
-    FOREIGN KEY (`user_buyer`)
-    REFERENCES `app_ad`.`user` (`username`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_product`
-    FOREIGN KEY (`id_product`)
-    REFERENCES `app_ad`.`product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  KEY `fk_order_userSeller_idx` (`user_seller`),
+  KEY `fk_order_userBuyer_idx` (`user_buyer`),
+  KEY `fk_order_product_idx` (`id_product`),
+  CONSTRAINT `fk_order_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`),
+  CONSTRAINT `fk_order_userBuyer` FOREIGN KEY (`user_buyer`) REFERENCES `user` (`username`),
+  CONSTRAINT `fk_order_userSeller` FOREIGN KEY (`user_seller`) REFERENCES `user` (`username`)
+) 
