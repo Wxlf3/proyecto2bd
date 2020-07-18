@@ -1,0 +1,21 @@
+CREATE TABLE `product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `price` decimal(3,0) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `quanty_in_stock` int DEFAULT NULL,
+  `is_visible` tinyint DEFAULT NULL,
+  `average_score` decimal(4,0) DEFAULT NULL,
+  `id_category` int DEFAULT NULL,
+  `username_seller` varchar(20) DEFAULT NULL,
+  `id_delivery_type` int DEFAULT NULL,
+  `id_picture` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_product_category_idx` (`id_category`),
+  KEY `fk_product_user_idx` (`username_seller`),
+  KEY `fk_product_picture_idx` (`id_picture`),
+  KEY `fk_product_deliveryType_idx` (`id_delivery_type`),
+  CONSTRAINT `fk_product_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`),
+  CONSTRAINT `fk_product_deliveryType` FOREIGN KEY (`id_delivery_type`) REFERENCES `delivery_type` (`id`),
+  CONSTRAINT `fk_product_picture` FOREIGN KEY (`id_picture`) REFERENCES `picture` (`id`),
+  CONSTRAINT `fk_product_user` FOREIGN KEY (`username_seller`) REFERENCES `user` (`username`)
+)
