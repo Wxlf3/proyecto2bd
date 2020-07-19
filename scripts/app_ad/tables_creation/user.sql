@@ -1,15 +1,14 @@
 CREATE TABLE `user` (
-  `username` varchar(20) NOT NULL,
-  `password` varchar(18) NOT NULL,
-  `average_score_buyer` decimal(3,0) DEFAULT NULL,
-  `average_score_seller` decimal(3,0) DEFAULT NULL,
-  `user_type` int NOT NULL,
-  `id_person` int DEFAULT NULL,
-  `creation_date` datetime DEFAULT NULL,
-  `creation_user` varchar(45) DEFAULT NULL,
-  `last_change_date` datetime DEFAULT NULL,
-  `last_change_user` varchar(45) DEFAULT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `average_score_buyer` decimal(4,2) NULL,
+  `average_score_seller` decimal(4,2) NULL,
+  `id_user_type` int NOT NULL,
+  `creation_date` datetime NULL,
+  `creation_user` varchar(45) NULL,
+  `last_change_date` datetime NULL,
+  `last_change_user` varchar(45) NULL,
   PRIMARY KEY (`username`),
-  KEY `user_type_idx` (`user_type`),
-  CONSTRAINT `fk_user_userType` FOREIGN KEY (`user_type`) REFERENCES `user_type` (`id`)
+  INDEX `fk_user_userType_idx` (`id_user_type` ASC) VISIBLE,
+  CONSTRAINT `fk_user_userType` FOREIGN KEY (`id_user_type`) REFERENCES `user_type` (`id`)
 ) 

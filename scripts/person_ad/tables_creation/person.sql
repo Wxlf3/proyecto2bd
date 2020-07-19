@@ -1,3 +1,7 @@
+-- Connected from SYS
+
+GRANT SELECT, REFERENCES ON `app_ad`.`user` TO 'person_ad'@'localhost';
+
 -- Connected from PERSON_AD
 
 CREATE TABLE `person_ad`.`person` (
@@ -28,5 +32,10 @@ CREATE TABLE `person_ad`.`person` (
   CONSTRAINT `fk_person_district`
     FOREIGN KEY (`id_district`)
     REFERENCES `person_ad`.`district` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_user`
+	FOREIGN KEY (`username`)
+    REFERENCES `app_ad`.`user` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

@@ -1,12 +1,11 @@
 CREATE TABLE `chat` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_order` int DEFAULT NULL,
-  `creation_date` datetime DEFAULT NULL,
-  `creation_user` varchar(45) DEFAULT NULL,
-  `last_change_date` datetime DEFAULT NULL,
-  `last_change_user` varchar(45) DEFAULT NULL,
+  `id_order` int NOT NULL,
+  `creation_date` datetime NULL,
+  `creation_user` varchar(45) NULL,
+  `last_change_date` datetime NULL,
+  `last_change_user` varchar(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_order_UNIQUE` (`id_order`),
-  KEY `fk_chat_order_idx` (`id_order`),
+  INDEX `fk_chat_order_idx` (`id_order` ASC) VISIBLE,
   CONSTRAINT `fk_chat_order` FOREIGN KEY (`id_order`) REFERENCES `order` (`id`)
 )
