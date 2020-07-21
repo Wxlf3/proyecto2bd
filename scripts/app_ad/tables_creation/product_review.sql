@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `product_review` (
   `id` int NOT NULL AUTO_INCREMENT,
   `score` decimal(4,2) NULL,

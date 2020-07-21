@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `review_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,

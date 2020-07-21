@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `chat` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_order` int NOT NULL,

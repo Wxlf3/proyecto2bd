@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,

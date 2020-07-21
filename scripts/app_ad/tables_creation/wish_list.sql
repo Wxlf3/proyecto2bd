@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `wish_list` (
   `username` varchar(45) NOT NULL,
   `id_product` int NOT NULL,

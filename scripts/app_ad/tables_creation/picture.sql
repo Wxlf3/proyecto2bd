@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `picture` (
   `id` int NOT NULL AUTO_INCREMENT,
   `path` varchar(60) NOT NULL,

@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `user_X_paymentMethod` (
   `username` varchar(20) NOT NULL,
   `id_payment_method` int NOT NULL,

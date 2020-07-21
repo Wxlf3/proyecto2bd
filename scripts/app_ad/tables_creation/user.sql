@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `password` varchar(30) NOT NULL,

@@ -1,3 +1,5 @@
+-- Connected from APP_AD
+
 CREATE TABLE `product` (
   `id` int NOT NULL AUTO_INCREMENT,
   `price` decimal(10,2) NOT NULL,
