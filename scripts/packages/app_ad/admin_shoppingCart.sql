@@ -2,8 +2,8 @@
 DROP PROCEDURE IF EXISTS insert_shoppingCart;
 DROP PROCEDURE IF EXISTS update_shoppingCart;
 DROP PROCEDURE IF EXISTS remove_shoppingCart;
-DROP PROCEDURE IF EXISTS getIdProduct_shoppingCart;
-DROP PROCEDURE IF EXISTS getQuantity_shoppingCart;
+DROP FUNCTION IF EXISTS getIdProduct_shoppingCart;
+DROP FUNCTION IF EXISTS getQuantity_shoppingCart;
 DROP PROCEDURE IF EXISTS getAll_shoppingCart;
 DELIMITER //
 
@@ -28,25 +28,34 @@ CREATE PROCEDURE remove_shoppingCart(IN pnUsername INT)
             WHERE username = pnUsername;
     END//
 
-CREATE PROCEDURE getIdProduct_shoppingCart(pnUsername INT)
+CREATE FUNCTION getIdProduct_shoppingCart(pnUsername INT)
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rIdProduct INT;
-        SELECT id_product
-        FROM shopping_cart
+        SET rIdProduct = 0;
+            SELECT id_product
+            INTO rIdProduct
+            FROM shopping_cart
         WHERE username = pnUsername;
-    END//
+    RETURN rIdProduct;
+    END //
 
-CREATE PROCEDURE getQuantity_shoppingCart(pnUsername INT)
+CREATE FUNCTION getQuantity_shoppingCart(pnUsername INT)
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rQuantity INT;
-        SELECT quantity
-        FROM shopping_cart
+        SET rQuantity = 0;
+            SELECT quantity
+            INTO rQuantity
+            FROM shopping_cart
         WHERE username = pnUsername;
-    END//
+    RETURN rQuantity;
+    END //
 
 CREATE PROCEDURE getAll_shoppingCart()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT username, id_product, quantity
             FROM shopping_cart;
     END//

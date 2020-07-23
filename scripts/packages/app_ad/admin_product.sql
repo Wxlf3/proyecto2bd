@@ -2,15 +2,15 @@
 DROP PROCEDURE IF EXISTS insert_product;
 DROP PROCEDURE IF EXISTS update_product;
 DROP PROCEDURE IF EXISTS remove_product;
-DROP PROCEDURE IF EXISTS getPrice_product;
-DROP PROCEDURE IF EXISTS getName_product;
-DROP PROCEDURE IF EXISTS getDescription_product;
-DROP PROCEDURE IF EXISTS getQuantInStock_product;
-DROP PROCEDURE IF EXISTS getIsVisible_product;
-DROP PROCEDURE IF EXISTS getAverageScore_product;
-DROP PROCEDURE IF EXISTS getIdCategory_product;
-DROP PROCEDURE IF EXISTS getUsernameSeller_product;
-DROP PROCEDURE IF EXISTS getIdDeliveryType_product;
+DROP FUNCTION IF EXISTS getPrice_product;
+DROP FUNCTION IF EXISTS getName_product;
+DROP FUNCTION IF EXISTS getDescription_product;
+DROP FUNCTION IF EXISTS getQuantInStock_product;
+DROP FUNCTION IF EXISTS getIsVisible_product;
+DROP FUNCTION IF EXISTS getAverageScore_product;
+DROP FUNCTION IF EXISTS getIdCategory_product;
+DROP FUNCTION IF EXISTS getUsernameSeller_product;
+DROP FUNCTION IF EXISTS getIdDeliveryType_product;
 DROP PROCEDURE IF EXISTS getAll_product;
 DELIMITER //
 
@@ -42,81 +42,125 @@ CREATE PROCEDURE remove_product(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getPrice_product(vId INT)
+CREATE FUNCTION getPrice_product(vId INT) 
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
     BEGIN
         DECLARE rPrice DECIMAL(10,2);
-        SELECT price
-        FROM product
-        WHERE id = vId;
-    END//
+        SET rPrice = 0;
+            SELECT price
+            INTO rPrice
+            FROM product
+            WHERE id = vId;
+    RETURN rPrice;
+    END //
 
-CREATE PROCEDURE getName_product(vId INT)
+CREATE FUNCTION getName_product(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rName VARCHAR(45);
-        SELECT name
-        FROM product
-        WHERE id = vId;
-    END//
+        SET rName = "";
+            SELECT name
+            INTO rName
+            FROM product
+            WHERE id = vId;
+    RETURN rName;
+    END //
 
-CREATE PROCEDURE getDescription_product(vId INT)
+CREATE FUNCTION getDescription_product(vId INT) 
+RETURNS VARCHAR(150)
+DETERMINISTIC
     BEGIN
         DECLARE rDescription VARCHAR(150);
-        SELECT description
-        FROM product
-        WHERE id = vId;
-    END//
+        SET rDescription = "";
+            SELECT description
+            INTO rDescription
+            FROM product
+            WHERE id = vId;
+    RETURN rDescription;
+    END //
 
-CREATE PROCEDURE getQuantInStock_product(vId INT)
+CREATE FUNCTION getQuantInStock_product(vId INT) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rQuantInStock INT;
-        SELECT quant_in_stock
-        FROM product
-        WHERE id = vId;
-    END//
+        SET rQuantInStock = "";
+            SELECT quant_in_stock
+            INTO rQuantInStock
+            FROM product
+            WHERE id = vId;
+    RETURN rQuantInStock;
+    END //
 
-CREATE PROCEDURE getIsVisible_product(vId INT)
+CREATE FUNCTION getIsVisible_product(vId INT) 
+RETURNS TINYINT
+DETERMINISTIC
     BEGIN
         DECLARE rIsVisible TINYINT;
-        SELECT is_visible
-        FROM product
-        WHERE id = vId;
-    END//    
+        SET rIsVisible = "";
+            SELECT is_visible
+            INTO rIsVisible
+            FROM product
+            WHERE id = vId;
+    RETURN rIsVisible;
+    END //
 
-CREATE PROCEDURE getAverageScore_product(vId INT)
+CREATE FUNCTION getAverageScore_product(vId INT) 
+RETURNS DECIMAL(4,2)
+DETERMINISTIC
     BEGIN
         DECLARE rAverageScore DECIMAL(4,2);
-        SELECT average_score
-        FROM product
-        WHERE id = vId;
-    END//  
+        SET rAverageScore = 0;
+            SELECT average_score
+            INTO rAverageScore
+            FROM product
+            WHERE id = vId;
+    RETURN rAverageScore;
+    END //
 
-CREATE PROCEDURE getIdCategory_product(vId INT)
+CREATE FUNCTION getIdCategory_product(vId INT) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rIdCategory INT;
-        SELECT id_category
-        FROM product
-        WHERE id = vId;
-    END//    
+        SET rIdCategory = 0;
+            SELECT id_category
+            INTO rIdCategory
+            FROM product
+            WHERE id = vId;
+    RETURN rIdCategory;
+    END //
 
-CREATE PROCEDURE getUsernameSeller_product(vId INT)
+CREATE FUNCTION getUsernameSeller_product(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rUsernameSeller VARCHAR(45);
-        SELECT username_seller
-        FROM product
-        WHERE id = vId;
-    END//  
+        SET rUsernameSeller = "";
+            SELECT username_seller
+            INTO rUsernameSeller
+            FROM product
+            WHERE id = vId;
+    RETURN rUsernameSeller;
+    END //
 
-CREATE PROCEDURE getIdDeliveryType_product(vId INT)
+CREATE FUNCTION getIdDeliveryType_product(vId INT) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rDeliveryType INT;
-        SELECT id_delivery_type
-        FROM product
-        WHERE id = vId;
-    END//    
+        SET rDeliveryType = 0;
+            SELECT id_delivery_type
+            INTO rDeliveryType
+            FROM product
+            WHERE id = vId;
+    RETURN rDeliveryType;
+    END //
 
 CREATE PROCEDURE getAll_product()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, price, name, description, quant_in_stock, is_visible, average_score, id_category, username_seller, id_delivery_type
             FROM product;
     END//

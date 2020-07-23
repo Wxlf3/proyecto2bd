@@ -2,11 +2,10 @@
 DROP PROCEDURE IF EXISTS insert_chat_message;
 DROP PROCEDURE IF EXISTS update_chat_message;
 DROP PROCEDURE IF EXISTS remove_chat_message;
-DROP PROCEDURE IF EXISTS getDate_chat_message;
-DROP PROCEDURE IF EXISTS getMessage_chat_message;
-DROP PROCEDURE IF EXISTS getUsernameWriter_chat_message;
-DROP PROCEDURE IF EXISTS getMessage_chat_message;
-DROP PROCEDURE IF EXISTS getIdChat_chat_message;
+DROP FUNCTION IF EXISTS getDate_chat_message;
+DROP FUNCTION IF EXISTS getMessage_chat_message;
+DROP FUNCTION IF EXISTS getUsernameWriter_chat_message;
+DROP FUNCTION IF EXISTS getIdChat_chat_message;
 DROP PROCEDURE IF EXISTS getAll_chat_message;
 DELIMITER //
 
@@ -34,41 +33,60 @@ CREATE PROCEDURE remove_chat_message(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getDate_chat_message(vId INT)
+CREATE FUNCTION getDate_chat_message(vId INT) 
+RETURNS DATETIME
+DETERMINISTIC
     BEGIN
         DECLARE rDate DATETIME;
-        SELECT date
-        FROM chat_message
-        WHERE id = vId;
-    END//    
+        SET rDate = null;
+            SELECT date
+            INTO rDate
+            FROM chat_message
+            WHERE id = vId;
+    RETURN rDate;
+    END //
 
-CREATE PROCEDURE getMessage_chat_message(vId INT)
+CREATE FUNCTION getMessage_chat_message(vId INT) 
+RETURNS VARCHAR(200)
+DETERMINISTIC
     BEGIN
         DECLARE rMessage VARCHAR(200);
-        SELECT message
-        FROM chat_message
-        WHERE id = vId;
-    END//  
+        SET rMessage = "";
+            SELECT message
+            INTO rMessage
+            FROM chat_message
+            WHERE id = vId;
+    RETURN rMessage;
+    END //
 
-CREATE PROCEDURE getUsernameWriter_chat_message(vId INT)
+CREATE FUNCTION getUsernameWriter_chat_message(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rUsernameWriter VARCHAR(45);
-        SELECT username_writer
-        FROM chat_message
-        WHERE id = vId;
-    END//  
+        SET rUsernameWriter = "";
+            SELECT message
+            INTO rUsernameWriter
+            FROM chat_message
+            WHERE id = vId;
+    RETURN rUsernameWriter;
+    END // 
 
-CREATE PROCEDURE getIdChat_chat_message(vId INT)
+CREATE FUNCTION getIdChat_chat_message(vId INT) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
-        DECLARE id_chat int;
-        SELECT id_chat
-        FROM chat_message
-        WHERE id = vId;
-    END//  
+        DECLARE rIdChat INT;
+        SET rIdChat = 0;
+            SELECT id_chat
+            INTO rIdChat
+            FROM chat_message
+            WHERE id = vId;
+    RETURN rIdChat;
+    END //
 
 CREATE PROCEDURE getAll_chat_message()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, date, message, username_writer, id_chat
             FROM chat_message;
     END//

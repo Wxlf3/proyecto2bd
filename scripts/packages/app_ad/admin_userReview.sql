@@ -2,12 +2,12 @@
 DROP PROCEDURE IF EXISTS insert_userReview;
 DROP PROCEDURE IF EXISTS update_userReview;
 DROP PROCEDURE IF EXISTS remove_userReview;
-DROP PROCEDURE IF EXISTS getScore_userReview;
-DROP PROCEDURE IF EXISTS getComment_userReview;
-DROP PROCEDURE IF EXISTS getIdTypeReview_userReview;
-DROP PROCEDURE IF EXISTS getUsernameWriter_userReview;
-DROP PROCEDURE IF EXISTS getUsernameReceiver_userReview;
-DROP PROCEDURE IF EXISTS getAll_category;
+DROP FUNCTION IF EXISTS getName_userReview;
+DROP FUNCTION IF EXISTS getComment_userReview;
+DROP FUNCTION IF EXISTS getIdTypeReview_userReview;
+DROP FUNCTION IF EXISTS getUsernameWriter_userReview;
+DROP FUNCTION IF EXISTS getUsernameReceiver_userReview;
+DROP PROCEDURE IF EXISTS getAll_userReview;
 DELIMITER //
 
 CREATE PROCEDURE insert_userReview(IN pnScore DECIMAl(4,2), in pnComment VARCHAR(200), IN pnIdTypeReview INT, IN pnUsernameWriter VARCHAR(45), IN pnUsernameReceiver VARCHAR(45))
@@ -34,49 +34,73 @@ CREATE PROCEDURE remove_userReview(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getScore_userReview(vId INT)
+CREATE FUNCTION getName_userReview(vId INT) 
+RETURNS DECIMAL(4,2)
+DETERMINISTIC
     BEGIN
         DECLARE rScore DECIMAL(4,2);
-        SELECT score
-        FROM user_review
-        WHERE id = vId;
-    END//
+        SET rScore = 0;
+            SELECT score
+            INTO rScore
+            FROM user_review
+            WHERE id = vId;
+    RETURN rScore;
+    END //
 
-CREATE PROCEDURE getComment_userReview(vId INT)
+CREATE FUNCTION getComment_userReview(vId INT) 
+RETURNS VARCHAR(200)
+DETERMINISTIC
     BEGIN
         DECLARE rComment VARCHAR(200);
-        SELECT comment
-        FROM user_review
-        WHERE id = vId;
-    END//
+        SET rComment = "";
+            SELECT comment
+            INTO rComment
+            FROM user_review
+            WHERE id = vId;
+    RETURN rComment;
+    END //
 
-CREATE PROCEDURE getIdTypeReview_userReview(vId INT)
+CREATE FUNCTION getIdTypeReview_userReview(vId INT) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rIdTypeReview INT;
-        SELECT id_type_review
-        FROM user_review
-        WHERE id = vId;
-    END//
+        SET rIdTypeReview = 0;
+            SELECT comment
+            INTO rIdTypeReview
+            FROM user_review
+            WHERE id = vId;
+    RETURN rIdTypeReview;
+    END //
 
-CREATE PROCEDURE getUsernameWriter_userReview(vId INT)
+CREATE FUNCTION getUsernameWriter_userReview(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rUsernameWriter VARCHAR(45);
-        SELECT username_writer
-        FROM user_review
-        WHERE id = vId;
-    END//
+        SET rUsernameWriter = "";
+            SELECT username_writer
+            INTO rUsernameWriter
+            FROM user_review
+            WHERE id = vId;
+    RETURN rUsernameWriter;
+    END //
 
-CREATE PROCEDURE getUsernameReceiver_userReview(vId INT)
+CREATE FUNCTION getUsernameReceiver_userReview(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rUsernameReceiver VARCHAR(45);
-        SELECT username_receiver
-        FROM user_review
-        WHERE id = vId;
-    END//
+        SET rUsernameReceiver = "";
+            SELECT username_receiver
+            INTO rUsernameReceiver
+            FROM user_review
+            WHERE id = vId;
+    RETURN rUsernameReceiver;
+    END //
 
 CREATE PROCEDURE getAll_userReview()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, score, comment, id_type_review, username_writer, username_receiver
             FROM user_review;
     END//

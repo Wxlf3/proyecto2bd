@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS insert_userType;
 DROP PROCEDURE IF EXISTS update_userType;
 DROP PROCEDURE IF EXISTS remove_userType;
-DROP PROCEDURE IF EXISTS getName_userType;
+DROP FUNCTION IF EXISTS getName_userType;
 DROP PROCEDURE IF EXISTS getAll_userType;
-DROP PROCEDURE IF EXISTS getId_userType;
+DROP FUNCTION IF EXISTS getId_userType;
 DELIMITER //
 
 CREATE PROCEDURE insert_userType(IN pnName VARCHAR(45))
@@ -26,26 +26,35 @@ CREATE PROCEDURE remove_userType(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getName_userType(vId INT)
+CREATE FUNCTION getName_userType(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rName VARCHAR(45);
-        SELECT name
-        FROM user_type
-        WHERE id = vId;
-    END//
+        SET rName = "";
+            SELECT name
+            INTO rName
+            FROM user_type
+            WHERE id = vId;
+    RETURN rName;
+    END //
 
 CREATE PROCEDURE getAll_userType()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, name
             FROM user_type;
     END//
 
-CREATE PROCEDURE getId_userType(vName VARCHAR(45))
+CREATE FUNCTION getId_userType(vName VARCHAR(45)) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
-    DECLARE rowcount int;
-        SELECT id
-        FROM user_type
-        WHERE name = vName;
+        DECLARE rId INT;
+        SET rId = 0;
+            SELECT id
+            INTO rId
+            FROM user_type
+            WHERE name = vName;
+    RETURN rId;
     END //
 DELIMITER ;

@@ -2,9 +2,8 @@
 DROP PROCEDURE IF EXISTS insert_chat;
 DROP PROCEDURE IF EXISTS update_chat;
 DROP PROCEDURE IF EXISTS remove_chat;
-DROP PROCEDURE IF EXISTS getIdOrder_chat;
+DROP FUNCTION IF EXISTS getIdOrder_chat;
 DROP PROCEDURE IF EXISTS getAll_chat;
-DROP PROCEDURE IF EXISTS getId_chat;
 DELIMITER //
 
 
@@ -27,26 +26,22 @@ CREATE PROCEDURE remove_chat(IN pnId INT)
             WHERE id = pnIdChat;
     END//
 
-CREATE PROCEDURE getIdOrder_chat (vId INT)
+CREATE FUNCTION getIdOrder_chat(vId INT) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
-        DECLARE rIdOrder int;
-        SELECT id_order
-        FROM chat
-        WHERE id = vId;
-    END//    
+        DECLARE rIdOrder INT;
+        SET rIdOrder = "";
+            SELECT id_order
+            INTO rIdOrder
+            FROM chat
+            WHERE id = vId;
+    RETURN rIdOrder;
+    END //
 
 CREATE PROCEDURE getAll_chat()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, name
             FROM chat;
     END//
-
-CREATE PROCEDURE getId_chat(vId_Order int)
-    BEGIN
-    DECLARE ROWCOUNT int;
-        SELECT id
-        FROM chat
-        WHERE id_order = vId_Order;
-    END //
 DELIMITER ;

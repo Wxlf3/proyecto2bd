@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS insert_paymentMethod;
 DROP PROCEDURE IF EXISTS update_paymentMethod;
 DROP PROCEDURE IF EXISTS remove_paymentMethod;
-DROP PROCEDURE IF EXISTS getDescription_paymentMethod;
+DROP FUNCTION IF EXISTS getDescription_paymentMethod;
 DROP PROCEDURE IF EXISTS getAll_paymentMethod;
-DROP PROCEDURE IF EXISTS getId_paymentMethod;
+DROP FUNCTION IF EXISTS getId_paymentMethod;
 DELIMITER //
 
 CREATE PROCEDURE insert_paymentMethod(IN pnDescription VARCHAR(10))
@@ -26,26 +26,35 @@ CREATE PROCEDURE remove_paymentMethod(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getDescription_paymentMethod(vId INT)
+CREATE FUNCTION getDescription_paymentMethod(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rDescription VARCHAR(45);
-        SELECT description
-        FROM payment_method
-        WHERE id = vId;
-    END//    
+        SET rDescription = "";
+            SELECT description
+            INTO rDescription
+            FROM payment_method
+            WHERE id = vId;
+    RETURN rDescription;
+    END //
 
 CREATE PROCEDURE getAll_paymentMethod()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, description
             FROM payment_method;
     END//
 
-CREATE PROCEDURE getId_paymentMethod(vDescription VARCHAR(45))
+CREATE FUNCTION getId_paymentMethod(vDescription VARCHAR(45)) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
-    DECLARE rowcount int;
-        SELECT id
-        FROM payment_method
-        WHERE description = vDescription;
+        DECLARE rId INT;
+        SET rId = 0;
+            SELECT id
+            INTO rId
+            FROM payment_method
+            WHERE description = vDescription;
+    RETURN rId;
     END //
 DELIMITER ;

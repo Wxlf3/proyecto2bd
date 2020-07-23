@@ -18,7 +18,6 @@ CREATE PROCEDURE remove_userXpaymentMethod(IN pnUsername VARCHAR(20), IN pnIdPay
 
 CREATE PROCEDURE getAll_userXpaymentMethod()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT username, id_payment_method
             FROM user_X_paymentMethod;
     END//

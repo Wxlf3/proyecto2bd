@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS insert_category;
 DROP PROCEDURE IF EXISTS update_category;
 DROP PROCEDURE IF EXISTS remove_category;
-DROP PROCEDURE IF EXISTS getName_category;
+DROP FUNCTION IF EXISTS getName_category;
 DROP PROCEDURE IF EXISTS getAll_category;
-DROP PROCEDURE IF EXISTS getId_category;
+DROP FUNCTION IF EXISTS getId_category;
 DELIMITER //
 
 CREATE PROCEDURE insert_category(IN pnName VARCHAR(45))
@@ -26,26 +26,35 @@ CREATE PROCEDURE remove_category(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getName_category(vId INT)
+CREATE FUNCTION getName_category(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rName VARCHAR(45);
-        SELECT name
-        FROM category
-        WHERE id = vId;
-    END//
+        SET rName = "";
+            SELECT name
+            INTO rName
+            FROM category
+            WHERE id = vId;
+    RETURN rName;
+    END //
 
 CREATE PROCEDURE getAll_category()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, name
             FROM category;
     END//
 
-CREATE PROCEDURE getId_category(vName VARCHAR(45))
+CREATE FUNCTION getId_category(vName VARCHAR(45)) 
+RETURNS INT
+DETERMINISTIC
     BEGIN
-    DECLARE rowcount int;
-        SELECT id
-        FROM category
-        WHERE name = vName;
+        DECLARE rId INT;
+        SET rId = 0;
+            SELECT id
+            INTO rId
+            FROM category
+            WHERE name = vName;
+    RETURN rId;
     END //
 DELIMITER ;

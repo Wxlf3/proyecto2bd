@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS insert_reviewType;
 DROP PROCEDURE IF EXISTS update_reviewType;
 DROP PROCEDURE IF EXISTS remove_reviewType;
-DROP PROCEDURE IF EXISTS getName_reviewType;
+DROP FUNCTION IF EXISTS getName_reviewType;
 DROP PROCEDURE IF EXISTS getAll_reviewType;
-DROP PROCEDURE IF EXISTS getId_reviewType;
+DROP FUNCTION IF EXISTS getId_reviewType;
 DELIMITER //
 
 CREATE PROCEDURE insert_reviewType(IN pnName VARCHAR(45))
@@ -26,26 +26,35 @@ CREATE PROCEDURE remove_reviewType(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getName_reviewType(vId INT)
+CREATE FUNCTION getName_reviewType(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rName VARCHAR(45);
-        SELECT name
-        FROM review_type
-        WHERE id = vId;
-    END//
+        SET rName = "";
+            SELECT name
+            INTO rName
+            FROM review_type
+            WHERE id = vId;
+    RETURN rName;
+    END //
 
 CREATE PROCEDURE getAll_reviewType()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, name
             FROM review_type;
     END//
 
-CREATE PROCEDURE getId_reviewType(vName VARCHAR(45))
+CREATE FUNCTION getId_reviewType(vName VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
     BEGIN
-    DECLARE rowcount int;
-        SELECT id
-        FROM review_type
-        WHERE name = vName;
+        DECLARE rId INT;
+        SET rId = "";
+            SELECT id
+            INTO rId
+            FROM review_type
+            WHERE name = vName;
+    RETURN rId;
     END //
 DELIMITER ;

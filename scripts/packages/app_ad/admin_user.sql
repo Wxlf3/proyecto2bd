@@ -2,10 +2,10 @@
 DROP PROCEDURE IF EXISTS insert_user;
 DROP PROCEDURE IF EXISTS update_user;
 DROP PROCEDURE IF EXISTS remove_user;
-DROP PROCEDURE IF EXISTS getPassword_user;
-DROP PROCEDURE IF EXISTS getAverageScoreBuyer_user;
-DROP PROCEDURE IF EXISTS getAverageScoreSeller_user;
-DROP PROCEDURE IF EXISTS getIdUserType_user;
+DROP FUNCTION IF EXISTS getPassword_user;
+DROP FUNCTION IF EXISTS getAverageScoreBuyer_user;
+DROP FUNCTION IF EXISTS getAverageScoreSeller_user;
+DROP FUNCTION IF EXISTS getIdUserType_user;
 DROP PROCEDURE IF EXISTS getAll_user;
 DELIMITER //
 
@@ -32,41 +32,60 @@ CREATE PROCEDURE remove_user(IN pnUsername VARCHAR(45))
             WHERE username = pnUsername;
     END//
 
-CREATE PROCEDURE getPassword_user(pnUsername VARCHAR(45))
+CREATE FUNCTION getPassword_user(pnUsername VARCHAR(45))
+RETURNS VARCHAR(30)
+DETERMINISTIC
     BEGIN
         DECLARE rPassword VARCHAR(30);
-        SELECT password
-        FROM user
-        WHERE username = pnUsername;
-    END//
+        SET rPassword = "";
+            SELECT password
+            INTO rPassword
+            FROM user
+            WHERE username = pnUsername;
+    RETURN rPassword;
+    END //
 
-CREATE PROCEDURE getAverageScoreBuyer_user(pnUsername VARCHAR(45))
+CREATE FUNCTION getAverageScoreBuyer_user(pnUsername VARCHAR(45))
+RETURNS DECIMAL(4,2)
+DETERMINISTIC
     BEGIN
         DECLARE rAverageScoreBuyer DECIMAL(4,2);
-        SELECT average_score_buyer
-        FROM user
-        WHERE username = pnUsername;
-    END//
+        SET rAverageScoreBuyer = 0;
+            SELECT average_score_buyer
+            INTO rAverageScoreBuyer
+            FROM user
+            WHERE username = pnUsername;
+    RETURN rAverageScoreBuyer;
+    END //
 
-CREATE PROCEDURE getAverageScoreSeller_user(pnUsername VARCHAR(45))
+CREATE FUNCTION getAverageScoreSeller_user(pnUsername VARCHAR(45))
+RETURNS DECIMAL(4,2)
+DETERMINISTIC
     BEGIN
         DECLARE rAverageScoreSeller DECIMAL(4,2);
-        SELECT average_score_seller
-        FROM user
-        WHERE username = pnUsername;
-    END//
+        SET rAverageScoreSeller = 0;
+            SELECT average_score_seller
+            INTO rAverageScoreSeller
+            FROM user
+            WHERE username = pnUsername;
+    RETURN rAverageScoreSeller;
+    END //
 
-CREATE PROCEDURE getIdUserType_user(pnUsername VARCHAR(45))
+CREATE FUNCTION getIdUserType_user(pnUsername VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rIdUserType INT;
-        SELECT id_user_type
-        FROM user
-        WHERE username = pnUsername;
-    END//
+        SET rIdUserType = 0;
+            SELECT id_user_type
+            INTO rIdUserType
+            FROM user
+            WHERE username = pnUsername;
+    RETURN rIdUserType;
+    END //
 
 CREATE PROCEDURE getAll_user()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT username, average_score_buyer, average_score_seller, id_user_type
             FROM user;
     END//

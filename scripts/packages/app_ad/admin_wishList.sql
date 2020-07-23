@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS insert_wishList;
 DROP PROCEDURE IF EXISTS update_wishList;
 DROP PROCEDURE IF EXISTS remove_wishList;
-DROP PROCEDURE IF EXISTS getIdProduct_wishList;
-DROP PROCEDURE IF EXISTS getQuantity_wishList;
-DROP PROCEDURE IF EXISTS getAll_product;
+DROP FUNCTION IF EXISTS getIdProduct_wishList;
+DROP FUNCTION IF EXISTS getQuantity_wishList;
+DROP PROCEDURE IF EXISTS getAll_wishList;
 DELIMITER //
 
 CREATE PROCEDURE insert_wishList(IN pnUsername VARCHAR(45), IN pnIdProduct INT, IN pnQuantity INT)
@@ -28,25 +28,34 @@ CREATE PROCEDURE remove_wishList(pnUsername VARCHAR(45))
             WHERE username = pnUsername;
     END//
 
-CREATE PROCEDURE getIdProduct_wishList(pnUsername VARCHAR(45))
+CREATE FUNCTION getIdProduct_wishList(pnUsername VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rIdProduct INT;
-        SELECT id_product
-        FROM wish_list
-        WHERE username = pnUsername;
-    END//
+        SET rIdProduct = "";
+            SELECT id_product
+            INTO rIdProduct
+            FROM wish_list
+            WHERE username = pnUsername;
+    RETURN rIdProduct;
+    END //
 
-CREATE PROCEDURE getQuantity_wishList(pnUsername VARCHAR(45))
+CREATE FUNCTION getQuantity_wishList(pnUsername VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
     BEGIN
         DECLARE rQuantity INT;
-        SELECT quantity
-        FROM wish_list
-        WHERE username = pnUsername;
-    END//
+        SET rQuantity = "";
+            SELECT quantity
+            INTO rQuantity
+            FROM wish_list
+            WHERE username = pnUsername;
+    RETURN rQuantity;
+    END //
 
 CREATE PROCEDURE getAll_wishList()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT username, id_product, quantity
             FROM wish_list;
     END//

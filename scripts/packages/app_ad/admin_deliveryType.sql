@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS insert_delivery_type;
 DROP PROCEDURE IF EXISTS update_delivery_type;
 DROP PROCEDURE IF EXISTS remove_delivery_type;
-DROP PROCEDURE IF EXISTS getDescription_delivery_type;
+DROP FUNCTION IF EXISTS getDescription_delivery_type;
 DROP PROCEDURE IF EXISTS getAll_delivery_type;
-DROP PROCEDURE IF EXISTS getId_delivery_type;
+DROP FUNCTION IF EXISTS getId_delivery_type;
 DELIMITER //
 
 CREATE PROCEDURE insert_delivery_type(IN pnDescription VARCHAR(45))
@@ -26,26 +26,34 @@ CREATE PROCEDURE remove_delivery_type(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getDescription_delivery_type(vId INT)
+CREATE FUNCTION getDescription_delivery_type(vId INT) 
+RETURNS VARCHAR(45)
+DETERMINISTIC
     BEGIN
         DECLARE rDescription VARCHAR(45);
-        SELECT description
-        FROM delivery_type
-        WHERE id = vId;
-    END//    
+        SET rDescription = "";
+            SELECT description
+            INTO rDescription
+            FROM delivery_type
+            WHERE id = vId;
+    RETURN rDescription;
+    END //
 
 CREATE PROCEDURE getAll_delivery_type()
     BEGIN
-        DECLARE ROWCOUNT int;
             SELECT id, description
             FROM delivery_type;
     END//
 
-CREATE PROCEDURE getId_delivery_type(pnDescription VARCHAR(45))
+CREATE FUNCTION getId_delivery_type(pnDescription VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
     BEGIN
-    DECLARE rowcount int;
-        SELECT id
-        FROM delivery_type
-        WHERE description = pnDescription;
-    END //
+        DECLARE rId INT;
+        SET rId = "";
+            SELECT id
+            INTO rId
+            FROM delivery_type
+            WHERE description = pnDescription;
+    RETURN rId
 DELIMITER ;
