@@ -12,7 +12,7 @@ package Frame;
 public class PanelProfile extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelProfile
+     * Creates new form PanelMyProfile
      */
     public PanelProfile() {
         initComponents();
@@ -28,52 +28,76 @@ public class PanelProfile extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ButtonBack = new javax.swing.JButton();
-        ButtonWishlist = new javax.swing.JButton();
-        ButtonPicture = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        FieldPaymentMethod = new javax.swing.JLabel();
-        FieldName = new javax.swing.JLabel();
-        FieldMiddleName = new javax.swing.JLabel();
-        FieldLastName = new javax.swing.JLabel();
-        FieldId = new javax.swing.JLabel();
-        FieldCountry = new javax.swing.JLabel();
-        FieldState = new javax.swing.JLabel();
-        FieldCity = new javax.swing.JLabel();
-        FieldDistrict = new javax.swing.JLabel();
-        FieldNationality = new javax.swing.JLabel();
-        FieldGender = new javax.swing.JLabel();
-        FieldEmail = new javax.swing.JLabel();
-        FieldPhone = new javax.swing.JLabel();
-        FieldBirthday = new javax.swing.JFormattedTextField();
-        Decoration = new javax.swing.JPanel();
-        PanelDecoration1 = new javax.swing.JPanel();
-        PanelDecoration2 = new javax.swing.JPanel();
+        SpacePicture = new javax.swing.JLabel();
+        SpaceName = new javax.swing.JLabel();
+        SpaceResidence = new javax.swing.JLabel();
+        SpaceRatingSeller = new javax.swing.JLabel();
+        SpaceRatingBuyer = new javax.swing.JLabel();
+        ButtonContact = new javax.swing.JButton();
+        ButtonBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PanelProducts = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        PanelComments = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel1.setText("User Profile");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/location.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 132, -1, -1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel2.setText("Products");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 200, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel3.setText("Comments");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 280, 200, -1));
+
+        SpacePicture.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpacePicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SpacePicture.setText("Picture");
+        SpacePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 40, 130), 2, true));
+        add(SpacePicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 120, 140));
+
+        SpaceName.setBackground(new java.awt.Color(255, 255, 255));
+        SpaceName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpaceName.setForeground(new java.awt.Color(76, 40, 130));
+        SpaceName.setText("Name of the user");
+        add(SpaceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 200, -1));
+
+        SpaceResidence.setBackground(new java.awt.Color(255, 255, 255));
+        SpaceResidence.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpaceResidence.setForeground(new java.awt.Color(76, 40, 130));
+        SpaceResidence.setText("City, Country Residence");
+        add(SpaceResidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 200, -1));
+
+        SpaceRatingSeller.setBackground(new java.awt.Color(255, 255, 255));
+        SpaceRatingSeller.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpaceRatingSeller.setForeground(new java.awt.Color(76, 40, 130));
+        SpaceRatingSeller.setText("Rating Seller");
+        add(SpaceRatingSeller, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, -1));
+
+        SpaceRatingBuyer.setBackground(new java.awt.Color(255, 255, 255));
+        SpaceRatingBuyer.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpaceRatingBuyer.setForeground(new java.awt.Color(76, 40, 130));
+        SpaceRatingBuyer.setText("Rating Buyer");
+        add(SpaceRatingBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 200, -1));
+
+        ButtonContact.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonContact.setFont(new java.awt.Font("Candara", 1, 20)); // NOI18N
+        ButtonContact.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonContact.setText("Contact");
+        ButtonContact.setBorder(null);
+        ButtonContact.setContentAreaFilled(false);
+        add(ButtonContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, 120, 40));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -81,287 +105,51 @@ public class PanelProfile extends javax.swing.JPanel {
         ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
         ButtonBack.setBorder(null);
         ButtonBack.setContentAreaFilled(false);
-        add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 50, 50));
+        add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        ButtonWishlist.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonWishlist.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonWishlist.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonWishlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
-        ButtonWishlist.setText("Wishlist");
-        ButtonWishlist.setBorder(null);
-        ButtonWishlist.setContentAreaFilled(false);
-        add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 310, 121, 50));
+        PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
+        PanelProducts.setLayout(new java.awt.GridLayout(0, 3));
+        jScrollPane1.setViewportView(PanelProducts);
 
-        ButtonPicture.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonPicture.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonPicture.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonPicture.setText("Picture");
-        ButtonPicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 40, 130), 2, true));
-        ButtonPicture.setContentAreaFilled(false);
-        add(ButtonPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 120, 150));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 320, 220));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel4.setText("Middle name:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
+        PanelComments.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jScrollPane2.setViewportView(PanelComments);
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel8.setText("Birthday:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 370, 220));
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel11.setText("Gender:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(239, 184, 16));
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel9.setText("Id:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel10.setText("Nationality:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel3.setText("Name:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel6.setText("Email:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, -1, -1));
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel5.setText("Last name:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
-
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel12.setText("District:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, -1, -1));
-
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel14.setText("Residence");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
-
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel15.setText("Country:");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, -1, -1));
-
-        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel16.setText("State:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
-
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel17.setText("City:");
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, -1, -1));
-
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel13.setText("Phone number:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, -1, -1));
-
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel7.setText("Average as a seller:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, -1, -1));
-
-        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel20.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel20.setText("Payment method:");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, -1, -1));
-
-        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel19.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel19.setText("Average as a buyer:");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, -1));
-
-        FieldPaymentMethod.setBackground(new java.awt.Color(255, 255, 255));
-        FieldPaymentMethod.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldPaymentMethod.setForeground(new java.awt.Color(76, 40, 130));
-        FieldPaymentMethod.setText("---");
-        add(FieldPaymentMethod, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 350, 190, -1));
-
-        FieldName.setBackground(new java.awt.Color(255, 255, 255));
-        FieldName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldName.setForeground(new java.awt.Color(76, 40, 130));
-        FieldName.setText("---");
-        add(FieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 190, -1));
-
-        FieldMiddleName.setBackground(new java.awt.Color(255, 255, 255));
-        FieldMiddleName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldMiddleName.setForeground(new java.awt.Color(76, 40, 130));
-        FieldMiddleName.setText("---");
-        add(FieldMiddleName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 190, -1));
-
-        FieldLastName.setBackground(new java.awt.Color(255, 255, 255));
-        FieldLastName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldLastName.setForeground(new java.awt.Color(76, 40, 130));
-        FieldLastName.setText("---");
-        add(FieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 190, -1));
-
-        FieldId.setBackground(new java.awt.Color(255, 255, 255));
-        FieldId.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldId.setForeground(new java.awt.Color(76, 40, 130));
-        FieldId.setText("---");
-        add(FieldId, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 190, -1));
-
-        FieldCountry.setBackground(new java.awt.Color(255, 255, 255));
-        FieldCountry.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldCountry.setForeground(new java.awt.Color(76, 40, 130));
-        FieldCountry.setText("---");
-        add(FieldCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 190, -1));
-
-        FieldState.setBackground(new java.awt.Color(255, 255, 255));
-        FieldState.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldState.setForeground(new java.awt.Color(76, 40, 130));
-        FieldState.setText("---");
-        add(FieldState, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 190, -1));
-
-        FieldCity.setBackground(new java.awt.Color(255, 255, 255));
-        FieldCity.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldCity.setForeground(new java.awt.Color(76, 40, 130));
-        FieldCity.setText("---");
-        add(FieldCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 190, -1));
-
-        FieldDistrict.setBackground(new java.awt.Color(255, 255, 255));
-        FieldDistrict.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldDistrict.setForeground(new java.awt.Color(76, 40, 130));
-        FieldDistrict.setText("---");
-        add(FieldDistrict, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 190, -1));
-
-        FieldNationality.setBackground(new java.awt.Color(255, 255, 255));
-        FieldNationality.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldNationality.setForeground(new java.awt.Color(76, 40, 130));
-        FieldNationality.setText("---");
-        add(FieldNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 150, 190, -1));
-
-        FieldGender.setBackground(new java.awt.Color(255, 255, 255));
-        FieldGender.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldGender.setForeground(new java.awt.Color(76, 40, 130));
-        FieldGender.setText("---");
-        add(FieldGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 190, 190, -1));
-
-        FieldEmail.setBackground(new java.awt.Color(255, 255, 255));
-        FieldEmail.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldEmail.setForeground(new java.awt.Color(76, 40, 130));
-        FieldEmail.setText("---");
-        add(FieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 190, -1));
-
-        FieldPhone.setBackground(new java.awt.Color(255, 255, 255));
-        FieldPhone.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldPhone.setForeground(new java.awt.Color(76, 40, 130));
-        FieldPhone.setText("---");
-        add(FieldPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 310, 190, -1));
-
-        FieldBirthday.setBorder(null);
-        FieldBirthday.setForeground(new java.awt.Color(76, 40, 130));
-        FieldBirthday.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        FieldBirthday.setText("---");
-        FieldBirthday.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        add(FieldBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 219, 120, 30));
-
-        Decoration.setBackground(new java.awt.Color(255, 255, 255));
-        Decoration.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        PanelDecoration1.setBackground(new java.awt.Color(76, 40, 130));
-
-        javax.swing.GroupLayout PanelDecoration1Layout = new javax.swing.GroupLayout(PanelDecoration1);
-        PanelDecoration1.setLayout(PanelDecoration1Layout);
-        PanelDecoration1Layout.setHorizontalGroup(
-            PanelDecoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
-        PanelDecoration1Layout.setVerticalGroup(
-            PanelDecoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 580, Short.MAX_VALUE)
         );
 
-        Decoration.add(PanelDecoration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 580));
-
-        PanelDecoration2.setBackground(new java.awt.Color(239, 184, 16));
-
-        javax.swing.GroupLayout PanelDecoration2Layout = new javax.swing.GroupLayout(PanelDecoration2);
-        PanelDecoration2.setLayout(PanelDecoration2Layout);
-        PanelDecoration2Layout.setHorizontalGroup(
-            PanelDecoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
-        );
-        PanelDecoration2Layout.setVerticalGroup(
-            PanelDecoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
-
-        Decoration.add(PanelDecoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 580));
-
-        add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 50, 580));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBack;
-    private javax.swing.JButton ButtonPicture;
-    private javax.swing.JButton ButtonWishlist;
-    private javax.swing.JPanel Decoration;
-    private javax.swing.JFormattedTextField FieldBirthday;
-    private javax.swing.JLabel FieldCity;
-    private javax.swing.JLabel FieldCountry;
-    private javax.swing.JLabel FieldDistrict;
-    private javax.swing.JLabel FieldEmail;
-    private javax.swing.JLabel FieldGender;
-    private javax.swing.JLabel FieldId;
-    private javax.swing.JLabel FieldLastName;
-    private javax.swing.JLabel FieldMiddleName;
-    private javax.swing.JLabel FieldName;
-    private javax.swing.JLabel FieldNationality;
-    private javax.swing.JLabel FieldPaymentMethod;
-    private javax.swing.JLabel FieldPhone;
-    private javax.swing.JLabel FieldState;
-    private javax.swing.JPanel PanelDecoration1;
-    private javax.swing.JPanel PanelDecoration2;
+    private javax.swing.JButton ButtonContact;
+    private javax.swing.JList<String> PanelComments;
+    private javax.swing.JPanel PanelProducts;
+    private javax.swing.JLabel SpaceName;
+    private javax.swing.JLabel SpacePicture;
+    private javax.swing.JLabel SpaceRatingBuyer;
+    private javax.swing.JLabel SpaceRatingSeller;
+    private javax.swing.JLabel SpaceResidence;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
