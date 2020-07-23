@@ -1,64 +1,51 @@
 -- Connected from APP_AD
+DROP PROCEDURE IF EXISTS insert_category;
+DROP PROCEDURE IF EXISTS update_category;
+DROP PROCEDURE IF EXISTS remove_category;
+DROP PROCEDURE IF EXISTS getName_category;
+DROP PROCEDURE IF EXISTS getAll_category;
+DROP PROCEDURE IF EXISTS getId_category;
+DELIMITER //
 
-CREATE OR REPLACE PACKAGE admin_category IS
-    PROCEDURE insert_category(pnName VARCHAR2);
-    PROCEDURE update_category(pnId NUMBER, pnName VARCHAR2);
-    PROCEDURE remove_category(pnIdCategory NUMBER);
-    FUNCTION getName(vId NUMBER) RETURN VARCHAR2;
-    FUNCTION getAll RETURN sys_refcursor;
-    FUNCTION getId(vName VARCHAR2) RETURN NUMBER;
-END admin_category;
-/
-
-CREATE OR REPLACE PACKAGE BODY admin_category AS
-    PROCEDURE insert_category(pnName VARCHAR2) IS
-        BEGIN
+CREATE PROCEDURE insert_category(IN pnName VARCHAR(10))
+    BEGIN
             INSERT INTO category(name)
             VALUES (pnName);
-        END;
+    END //
 
-    PROCEDURE update_category(pnId NUMBER, pnName VARCHAR2) IS
-        BEGIN
+CREATE PROCEDURE update_category(IN pnId INT, IN pnName VARCHAR(45))
+    BEGIN
             UPDATE category
             SET name = pnName
             WHERE id = pnId;
-        END;
+    END //
 
-    PROCEDURE remove_category(pnIdCategory NUMBER) IS
+CREATE PROCEDURE remove_category(IN pnId INT)
         BEGIN
             DELETE FROM category
-            WHERE id = pnIdCategory;
-        END;
+            WHERE id = pnId;
+    END//
 
-    FUNCTION getName (vId NUMBER) RETURN VARCHAR2
-        IS rName VARCHAR2(20);
+CREATE PROCEDURE getName_category (vId INT)
     BEGIN
+        DECLARE rName VARCHAR(45);
         SELECT name
-        INTO rName
         FROM category
         WHERE id = vId;
-        RETURN rName;
-    END;
+    END//    
 
-    FUNCTION getAll RETURN sys_refcursor
-        AS rAll sys_refcursor;
+CREATE PROCEDURE getAll_category()
     BEGIN
-        OPEN rALL FOR
+        DECLARE ROWCOUNT int;
             SELECT id, name
             FROM category;
-        RETURN rAll;
-    END;
-    
-    FUNCTION getId(vName VARCHAR2) RETURN NUMBER
-    AS
-        rid NUMBER(4);
+    END//
+
+CREATE PROCEDURE getId_category(vName VARCHAR(45))
     BEGIN
+    DECLARE rowcount int;
         SELECT id
-        INTO rid
         FROM category
         WHERE name = vName;
-    RETURN rid;
-    END;
-END admin_category;
-
-/
+    END //
+DELIMITER ;

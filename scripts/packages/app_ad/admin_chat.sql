@@ -1,63 +1,52 @@
 -- Connected from APP_AD
+DROP PROCEDURE IF EXISTS insert_chat;
+DROP PROCEDURE IF EXISTS update_chat;
+DROP PROCEDURE IF EXISTS remove_chat;
+DROP PROCEDURE IF EXISTS getIdOrder_chat;
+DROP PROCEDURE IF EXISTS getAll_chat;
+DROP PROCEDURE IF EXISTS getId_chat;
+DELIMITER //
 
-CREATE OR REPLACE PACKAGE admin_chat IS
-    PROCEDURE insert_chat(pnId_order NUMBER);
-    PROCEDURE update_chat(pnId NUMBER, pnId_order NUMBER);
-    PROCEDURE remove_chat(pnId NUMBER);
-    FUNCTION getIdOrder(vId NUMBER) RETURN NUMBER;
-    FUNCTION getAll RETURN sys_refcursor;
-END admin_chat;
-/
 
-CREATE OR REPLACE PACKAGE BODY admin_chat AS
-    PROCEDURE insert_chat(pnId_order NUMBER) IS
-        BEGIN
-            INSERT INTO chat(id, id_order)
-            VALUES (app.seq_chat.nextval, pnId_order);
-        END;
+CREATE PROCEDURE insert_chat(IN pnId_order INT)
+    BEGIN
+            INSERT INTO chat(id_order)
+            VALUES (pnId_order);
+    END //
 
-    PROCEDURE update_chat(pnId NUMBER, pnId_order NUMBER) IS
-        BEGIN
+CREATE PROCEDURE update_chat(IN pnId INT, IN pnId_order INT)
+    BEGIN
             UPDATE chat
             SET id_order = pnId_order
             WHERE id = pnId;
-        END;
+    END //
 
-    PROCEDURE remove_chat(pnId NUMBER) IS
+CREATE PROCEDURE remove_chat(IN pnId INT)
         BEGIN
             DELETE FROM chat
             WHERE id = pnIdChat;
-        END;
+    END//
 
-    FUNCTION getIdOrder (vId NUMBER) RETURN NUMBER
-        IS rIdOrder NUMBER;
+CREATE PROCEDURE getIdOrder_chat (vId INT)
     BEGIN
+        DECLARE rIdOrder int;
         SELECT id_order
-        INTO rIdOrder
         FROM chat
         WHERE id = vId;
-        RETURN rIdOrder;
-    END;
+    END//    
 
-    FUNCTION getAll RETURN sys_refcursor
-        AS rAll sys_refcursor;
+CREATE PROCEDURE getAll_chat()
     BEGIN
-        OPEN rALL FOR
+        DECLARE ROWCOUNT int;
             SELECT id, name
-            FROM category;
-        RETURN rAll;
-    END;
-    
-    FUNCTION getId(vId_Order rIdOrder) RETURN NUMBER
-    AS
-        rid NUMBER;
+            FROM chat;
+    END//
+
+CREATE PROCEDURE getId_chat(vId_Order int)
     BEGIN
+    DECLARE ROWCOUNT int;
         SELECT id
-        INTO rid
         FROM chat
         WHERE id_order = vId_Order;
-    RETURN rid;
-    END;
-END admin_chat;
-
-/
+    END //
+DELIMITER ;
