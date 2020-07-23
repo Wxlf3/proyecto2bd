@@ -7,7 +7,7 @@ DROP PROCEDURE IF EXISTS getAll_category;
 DROP PROCEDURE IF EXISTS getId_category;
 DELIMITER //
 
-CREATE PROCEDURE insert_category(IN pnName VARCHAR(10))
+CREATE PROCEDURE insert_category(IN pnName VARCHAR(45))
     BEGIN
             INSERT INTO category(name)
             VALUES (pnName);
@@ -26,13 +26,13 @@ CREATE PROCEDURE remove_category(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE PROCEDURE getName_category (vId INT)
+CREATE PROCEDURE getName_category(vId INT)
     BEGIN
         DECLARE rName VARCHAR(45);
         SELECT name
         FROM category
         WHERE id = vId;
-    END//    
+    END//
 
 CREATE PROCEDURE getAll_category()
     BEGIN
