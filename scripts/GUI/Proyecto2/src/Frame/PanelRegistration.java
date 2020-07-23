@@ -9,12 +9,12 @@ package Frame;
  *
  * @author diana
  */
-public class PanelRegister extends javax.swing.JPanel {
+public class PanelRegistration extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelRegister
      */
-    public PanelRegister() {
+    public PanelRegistration() {
         initComponents();
     }
 
