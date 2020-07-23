@@ -19,5 +19,5 @@ CREATE TABLE `log_ad`.`price_changes` (
   CONSTRAINT `fk_priceChanges_product`
     FOREIGN KEY (`id_product`)
     REFERENCES `app_ad`.`product` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
