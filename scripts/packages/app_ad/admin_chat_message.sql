@@ -1,7 +1,7 @@
 -- Connected from APP_AD
 
 CREATE OR REPLACE PACKAGE admin_chat_message IS
-    PROCEDURE insert_chat_message(pnName VARCHAR2);
+    PROCEDURE insert_chat_message(pnDate DATETIME, pnMessage VARCHAR, username VARCHAR);
     PROCEDURE update_chat_message(pnId NUMBER, pnName VARCHAR2);
     PROCEDURE remove_chat_message(pnIdCategory NUMBER);
     FUNCTION getName(vId NUMBER) RETURN VARCHAR2;
@@ -10,8 +10,8 @@ CREATE OR REPLACE PACKAGE admin_chat_message IS
 END admin_chat_message;
 /
 
-CREATE OR REPLACE PACKAGE BODY admin_category AS
-    PROCEDURE insert_category(pnName VARCHAR2) IS
+CREATE OR REPLACE PACKAGE BODY admin_chat_message AS
+    PROCEDURE insert_chat_message(pnName VARCHAR2) IS
         BEGIN
             INSERT INTO category(id, name)
             VALUES (app.seq_category.nextval, pnName);
