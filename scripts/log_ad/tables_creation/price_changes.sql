@@ -8,8 +8,8 @@ CREATE TABLE `log_ad`.`price_changes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_product` INT NOT NULL,
   `date` DATETIME NOT NULL,
-  `prev_price` INT NULL,
-  `current_price` INT NULL,
+  `prev_price` DECIMAL(10,2) NULL,
+  `current_price` DECIMAL(10,2) NULL,
   `creation_date` DATETIME NULL,
   `creation_user` VARCHAR(45) NULL,
   `last_change_date` DATETIME NULL,
@@ -19,5 +19,5 @@ CREATE TABLE `log_ad`.`price_changes` (
   CONSTRAINT `fk_priceChanges_product`
     FOREIGN KEY (`id_product`)
     REFERENCES `app_ad`.`product` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);

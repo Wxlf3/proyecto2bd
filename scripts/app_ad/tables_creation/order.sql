@@ -2,7 +2,7 @@
 
 CREATE TABLE `order` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `price` decimal(4,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `quantity` int NOT NULL,
   `date` datetime NOT NULL,
   `user_seller` varchar(45) NOT NULL,
