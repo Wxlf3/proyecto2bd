@@ -83,6 +83,7 @@ CREATE FUNCTION `getMiddleName_person` (vId INT)
 RETURNS VARCHAR(45)
 BEGIN
 	DECLARE result VARCHAR(45);
+    SET result = "";
     SELECT middle_name
     INTO result
     FROM person
@@ -138,6 +139,7 @@ CREATE FUNCTION `getPicturePath_person` (vId INT)
 RETURNS VARCHAR(60)
 BEGIN
 	DECLARE result VARCHAR(60);
+    SET result = "";
     SELECT picture_path
     INTO result
     FROM person
