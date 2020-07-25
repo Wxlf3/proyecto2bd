@@ -2,7 +2,10 @@
 DROP PROCEDURE IF EXISTS insert_shoppingCart;
 DROP PROCEDURE IF EXISTS update_shoppingCart;
 DROP PROCEDURE IF EXISTS remove_shoppingCart;
-DROP FUNCTION IF EXISTS getIdProduct_shoppingCart;
+DROP PROCEDURE IF EXISTS remove_shoppingCart_with_username;
+DROP PROCEDURE IF EXISTS remove_shoppingCart_with_idProduct;
+DROP PROCEDURE IF EXISTS get_shoppingCart_with_username;
+DROP PROCEDURE IF EXISTS get_shoppingCart_with_idProduct;
 DROP FUNCTION IF EXISTS getQuantity_shoppingCart;
 DROP PROCEDURE IF EXISTS getAll_shoppingCart;
 DELIMITER //
@@ -17,31 +20,29 @@ CREATE PROCEDURE update_shoppingCart(IN pnUsername VARCHAR(45), IN pnIdProduct I
     BEGIN
             UPDATE shopping_cart
             SET 
-            id_product = pnIdProduct,
             quantity = pnQuantity
-            WHERE username = pnUsername;
+            WHERE username = pnUsername AND id_product = pnIdProduct;
     END //
 
-CREATE PROCEDURE remove_shoppingCart(IN pnUsername INT)
+CREATE PROCEDURE remove_shoppingCart(IN pnUsername VARCHAR(45), IN pnIdProduct INT)
         BEGIN
+            DELETE FROM shopping_cart
+            WHERE username = pnUsername AND id_product = pnIdProduct;
+    END//
+    
+CREATE PROCEDURE remove_shoppingCart_with_username(IN pnUsername VARCHAR(45))
+	BEGIN
             DELETE FROM shopping_cart
             WHERE username = pnUsername;
     END//
+    
+CREATE PROCEDURE remove_shoppingCart_with_idProduct(IN pnIdProduct INT)
+	BEGIN
+            DELETE FROM shopping_cart
+            WHERE id_product = pnIdProduct;
+    END//
 
-CREATE FUNCTION getIdProduct_shoppingCart(pnUsername INT)
-RETURNS INT
-DETERMINISTIC
-    BEGIN
-        DECLARE rIdProduct INT;
-        SET rIdProduct = 0;
-            SELECT id_product
-            INTO rIdProduct
-            FROM shopping_cart
-        WHERE username = pnUsername;
-    RETURN rIdProduct;
-    END //
-
-CREATE FUNCTION getQuantity_shoppingCart(pnUsername INT)
+CREATE FUNCTION getQuantity_shoppingCart(pnUsername VARCHAR(45), pnIdProduct INT)
 RETURNS INT
 DETERMINISTIC
     BEGIN
@@ -50,7 +51,7 @@ DETERMINISTIC
             SELECT quantity
             INTO rQuantity
             FROM shopping_cart
-        WHERE username = pnUsername;
+        WHERE username = pnUsername AND id_product = pnIdProduct;
     RETURN rQuantity;
     END //
 

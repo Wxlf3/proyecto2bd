@@ -5,28 +5,30 @@ DROP PROCEDURE IF EXISTS remove_productReview;
 DROP FUNCTION IF EXISTS getScore_productReview;
 DROP FUNCTION IF EXISTS getComment_productReview;
 DROP FUNCTION IF EXISTS getUsernameWriter_productReview;
+DROP FUNCTION IF EXISTS getIdProduct_productReview;
 DROP PROCEDURE IF EXISTS getAll_productReview;
 DELIMITER //
 
-CREATE PROCEDURE insert_productReview(IN pnScore DECIMAL(4,2), IN pnComment VARCHAR(45), IN pnUsernameWriter VARCHAR(45))
+CREATE PROCEDURE insert_productReview(IN pnScore DECIMAL(4,2), IN pnComment VARCHAR(45), IN pnUsernameWriter VARCHAR(45), IN pnIdProduct INT)
     BEGIN
-            INSERT INTO product_review(score, comment, username_writer)
-            VALUES (pnScore, pnComment, pnUsernameWriter);
+            INSERT INTO product_review(score, comment, username_writer, id_product)
+            VALUES (pnScore, pnComment, pnUsernameWriter, pnIdProduct);
     END //
 
-CREATE PROCEDURE update_productReview(IN pnId INT, IN pnScore DECIMAL(4,2), IN pnComment VARCHAR(45), IN pnUsernameWriter VARCHAR(45))
+CREATE PROCEDURE update_productReview(IN pnId INT, IN pnScore DECIMAL(4,2), IN pnComment VARCHAR(45), IN pnUsernameWriter VARCHAR(45), IN pnIdProduct INT)
     BEGIN
             UPDATE product_review
             SET 
             score = pnScore,
             comment = pnComment,
-            username_writer = pnUsernameWriter
+            username_writer = pnUsernameWriter,
+            id_product = pnIdProduct
             WHERE id = pnId;
     END //
 
 CREATE PROCEDURE remove_productReview(IN pnId INT)
         BEGIN
-            DELETE FROM category
+            DELETE FROM product_review
             WHERE id = pnId;
     END//
 
@@ -71,7 +73,7 @@ DETERMINISTIC
 
 CREATE PROCEDURE getAll_productReview()
     BEGIN
-            SELECT id, score, comment, username_writer
+            SELECT id, score, comment, username_writer, id_product
             FROM product_review;
     END//
 DELIMITER ;

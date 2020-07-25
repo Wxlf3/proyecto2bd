@@ -7,7 +7,7 @@ DROP PROCEDURE IF EXISTS getAll_paymentMethod;
 DROP FUNCTION IF EXISTS getId_paymentMethod;
 DELIMITER //
 
-CREATE PROCEDURE insert_paymentMethod(IN pnDescription VARCHAR(10))
+CREATE PROCEDURE insert_paymentMethod(IN pnDescription VARCHAR(45))
     BEGIN
             INSERT INTO payment_method(description)
             VALUES (pnDescription);

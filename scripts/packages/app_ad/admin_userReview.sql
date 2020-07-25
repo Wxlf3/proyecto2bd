@@ -2,7 +2,7 @@
 DROP PROCEDURE IF EXISTS insert_userReview;
 DROP PROCEDURE IF EXISTS update_userReview;
 DROP PROCEDURE IF EXISTS remove_userReview;
-DROP FUNCTION IF EXISTS getName_userReview;
+DROP FUNCTION IF EXISTS getScore_userReview;
 DROP FUNCTION IF EXISTS getComment_userReview;
 DROP FUNCTION IF EXISTS getIdTypeReview_userReview;
 DROP FUNCTION IF EXISTS getUsernameWriter_userReview;
@@ -34,7 +34,7 @@ CREATE PROCEDURE remove_userReview(IN pnId INT)
             WHERE id = pnId;
     END//
 
-CREATE FUNCTION getName_userReview(vId INT) 
+CREATE FUNCTION getScore_userReview(vId INT) 
 RETURNS DECIMAL(4,2)
 DETERMINISTIC
     BEGIN

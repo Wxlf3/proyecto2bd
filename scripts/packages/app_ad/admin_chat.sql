@@ -31,7 +31,7 @@ RETURNS INT
 DETERMINISTIC
     BEGIN
         DECLARE rIdOrder INT;
-        SET rIdOrder = "";
+        SET rIdOrder = 0;
             SELECT id_order
             INTO rIdOrder
             FROM chat
@@ -41,7 +41,7 @@ DETERMINISTIC
 
 CREATE PROCEDURE getAll_chat()
     BEGIN
-            SELECT id, name
+            SELECT id, id_order
             FROM chat;
     END//
 DELIMITER ;

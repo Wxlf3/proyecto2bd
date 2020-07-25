@@ -61,7 +61,7 @@ CREATE PROCEDURE getAll_picture()
             FROM picture;
     END//
 
-CREATE FUNCTION getId_picture(vPath VARCHAR(45))
+CREATE FUNCTION getId_picture(vPath VARCHAR(60))
 RETURNS INT
 DETERMINISTIC
     BEGIN

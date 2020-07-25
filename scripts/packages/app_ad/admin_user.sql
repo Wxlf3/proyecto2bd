@@ -7,21 +7,20 @@ DROP FUNCTION IF EXISTS getAverageScoreBuyer_user;
 DROP FUNCTION IF EXISTS getAverageScoreSeller_user;
 DROP FUNCTION IF EXISTS getIdUserType_user;
 DROP PROCEDURE IF EXISTS getAll_user;
+DROP FUNCTION IF EXISTS check_login;
 DELIMITER //
 
-CREATE PROCEDURE insert_user(IN pnUsername VARCHAR(45), IN pnPassword VARCHAR(30), IN pnAverageScoreBuyer DECIMAL(4,2), IN pnAverageScoreSeller DECIMAL(4,2), IN pnIdUserType INT)
+CREATE PROCEDURE insert_user(IN pnUsername VARCHAR(45), IN pnPassword VARCHAR(30), IN pnIdUserType INT)
     BEGIN
             INSERT INTO user(username, password, average_score_buyer, average_score_seller, id_user_type)
-            VALUES (pnUsername, pnPassword, pnAverageScoreBuyer, pnAverageScoreSeller, pnIdUserType);
+            VALUES (pnUsername, aes_encrypt(pnPassword, pnPassword), 0, 0, pnIdUserType);
     END //
 
-CREATE PROCEDURE update_user(IN pnUsername VARCHAR(45), IN pnPassword VARCHAR(30), IN pnAverageScoreBuyer DECIMAL(4,2), IN pnAverageScoreSeller DECIMAL(4,2), IN pnIdUserType INT)
+CREATE PROCEDURE update_user(IN pnUsername VARCHAR(45), IN pnPassword VARCHAR(30), IN pnIdUserType INT)
     BEGIN
             UPDATE user
             SET 
-            password = pnPassword,
-            average_score_seller = pnAverageScoreSeller,
-            average_score_buyer = pnAverageScoreBuyer,
+            password = aes_encrypt(pnPassword, pnPassword),
             id_user_type = pnIdUserType
             WHERE username = pnUsername;
     END //
@@ -89,4 +88,17 @@ CREATE PROCEDURE getAll_user()
             SELECT username, average_score_buyer, average_score_seller, id_user_type
             FROM user;
     END//
+    
+CREATE FUNCTION check_login(vUsername VARCHAR(45), vPassword VARCHAR(30))
+RETURNS BOOL
+DETERMINISTIC
+	BEGIN
+		DECLARE result BOOL;
+        SET result = 0;
+        IF (aes_encrypt(vPassword, vPassword) <=> (SELECT password FROM user WHERE username = vUsername)) THEN
+			SET result = 1;
+		END IF;
+	RETURN result;
+    END//
+		
 DELIMITER ;

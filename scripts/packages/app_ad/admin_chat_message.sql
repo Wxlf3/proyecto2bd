@@ -20,9 +20,9 @@ CREATE PROCEDURE update_chat_message(IN pnId INT, IN pnDate DATETIME, IN pnMessa
     BEGIN
             UPDATE chat_message
             SET
-                id = pnId,
                 date = pnDate,
                 message = pnMessage,
+                username_writer = pnUsernameWriter,
                 id_chat = pnId_chat
             WHERE id = pnId;
     END //
@@ -38,7 +38,7 @@ RETURNS DATETIME
 DETERMINISTIC
     BEGIN
         DECLARE rDate DATETIME;
-        SET rDate = null;
+        SET rDate = STR_TO_DATE('0,0,0000','%d,%m,%Y');
             SELECT date
             INTO rDate
             FROM chat_message

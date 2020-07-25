@@ -14,13 +14,13 @@ DROP FUNCTION IF EXISTS getIdDeliveryType_product;
 DROP PROCEDURE IF EXISTS getAll_product;
 DELIMITER //
 
-CREATE PROCEDURE insert_product(IN pnPrice DECIMAL(10,2), IN pnName VARCHAR(45), IN pnDescription VARCHAR(150), IN pnQuantInStock INT, IN pnIsVisible TINYINT, IN pnAverageScore DECIMAL(4,2), IN pnIdCategory INT, IN pnUsernameSeller VARCHAR(45), IN pnIdDeliveryType INT)
+CREATE PROCEDURE insert_product(IN pnPrice DECIMAL(10,2), IN pnName VARCHAR(45), IN pnDescription VARCHAR(150), IN pnQuantInStock INT, IN pnIsVisible TINYINT, IN pnIdCategory INT, IN pnUsernameSeller VARCHAR(45), IN pnIdDeliveryType INT)
     BEGIN
             INSERT INTO product(price, name, description, quant_in_stock, is_visible, average_score, id_category, username_seller, id_delivery_type)
-            VALUES (pnPrice, pnName, pnDescription, pnQuantInStock, pnIsVisible, pnAverageScore, pnIdCategory, pnUsernameSeller, pnIdDeliveryType);
+            VALUES (pnPrice, pnName, pnDescription, pnQuantInStock, pnIsVisible, 0, pnIdCategory, pnUsernameSeller, pnIdDeliveryType);
     END //
 
-CREATE PROCEDURE update_product(IN pnId INT, IN pnPrice DECIMAL(10,2), IN pnName VARCHAR(45), IN pnDescription VARCHAR(150), IN pnQuantInStock INT, IN pnIsVisible TINYINT, IN pnAverageScore DECIMAL(4,2), IN pnIdCategory INT, IN pnUsernameSeller VARCHAR(45), IN pnIdDeliveryType INT)
+CREATE PROCEDURE update_product(IN pnId INT, IN pnPrice DECIMAL(10,2), IN pnName VARCHAR(45), IN pnDescription VARCHAR(150), IN pnQuantInStock INT, IN pnIsVisible TINYINT, IN pnIdCategory INT, IN pnUsernameSeller VARCHAR(45), IN pnIdDeliveryType INT)
     BEGIN
             UPDATE product
             SET 
@@ -29,11 +29,17 @@ CREATE PROCEDURE update_product(IN pnId INT, IN pnPrice DECIMAL(10,2), IN pnName
             description = pnDescription,
             quant_in_stock = pnQuantInStock,
             is_visible = pnIsVisible,
-            average_score = pnAverageScore,
             id_category = pnIdCategory,
             username_seller = pnUsernameSeller,
             id_delivery_type = pnIdDeliveryType
             WHERE id = pnId;
+            
+            IF (pnIsVisible <=> 0) THEN
+				DELETE FROM shopping_cart
+                WHERE id_product = pnId;
+                DELETE FROM wish_list
+                WHERE id_product = pnId;
+			END IF;
     END //
 
 CREATE PROCEDURE remove_product(IN pnId INT)
@@ -86,7 +92,7 @@ RETURNS INT
 DETERMINISTIC
     BEGIN
         DECLARE rQuantInStock INT;
-        SET rQuantInStock = "";
+        SET rQuantInStock = 0;
             SELECT quant_in_stock
             INTO rQuantInStock
             FROM product
@@ -99,7 +105,7 @@ RETURNS TINYINT
 DETERMINISTIC
     BEGIN
         DECLARE rIsVisible TINYINT;
-        SET rIsVisible = "";
+        SET rIsVisible = 0;
             SELECT is_visible
             INTO rIsVisible
             FROM product

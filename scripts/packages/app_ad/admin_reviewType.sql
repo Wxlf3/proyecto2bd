@@ -50,7 +50,7 @@ RETURNS INT
 DETERMINISTIC
     BEGIN
         DECLARE rId INT;
-        SET rId = "";
+        SET rId = 0;
             SELECT id
             INTO rId
             FROM review_type

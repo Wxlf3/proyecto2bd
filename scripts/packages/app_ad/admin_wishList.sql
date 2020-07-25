@@ -2,7 +2,10 @@
 DROP PROCEDURE IF EXISTS insert_wishList;
 DROP PROCEDURE IF EXISTS update_wishList;
 DROP PROCEDURE IF EXISTS remove_wishList;
-DROP FUNCTION IF EXISTS getIdProduct_wishList;
+DROP PROCEDURE IF EXISTS remove_wishList_with_username;
+DROP PROCEDURE IF EXISTS remove_wishList_with_idProduct;
+DROP PROCEDURE IF EXISTS get_wishList_with_username;
+DROP PROCEDURE IF EXISTS get_wishList_with_idProduct;
 DROP FUNCTION IF EXISTS getQuantity_wishList;
 DROP PROCEDURE IF EXISTS getAll_wishList;
 DELIMITER //
@@ -16,41 +19,52 @@ CREATE PROCEDURE insert_wishList(IN pnUsername VARCHAR(45), IN pnIdProduct INT, 
 CREATE PROCEDURE update_wishList(IN pnUsername VARCHAR(45), IN pnIdProduct INT, IN pnQuantity INT)
     BEGIN
             UPDATE wish_list
-            SET 
-            id_product = pnIdProduct,
-            quantity = pnQuantity
-            WHERE username = pnUsername;
+            SET quantity = pnQuantity
+            WHERE username = pnUsername AND id_product = pnIdProduct;
     END //
 
-CREATE PROCEDURE remove_wishList(pnUsername VARCHAR(45))
-        BEGIN
+CREATE PROCEDURE remove_wishList(IN pnUsername VARCHAR(45), IN pnIdProduct INT)
+	BEGIN
+            DELETE FROM wish_list
+            WHERE username = pnUsername AND id_product = pnIdProduct;
+    END//
+    
+CREATE PROCEDURE remove_wishList_with_username(IN pnUsername VARCHAR(45))
+	BEGIN
             DELETE FROM wish_list
             WHERE username = pnUsername;
     END//
+    
+CREATE PROCEDURE remove_wishList_with_idProduct(IN pnIdProduct INT)
+	BEGIN
+            DELETE FROM wish_list
+            WHERE id_product = pnIdProduct;
+    END//
 
-CREATE FUNCTION getIdProduct_wishList(pnUsername VARCHAR(45))
-RETURNS INT
-DETERMINISTIC
+CREATE PROCEDURE get_wishList_with_username(IN pnUsername VARCHAR(45))
     BEGIN
-        DECLARE rIdProduct INT;
-        SET rIdProduct = "";
-            SELECT id_product
-            INTO rIdProduct
-            FROM wish_list
-            WHERE username = pnUsername;
-    RETURN rIdProduct;
+		SELECT username, id_product, quantity
+		FROM wish_list
+		WHERE username = pnUsername;
+    END //
+    
+CREATE PROCEDURE get_wishList_with_idProduct(IN pnIdProduct INT)
+    BEGIN
+		SELECT username, id_product, quantity
+		FROM wish_list
+		WHERE id_product = pnIdProduct;
     END //
 
-CREATE FUNCTION getQuantity_wishList(pnUsername VARCHAR(45))
+CREATE FUNCTION getQuantity_wishList(pnUsername VARCHAR(45), pnIdProduct INT)
 RETURNS INT
 DETERMINISTIC
     BEGIN
         DECLARE rQuantity INT;
-        SET rQuantity = "";
+        SET rQuantity = 0;
             SELECT quantity
             INTO rQuantity
             FROM wish_list
-            WHERE username = pnUsername;
+            WHERE username = pnUsername AND id_product = pnIdProduct;
     RETURN rQuantity;
     END //
 

@@ -50,10 +50,11 @@ RETURNS INT
 DETERMINISTIC
     BEGIN
         DECLARE rId INT;
-        SET rId = "";
+        SET rId = 0;
             SELECT id
             INTO rId
             FROM delivery_type
             WHERE description = pnDescription;
-    RETURN rId
+    RETURN rId;
+	END//
 DELIMITER ;

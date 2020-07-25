@@ -67,7 +67,7 @@ RETURNS DATETIME
 DETERMINISTIC
     BEGIN
         DECLARE rDate DATETIME;
-        SET rDate = Null;
+        SET rDate = STR_TO_DATE('0,0,0000','%d,%m,%Y');
             SELECT date
             INTO rDate
             FROM `order`
