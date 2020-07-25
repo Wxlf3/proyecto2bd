@@ -5,8 +5,6 @@
  */
 package Frame;
 
-import Connection.ConnectDB;
-
 /**
  *
  * @author diana
@@ -19,7 +17,6 @@ public class PanelLogin extends javax.swing.JPanel {
     public PanelLogin() {
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,11 +94,6 @@ public class PanelLogin extends javax.swing.JPanel {
         ButtonConfirm.setAlignmentX(0.5F);
         ButtonConfirm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         ButtonConfirm.setContentAreaFilled(false);
-        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonConfirmActionPerformed(evt);
-            }
-        });
         PanelLogin.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 390, 120, 40));
 
         PanelBackground.add(PanelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 580));
@@ -131,10 +123,6 @@ public class PanelLogin extends javax.swing.JPanel {
 
         add(PanelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 580));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        
-    }//GEN-LAST:event_ButtonConfirmActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
