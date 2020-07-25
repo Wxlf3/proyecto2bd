@@ -1,6 +1,7 @@
 
 package Frame;
 
+import Connection.ConnectDB;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -60,6 +61,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonHistoryAdmin.setText("My history");
         ButtonHistoryAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonHistoryAdmin.setContentAreaFilled(false);
+        ButtonHistoryAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonHistoryAdminActionPerformed(evt);
+            }
+        });
         PanelAdmin.add(ButtonHistoryAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
 
         ButtonBasketAdmin.setBackground(new java.awt.Color(255, 255, 255));
@@ -186,8 +192,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
 
         getContentPane().add(PanelGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-
         PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
         PanelProducts.setLayout(new java.awt.GridLayout(0, 4));
         jScrollPane1.setViewportView(PanelProducts);
@@ -196,6 +200,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
+        ConnectDB c = new ConnectDB();
+        c.conector();
+    }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
 
     /**
      * @param args the command line arguments
