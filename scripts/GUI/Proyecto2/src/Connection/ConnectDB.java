@@ -1,7 +1,7 @@
 package Connection;
 
 import BL.user;
-import java.sql.CallableStatement;
+import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,6 +15,7 @@ public class ConnectDB {
     private static Connection con;
     private static final String driver="com.mysql.jdbc.Driver";
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final String user="app_ad";
     private static final String pass="app_ad";
     private static final String url="jdbc:mysql://127.0.0.1:3306/app_ad?user=app_ad";
@@ -23,6 +24,11 @@ public class ConnectDB {
     private static final String pass="";
     private static final String url="jdbc:mysql://127.0.0.1:3306/person_ad?user=person_ad";
 >>>>>>> parent of 92f0294... Changes
+=======
+    private static final String user="person_ad";
+    private static final String pass="person_ad";
+    private static final String url="jdbc:mysql://127.0.0.1:3306/person_ad?user=person_ad";
+>>>>>>> parent of f685f8d... Changes
     
     public void conector() {
         con=null;
@@ -35,6 +41,7 @@ public class ConnectDB {
         catch (SQLException e){
             System.out.println("Error de conexion" + e);
         }
+<<<<<<< HEAD
     }
     
 <<<<<<< HEAD
@@ -66,4 +73,7 @@ public class ConnectDB {
     }
     
 >>>>>>> parent of 92f0294... Changes
+=======
+    }    
+>>>>>>> parent of f685f8d... Changes
 }
