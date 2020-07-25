@@ -203,7 +203,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
 
     private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
         ConnectDB c = new ConnectDB();
-        c.conector();
+        c.insertDeliveryType("Hola");
     }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
 
     /**

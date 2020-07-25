@@ -1,7 +1,7 @@
 package Connection;
 
 import BL.user;
-import com.mysql.cj.jdbc.CallableStatement;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,9 +14,9 @@ public class ConnectDB {
    
     private static Connection con;
     private static final String driver="com.mysql.jdbc.Driver";
-    private static final String user="person_ad";
-    private static final String pass="person_ad";
-    private static final String url="jdbc:mysql://127.0.0.1:3306/person_ad?user=person_ad";
+    private static final String user="app_ad";
+    private static final String pass="app_ad";
+    private static final String url="jdbc:mysql://127.0.0.1:3306/app_ad?user=app_ad";
     
     public void conector() {
         con=null;
@@ -29,5 +29,20 @@ public class ConnectDB {
         catch (SQLException e){
             System.out.println("Error de conexion" + e);
         }
-    }    
+    }
+    
+    public void insertDeliveryType(String pDescription) {
+        con=null;
+        try{
+            con=  DriverManager.getConnection(url, user, pass);
+            CallableStatement stmt = con.prepareCall("{call insert_delivery_type(?)}");
+            stmt.setString(1, pDescription);
+            if (stmt!=null){
+                System.out.println("Conexion establecida");
+            }
+        }
+        catch (SQLException e){
+            System.out.println("Error de conexion" + e);
+        }
+    }
 }
