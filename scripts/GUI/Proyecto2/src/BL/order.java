@@ -11,12 +11,12 @@ public class order
     private int id;
     private float price;
     private int quantity;
-    private Date date;
+    private java.sql.Date date;
     private String user_seller;
     private String user_buyer;
     private int id_product;
 
-    public order(float price, int quantity, Date date, String user_seller, String user_buyer, int id_product) {
+    public order(float price, int quantity, java.sql.Date date, String user_seller, String user_buyer, int id_product) {
         this.price = price;
         this.quantity = quantity;
         this.date = date;
@@ -49,11 +49,11 @@ public class order
         this.quantity = quantity;
     }
 
-    public Date getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 

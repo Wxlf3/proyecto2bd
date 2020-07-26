@@ -4,13 +4,13 @@ package BL;
  *
  * @author sebas
  */
-public class whis_list 
+public class wish_list 
 {
     private String username;
     private int id_product;
     private int quantity;
 
-    public whis_list(String username, int id_product, int quantity) {
+    public wish_list(String username, int id_product, int quantity) {
         this.username = username;
         this.id_product = id_product;
         this.quantity = quantity;

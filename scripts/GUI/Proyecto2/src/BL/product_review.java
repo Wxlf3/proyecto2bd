@@ -10,11 +10,13 @@ public class product_review
     private float score;
     private String comment;
     private String username_writer;
+    private int idProduct;
 
-    public product_review(float score, String comment, String username_writer) {
+    public product_review(float score, String comment, String username_writer, int idProduct) {
         this.score = score;
         this.comment = comment;
         this.username_writer = username_writer;
+        this.idProduct = idProduct;
     }
 
     public int getId() {
@@ -48,6 +50,12 @@ public class product_review
     public void setUsername_writer(String username_writer) {
         this.username_writer = username_writer;
     }
-    
-    
+
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
 }

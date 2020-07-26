@@ -14,13 +14,13 @@ public class person
     private String last_name;
     private String email;
     private String phone_number;
-    private Date birthday;
+    private java.sql.Date birthday;
     private String picture_path;
     private int id_gender;
     private int id_district;
     private String username;
 
-    public person(String id, String first_name, String middle_name, String last_name, String email, String phone_number, Date birthday, String picture_path, int id_gender, int id_district, String username) {
+    public person(String id, String first_name, String middle_name, String last_name, String email, String phone_number, java.sql.Date birthday, String picture_path, int id_gender, int id_district, String username) {
         this.id = id;
         this.first_name = first_name;
         this.middle_name = middle_name;
@@ -82,11 +82,11 @@ public class person
         this.phone_number = phone_number;
     }
 
-    public Date getBirthday() {
+    public java.sql.Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(java.sql.Date birthday) {
         this.birthday = birthday;
     }
 

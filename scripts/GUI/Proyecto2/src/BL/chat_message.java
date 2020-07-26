@@ -1,8 +1,5 @@
 package BL;
 
-import java.util.Date;
-import java.sql.Types;
-
 /**
  *
  * @author sebas

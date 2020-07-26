@@ -10,13 +10,22 @@ DROP FUNCTION IF EXISTS getUsernameReceiver_userReview;
 DROP PROCEDURE IF EXISTS getAll_userReview;
 DELIMITER //
 
-CREATE PROCEDURE insert_userReview(IN pnScore DECIMAl(4,2), in pnComment VARCHAR(200), IN pnIdTypeReview INT, IN pnUsernameWriter VARCHAR(45), IN pnUsernameReceiver VARCHAR(45))
+CREATE PROCEDURE insert_userReview(IN pnScore DECIMAl(4,2), 
+                                    IN pnComment VARCHAR(200), 
+                                    IN pnIdTypeReview INT, 
+                                    IN pnUsernameWriter VARCHAR(45), 
+                                    IN pnUsernameReceiver VARCHAR(45))
     BEGIN
             INSERT INTO user_review(score, comment, id_type_review, username_writer, username_receiver)
             VALUES (pnScore, pnComment, pnIdTypeReview, pnUsernameWriter, pnUsernameReceiver);
     END //
 
-CREATE PROCEDURE update_userReview(IN pnId INT, IN pnScore DECIMAl(4,2), in pnComment VARCHAR(200), IN pnIdTypeReview INT, IN pnUsernameWriter VARCHAR(45), IN pnUsernameReceiver VARCHAR(45))
+CREATE PROCEDURE update_userReview(IN pnId INT, 
+                                    IN pnScore DECIMAl(4,2), 
+                                    IN pnComment VARCHAR(200), 
+                                    IN pnIdTypeReview INT, 
+                                    IN pnUsernameWriter VARCHAR(45), 
+                                    IN pnUsernameReceiver VARCHAR(45))
     BEGIN
             UPDATE user_review
             SET 
