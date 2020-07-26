@@ -50,6 +50,9 @@ public class PanelAddProduct extends javax.swing.JPanel {
         ButtonAddPic = new javax.swing.JButton();
         ButtonDeletePic = new javax.swing.JButton();
         ButtonConfirm = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        FieldDescription1 = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,65 +140,65 @@ public class PanelAddProduct extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(76, 40, 130));
         jLabel3.setText("Name:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         FieldName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         FieldName.setForeground(new java.awt.Color(76, 40, 130));
-        add(FieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 190, 30));
+        add(FieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 190, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(76, 40, 130));
         jLabel5.setText("Description:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
 
         FieldDescription.setColumns(20);
         FieldDescription.setRows(5);
         jScrollPane1.setViewportView(FieldDescription);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 240, 70));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(76, 40, 130));
         jLabel4.setText("Category:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         BoxCategory.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         BoxCategory.setForeground(new java.awt.Color(76, 40, 130));
-        add(BoxCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 240, 160, 30));
+        add(BoxCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 160, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(76, 40, 130));
         jLabel6.setText("Price:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
         FieldPrice.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         FieldPrice.setForeground(new java.awt.Color(76, 40, 130));
-        add(FieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 290, 190, 30));
+        add(FieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 190, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(76, 40, 130));
         jLabel7.setText("Shipping Method:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
         BoxShipping.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         BoxShipping.setForeground(new java.awt.Color(76, 40, 130));
-        add(BoxShipping, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 340, 160, 30));
+        add(BoxShipping, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 160, 30));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(76, 40, 130));
         jLabel8.setText("Pictures:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 395, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
 
         PanelPictures.setBackground(new java.awt.Color(255, 255, 255));
         PanelPictures.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane2.setViewportView(PanelPictures);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 250, 100));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 250, 100));
 
         ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
         ButtonAddPic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -203,7 +206,7 @@ public class PanelAddProduct extends javax.swing.JPanel {
         ButtonAddPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
         ButtonAddPic.setBorder(null);
         ButtonAddPic.setContentAreaFilled(false);
-        add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 50, 50));
+        add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 50, 50));
 
         ButtonDeletePic.setBackground(new java.awt.Color(255, 255, 255));
         ButtonDeletePic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -211,7 +214,7 @@ public class PanelAddProduct extends javax.swing.JPanel {
         ButtonDeletePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
         ButtonDeletePic.setBorder(null);
         ButtonDeletePic.setContentAreaFilled(false);
-        add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 450, 50, 50));
+        add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 50, 50));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -219,6 +222,18 @@ public class PanelAddProduct extends javax.swing.JPanel {
         ButtonConfirm.setText("Confirm");
         ButtonConfirm.setBorder(null);
         add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 110, 30));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel9.setText("Review:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
+
+        FieldDescription1.setColumns(20);
+        FieldDescription1.setRows(5);
+        jScrollPane3.setViewportView(FieldDescription1);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 240, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -234,6 +249,7 @@ public class PanelAddProduct extends javax.swing.JPanel {
     private javax.swing.JPanel Decoration3;
     private javax.swing.JPanel Decoration4;
     private javax.swing.JTextArea FieldDescription;
+    private javax.swing.JTextArea FieldDescription1;
     private javax.swing.JTextField FieldName;
     private javax.swing.JTextField FieldPrice;
     private javax.swing.JPanel PanelPictures;
@@ -244,7 +260,9 @@ public class PanelAddProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

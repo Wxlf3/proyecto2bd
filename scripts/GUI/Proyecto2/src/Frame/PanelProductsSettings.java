@@ -29,6 +29,7 @@ public class PanelProductsSettings extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         ButtonAddProduct = new javax.swing.JButton();
+        ButtonEditProduct = new javax.swing.JButton();
         ButtonDeleteProduct = new javax.swing.JButton();
         ButtonCancel = new javax.swing.JButton();
         ButtonConfirm = new javax.swing.JButton();
@@ -50,10 +51,18 @@ public class PanelProductsSettings extends javax.swing.JPanel {
         ButtonAddProduct.setBackground(new java.awt.Color(255, 255, 255));
         ButtonAddProduct.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         ButtonAddProduct.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
+        ButtonAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/paint-palette.png"))); // NOI18N
         ButtonAddProduct.setBorder(null);
         ButtonAddProduct.setContentAreaFilled(false);
-        add(ButtonAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, 80, 80));
+        add(ButtonAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 80, 80));
+
+        ButtonEditProduct.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonEditProduct.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonEditProduct.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonEditProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
+        ButtonEditProduct.setBorder(null);
+        ButtonEditProduct.setContentAreaFilled(false);
+        add(ButtonEditProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 120, 80, 80));
 
         ButtonDeleteProduct.setBackground(new java.awt.Color(255, 255, 255));
         ButtonDeleteProduct.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -61,7 +70,7 @@ public class PanelProductsSettings extends javax.swing.JPanel {
         ButtonDeleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/cross-square-black-button.png"))); // NOI18N
         ButtonDeleteProduct.setBorder(null);
         ButtonDeleteProduct.setContentAreaFilled(false);
-        add(ButtonDeleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 80, 80));
+        add(ButtonDeleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 80, 80));
 
         ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
         ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -97,11 +106,11 @@ public class PanelProductsSettings extends javax.swing.JPanel {
         Decoration.setLayout(DecorationLayout);
         DecorationLayout.setHorizontalGroup(
             DecorationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         DecorationLayout.setVerticalGroup(
             DecorationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 90, 490));
@@ -112,11 +121,11 @@ public class PanelProductsSettings extends javax.swing.JPanel {
         Decoration1.setLayout(Decoration1Layout);
         Decoration1Layout.setHorizontalGroup(
             Decoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         Decoration1Layout.setVerticalGroup(
             Decoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         add(Decoration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 70, 90, 490));
@@ -129,6 +138,7 @@ public class PanelProductsSettings extends javax.swing.JPanel {
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonDeleteProduct;
+    private javax.swing.JButton ButtonEditProduct;
     private javax.swing.JPanel Decoration;
     private javax.swing.JPanel Decoration1;
     private javax.swing.JPanel PanelProducts;
