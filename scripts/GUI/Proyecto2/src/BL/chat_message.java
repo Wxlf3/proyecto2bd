@@ -1,6 +1,7 @@
 package BL;
 
 import java.util.Date;
+import java.sql.Types;
 
 /**
  *
@@ -9,12 +10,12 @@ import java.util.Date;
 public class chat_message 
 {
     private int id;
-    private Date date;
+    private java.sql.Date date;
     private String message;
     private String username_writer;
     private int id_chat;
 
-    public chat_message(Date date, String message, String username_writer, int id_chat) {
+    public chat_message(java.sql.Date date, String message, String username_writer, int id_chat) {
         this.date = date;
         this.message = message;
         this.username_writer = username_writer;
@@ -29,11 +30,11 @@ public class chat_message
         this.id = id;
     }
 
-    public Date getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 
