@@ -5,26 +5,24 @@ DROP PROCEDURE IF EXISTS remove_order;
 DROP FUNCTION IF EXISTS getPrice_order;
 DROP FUNCTION IF EXISTS getQuantity_order;
 DROP FUNCTION IF EXISTS getDate_order;
-DROP FUNCTION IF EXISTS getUserSeller_order;
 DROP FUNCTION IF EXISTS getUserBuyer_order;
 DROP FUNCTION IF EXISTS getIdProduct_order;
 DROP PROCEDURE IF EXISTS getAll_order;
 DELIMITER //
 
-CREATE PROCEDURE insert_order(IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnDate DATETIME, IN pnUserSeller VARCHAR(45), IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
+CREATE PROCEDURE insert_order(IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnDate DATETIME, IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
     BEGIN
-            INSERT INTO `order`(price, quantity, date, user_seller, user_buyer, id_product)
-            VALUES (pnPrice, pnQuantity, pnDate, pnUserSeller, pnUserBuyer, pnIdProduct);
+            INSERT INTO `order`(price, quantity, date, user_buyer, id_product)
+            VALUES (pnPrice, pnQuantity, pnDate, pnUserBuyer, pnIdProduct);
     END //
 
-CREATE PROCEDURE update_order(IN pnId int, IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnDate DATETIME, IN pnUserSeller VARCHAR(45), IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
+CREATE PROCEDURE update_order(IN pnId int, IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnDate DATETIME, IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
     BEGIN
             UPDATE `order`
             SET 
             price = pnPrice,
             quantity = pnQuantity,
             date = pnDate,
-            user_seller = pnUserSeller,
             user_buyer = pnUserBuyer,
             id_product = pnIdProduct
             WHERE id = pnId;
@@ -75,19 +73,6 @@ DETERMINISTIC
     RETURN rDate;
     END //
 
-CREATE FUNCTION getUserSeller_order(vId INT) 
-RETURNS VARCHAR(45)
-DETERMINISTIC
-    BEGIN
-        DECLARE rUserSeller VARCHAR(45);
-        SET rUserSeller = "";
-            SELECT user_seller
-            INTO rUserSeller
-            FROM `order`
-            WHERE id = vId;
-    RETURN rUserSeller;
-    END //
-
 CREATE FUNCTION getUserBuyer_order(vId INT) 
 RETURNS VARCHAR(45)
 DETERMINISTIC
@@ -116,7 +101,7 @@ DETERMINISTIC
 
 CREATE PROCEDURE getAll_order()
     BEGIN
-            SELECT id, price, quantity, date, user_seller, user_buyer, id_product
+            SELECT id, price, quantity, date, user_buyer, id_product
             FROM `order`;
     END//
 DELIMITER ;
