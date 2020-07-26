@@ -25,7 +25,7 @@ public class ConnectDB {
         con=null;
         
         try{
-            con=  DriverManager.getConnection(url, user, pass);
+            con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_delivery_type(?)}");
             stmt.setString(1, pDescription);
             stmt.execute();
