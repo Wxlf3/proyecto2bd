@@ -28,11 +28,10 @@ public class PanelAddProduct extends javax.swing.JPanel {
     private void initComponents() {
 
         ButtonBack = new javax.swing.JButton();
+        ButtonConfirm = new javax.swing.JButton();
+        ButtonAddPic = new javax.swing.JButton();
+        ButtonDeletePic = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        Decoration1 = new javax.swing.JPanel();
-        Decoration3 = new javax.swing.JPanel();
-        Decoration2 = new javax.swing.JPanel();
-        Decoration4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         FieldName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -47,12 +46,13 @@ public class PanelAddProduct extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         PanelPictures = new javax.swing.JPanel();
-        ButtonAddPic = new javax.swing.JButton();
-        ButtonDeletePic = new javax.swing.JButton();
-        ButtonConfirm = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         FieldDescription1 = new javax.swing.JTextArea();
+        Decoration1 = new javax.swing.JPanel();
+        Decoration3 = new javax.swing.JPanel();
+        Decoration2 = new javax.swing.JPanel();
+        Decoration4 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,76 +65,34 @@ public class PanelAddProduct extends javax.swing.JPanel {
         ButtonBack.setContentAreaFilled(false);
         add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 50, 50));
 
+        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm.setText("Confirm");
+        ButtonConfirm.setBorder(null);
+        add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 110, 30));
+
+        ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic.setBorder(null);
+        ButtonAddPic.setContentAreaFilled(false);
+        add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 50, 50));
+
+        ButtonDeletePic.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic.setBorder(null);
+        ButtonDeletePic.setContentAreaFilled(false);
+        add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 50, 50));
+
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel1.setText("Product");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
-
-        Decoration1.setBackground(new java.awt.Color(239, 184, 16));
-
-        Decoration3.setBackground(new java.awt.Color(76, 40, 130));
-
-        javax.swing.GroupLayout Decoration3Layout = new javax.swing.GroupLayout(Decoration3);
-        Decoration3.setLayout(Decoration3Layout);
-        Decoration3Layout.setHorizontalGroup(
-            Decoration3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        Decoration3Layout.setVerticalGroup(
-            Decoration3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout Decoration1Layout = new javax.swing.GroupLayout(Decoration1);
-        Decoration1.setLayout(Decoration1Layout);
-        Decoration1Layout.setHorizontalGroup(
-            Decoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Decoration1Layout.createSequentialGroup()
-                .addComponent(Decoration3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
-        );
-        Decoration1Layout.setVerticalGroup(
-            Decoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Decoration1Layout.createSequentialGroup()
-                .addComponent(Decoration3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
-
-        add(Decoration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
-
-        Decoration2.setBackground(new java.awt.Color(239, 184, 16));
-
-        Decoration4.setBackground(new java.awt.Color(76, 40, 130));
-
-        javax.swing.GroupLayout Decoration4Layout = new javax.swing.GroupLayout(Decoration4);
-        Decoration4.setLayout(Decoration4Layout);
-        Decoration4Layout.setHorizontalGroup(
-            Decoration4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        Decoration4Layout.setVerticalGroup(
-            Decoration4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout Decoration2Layout = new javax.swing.GroupLayout(Decoration2);
-        Decoration2.setLayout(Decoration2Layout);
-        Decoration2Layout.setHorizontalGroup(
-            Decoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Decoration2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Decoration4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        Decoration2Layout.setVerticalGroup(
-            Decoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Decoration2Layout.createSequentialGroup()
-                .addComponent(Decoration4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
-
-        add(Decoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
+        jLabel1.setText("Add product");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -200,29 +158,6 @@ public class PanelAddProduct extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 250, 100));
 
-        ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic.setBorder(null);
-        ButtonAddPic.setContentAreaFilled(false);
-        add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 50, 50));
-
-        ButtonDeletePic.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic.setBorder(null);
-        ButtonDeletePic.setContentAreaFilled(false);
-        add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 50, 50));
-
-        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm.setText("Confirm");
-        ButtonConfirm.setBorder(null);
-        add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 110, 30));
-
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(76, 40, 130));
@@ -234,6 +169,71 @@ public class PanelAddProduct extends javax.swing.JPanel {
         jScrollPane3.setViewportView(FieldDescription1);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 240, 40));
+
+        Decoration1.setBackground(new java.awt.Color(239, 184, 16));
+
+        Decoration3.setBackground(new java.awt.Color(76, 40, 130));
+
+        javax.swing.GroupLayout Decoration3Layout = new javax.swing.GroupLayout(Decoration3);
+        Decoration3.setLayout(Decoration3Layout);
+        Decoration3Layout.setHorizontalGroup(
+            Decoration3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        Decoration3Layout.setVerticalGroup(
+            Decoration3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 580, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout Decoration1Layout = new javax.swing.GroupLayout(Decoration1);
+        Decoration1.setLayout(Decoration1Layout);
+        Decoration1Layout.setHorizontalGroup(
+            Decoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Decoration1Layout.createSequentialGroup()
+                .addComponent(Decoration3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+        Decoration1Layout.setVerticalGroup(
+            Decoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Decoration1Layout.createSequentialGroup()
+                .addComponent(Decoration3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+
+        add(Decoration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
+
+        Decoration2.setBackground(new java.awt.Color(239, 184, 16));
+
+        Decoration4.setBackground(new java.awt.Color(76, 40, 130));
+
+        javax.swing.GroupLayout Decoration4Layout = new javax.swing.GroupLayout(Decoration4);
+        Decoration4.setLayout(Decoration4Layout);
+        Decoration4Layout.setHorizontalGroup(
+            Decoration4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        Decoration4Layout.setVerticalGroup(
+            Decoration4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 580, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout Decoration2Layout = new javax.swing.GroupLayout(Decoration2);
+        Decoration2.setLayout(Decoration2Layout);
+        Decoration2Layout.setHorizontalGroup(
+            Decoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Decoration2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Decoration4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Decoration2Layout.setVerticalGroup(
+            Decoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Decoration2Layout.createSequentialGroup()
+                .addComponent(Decoration4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+
+        add(Decoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
