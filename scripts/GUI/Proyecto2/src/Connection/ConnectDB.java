@@ -21,7 +21,11 @@ public class ConnectDB {
     private static final String pass_person="person_ad";
     private static final String url_person="jdbc:mysql://127.0.0.1:3306/person_ad?user=person_ad";
     
-    public void insertDeliveryType(String pDescription) {
+
+
+//Category package
+    
+    public void insertCategory(String pDescription) {
         con=null;
         
         try{
@@ -37,4 +41,55 @@ public class ConnectDB {
             System.out.println("Error de conexion" + e);
         }
     }
+    
+    public void insertDeliveryType(String pDescription) {
+        con=null;
+        
+        try{
+            con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            CallableStatement stmt = con.prepareCall("{call insert_delivery_type(?)}");
+            stmt.setString(1, pDescription);
+            stmt.execute();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion" + e);
+        }
+    }
+    
+    
+    //Funciones generalizadas
+    public void removeWithId(int pId, String function,boolean inApp) {
+        con=null;
+        
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" (?)}");
+            stmt.setInt(1, pId);
+            stmt.execute();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion" + e);
+        }
+    }
+    
+    public void removeWithUsername(String pUsername, String function, boolean inApp) {
+        con=null;
+        
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" (?)}");
+            stmt.setString(1, pUsername);
+            stmt.execute();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion" + e);
+        }
+    }
+    
 }
