@@ -9,12 +9,12 @@ package Frame;
  *
  * @author diana
  */
-public class PanelConfiguration extends javax.swing.JPanel {
+public class PanelProfileSettings extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelProfile
      */
-    public PanelConfiguration() {
+    public PanelProfileSettings() {
         initComponents();
     }
 
