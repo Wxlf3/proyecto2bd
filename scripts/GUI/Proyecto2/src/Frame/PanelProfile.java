@@ -30,7 +30,6 @@ public class PanelProfile extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        SpacePicture = new javax.swing.JLabel();
         SpaceName = new javax.swing.JLabel();
         SpaceResidence = new javax.swing.JLabel();
         SpaceRatingSeller = new javax.swing.JLabel();
@@ -42,6 +41,7 @@ public class PanelProfile extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         PanelComments = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
+        ButtonPicture = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,12 +60,6 @@ public class PanelProfile extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(76, 40, 130));
         jLabel3.setText("Comments");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 280, 200, -1));
-
-        SpacePicture.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        SpacePicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SpacePicture.setText("Picture");
-        SpacePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 40, 130), 2, true));
-        add(SpacePicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 120, 140));
 
         SpaceName.setBackground(new java.awt.Color(255, 255, 255));
         SpaceName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -132,16 +126,24 @@ public class PanelProfile extends javax.swing.JPanel {
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 50, 580));
+
+        ButtonPicture.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonPicture.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonPicture.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonPicture.setText("Picture");
+        ButtonPicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 40, 130), 2, true));
+        ButtonPicture.setContentAreaFilled(false);
+        add(ButtonPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, 150));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonContact;
+    private javax.swing.JButton ButtonPicture;
     private javax.swing.JList<String> PanelComments;
     private javax.swing.JPanel PanelProducts;
     private javax.swing.JLabel SpaceName;
-    private javax.swing.JLabel SpacePicture;
     private javax.swing.JLabel SpaceRatingBuyer;
     private javax.swing.JLabel SpaceRatingSeller;
     private javax.swing.JLabel SpaceResidence;

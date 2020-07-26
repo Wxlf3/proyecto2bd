@@ -28,7 +28,6 @@ public class PanelProfileSettings extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ButtonBack = new javax.swing.JButton();
         ButtonWishlist = new javax.swing.JButton();
         ButtonPicture = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -70,6 +69,8 @@ public class PanelProfileSettings extends javax.swing.JPanel {
         ButtonCancel = new javax.swing.JButton();
         ButtonConfirm = new javax.swing.JButton();
         ButtonWishlist1 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        BoxUserType = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,14 +80,6 @@ public class PanelProfileSettings extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(76, 40, 130));
         jLabel1.setText("Profile Settings");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, -1));
-
-        ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonBack.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
-        ButtonBack.setBorder(null);
-        ButtonBack.setContentAreaFilled(false);
-        add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 50, 50));
 
         ButtonWishlist.setBackground(new java.awt.Color(255, 255, 255));
         ButtonWishlist.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -336,6 +329,17 @@ public class PanelProfileSettings extends javax.swing.JPanel {
         ButtonWishlist1.setContentAreaFilled(false);
         Decoration.add(ButtonWishlist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 355, 120, 40));
 
+        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel21.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel21.setText("User type:");
+        Decoration.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, -1, -1));
+
+        BoxUserType.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxUserType.setForeground(new java.awt.Color(76, 40, 130));
+        BoxUserType.setBorder(null);
+        Decoration.add(BoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 170, -1));
+
         add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -348,7 +352,7 @@ public class PanelProfileSettings extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> BoxNationality;
     private javax.swing.JComboBox<String> BoxPayment;
     private javax.swing.JComboBox<String> BoxState;
-    private javax.swing.JButton ButtonBack;
+    private javax.swing.JComboBox<String> BoxUserType;
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonPicture;
@@ -378,6 +382,7 @@ public class PanelProfileSettings extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
