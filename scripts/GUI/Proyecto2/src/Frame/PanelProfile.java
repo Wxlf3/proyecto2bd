@@ -38,10 +38,12 @@ public class PanelProfile extends javax.swing.JPanel {
         ButtonBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PanelProducts = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        PanelComments = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         ButtonPicture = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TableBuyerReview = new javax.swing.JTable();
+        SpaceRatingSeller1 = new javax.swing.JLabel();
+        SpaceRatingSeller2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,14 +78,14 @@ public class PanelProfile extends javax.swing.JPanel {
         SpaceRatingSeller.setBackground(new java.awt.Color(255, 255, 255));
         SpaceRatingSeller.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         SpaceRatingSeller.setForeground(new java.awt.Color(76, 40, 130));
-        SpaceRatingSeller.setText("Rating Seller");
-        add(SpaceRatingSeller, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, -1));
+        SpaceRatingSeller.setText("Rating as seller");
+        add(SpaceRatingSeller, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 120, -1));
 
         SpaceRatingBuyer.setBackground(new java.awt.Color(255, 255, 255));
         SpaceRatingBuyer.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         SpaceRatingBuyer.setForeground(new java.awt.Color(76, 40, 130));
-        SpaceRatingBuyer.setText("Rating Buyer");
-        add(SpaceRatingBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 200, -1));
+        SpaceRatingBuyer.setText("Rating as buyer");
+        add(SpaceRatingBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 130, -1));
 
         ButtonContact.setBackground(new java.awt.Color(255, 255, 255));
         ButtonContact.setFont(new java.awt.Font("Candara", 1, 20)); // NOI18N
@@ -91,7 +93,7 @@ public class PanelProfile extends javax.swing.JPanel {
         ButtonContact.setText("Contact");
         ButtonContact.setBorder(null);
         ButtonContact.setContentAreaFilled(false);
-        add(ButtonContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, 120, 40));
+        add(ButtonContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 120, 40));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -106,11 +108,6 @@ public class PanelProfile extends javax.swing.JPanel {
         jScrollPane1.setViewportView(PanelProducts);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 320, 220));
-
-        PanelComments.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jScrollPane2.setViewportView(PanelComments);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 370, 220));
 
         jPanel1.setBackground(new java.awt.Color(239, 184, 16));
 
@@ -134,6 +131,45 @@ public class PanelProfile extends javax.swing.JPanel {
         ButtonPicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 40, 130), 2, true));
         ButtonPicture.setContentAreaFilled(false);
         add(ButtonPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, 150));
+
+        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane4.setForeground(new java.awt.Color(76, 40, 130));
+
+        TableBuyerReview.setAutoCreateColumnsFromModel(false);
+        TableBuyerReview.setAutoCreateRowSorter(true);
+        TableBuyerReview.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        TableBuyerReview.setForeground(new java.awt.Color(76, 40, 130));
+        TableBuyerReview.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "User", "Comment"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(TableBuyerReview);
+
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 320, 220));
+
+        SpaceRatingSeller1.setBackground(new java.awt.Color(255, 255, 255));
+        SpaceRatingSeller1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpaceRatingSeller1.setForeground(new java.awt.Color(76, 40, 130));
+        SpaceRatingSeller1.setText("estrellitas");
+        add(SpaceRatingSeller1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 120, -1));
+
+        SpaceRatingSeller2.setBackground(new java.awt.Color(255, 255, 255));
+        SpaceRatingSeller2.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        SpaceRatingSeller2.setForeground(new java.awt.Color(76, 40, 130));
+        SpaceRatingSeller2.setText("estrellitas");
+        add(SpaceRatingSeller2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -141,17 +177,19 @@ public class PanelProfile extends javax.swing.JPanel {
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonContact;
     private javax.swing.JButton ButtonPicture;
-    private javax.swing.JList<String> PanelComments;
     private javax.swing.JPanel PanelProducts;
     private javax.swing.JLabel SpaceName;
     private javax.swing.JLabel SpaceRatingBuyer;
     private javax.swing.JLabel SpaceRatingSeller;
+    private javax.swing.JLabel SpaceRatingSeller1;
+    private javax.swing.JLabel SpaceRatingSeller2;
     private javax.swing.JLabel SpaceResidence;
+    private javax.swing.JTable TableBuyerReview;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }
