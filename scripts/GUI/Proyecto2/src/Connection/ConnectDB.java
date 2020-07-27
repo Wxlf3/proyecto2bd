@@ -886,26 +886,11 @@ public class ConnectDB {
         return result;
     }
     
-    public ResultSet query(String function, boolean inApp){
-        ResultSet result = null;
-        try{
-            if(inApp)
-                con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            else
-                con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call "+ function +" ()}");
-            result = stmt.executeQuery();
-        }
-        catch (Exception e){
-            System.out.println("Error de conexion: " + e);
-        }
-        return result;
-    }
-    
-    
     // Funciones varias
     
-     public boolean checkLogin(String username, String password) {
+      
+      
+    public boolean checkLogin(String username, String password) {
         boolean result = false;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
@@ -921,6 +906,91 @@ public class ConnectDB {
         }
         return result;
     }
+    
+    public ResultSet query(String function, boolean inApp){
+        ResultSet result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" ()}");
+            result = stmt.executeQuery();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+     
+    public ResultSet queryWithInt(int p, String function, boolean inApp){
+        ResultSet result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" (?)}");
+            stmt.setInt(1, p);
+            result = stmt.executeQuery();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public ResultSet queryWithString(String p, String function, boolean inApp){
+        ResultSet result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" (?)}");
+            stmt.setString(1, p);
+            result = stmt.executeQuery();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public ResultSet queryWithStrings(String p1, String p2, String function, boolean inApp){
+        ResultSet result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" (?,?)}");
+            stmt.setString(1, p1);
+            stmt.setString(2, p2);
+            result = stmt.executeQuery();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public ResultSet topExpensivesOfCategory(int rowsq, int pIdCategory){
+        ResultSet result = null;
+        try{
+            con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            CallableStatement stmt = con.prepareCall("{call `top_expensives_of_category` (?,?)}");
+            stmt.setInt(1, rowsq);
+            stmt.setInt(2, pIdCategory);
+            result = stmt.executeQuery();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+     
+    
      
      
     
