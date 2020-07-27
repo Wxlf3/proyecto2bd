@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 public class PanelPrincipalPage extends javax.swing.JFrame {
 
@@ -53,6 +54,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonWishlistAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("framepanelprincipal"); // NOI18N
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -254,12 +256,17 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void ButtonProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileActionPerformed
+        Login m = new Login();
+        m.show();
+        this.dispose();
+        
+        /*
         if(user == "guest"){
             
             //PanelLogin
         } else {
             //PanelProfile
-        }
+        }*/
     }//GEN-LAST:event_ButtonProfileActionPerformed
 
     private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed

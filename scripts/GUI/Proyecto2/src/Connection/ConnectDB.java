@@ -430,7 +430,7 @@ public class ConnectDB {
             System.out.println("Error de conexion: " + e);
         }
     }
-    
+    /*
     public void insertDeliveryType(delivery_type dt) {
         con=null;
         try{
@@ -836,5 +836,5 @@ public class ConnectDB {
         catch (Exception e){
             System.out.println("Error de conexion: " + e);
         }
-    }
+    }*/
 }
