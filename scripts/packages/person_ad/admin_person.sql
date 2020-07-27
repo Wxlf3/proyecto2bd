@@ -19,7 +19,7 @@ DROP procedure IF EXISTS `getAll_person`;
 DELIMITER $$
 
 CREATE PROCEDURE `insert_person` (
-	IN pnId INT, 
+	IN pnId VARCHAR(30), 
 	IN pnFirstName VARCHAR(45), 
     IN pnMiddleName VARCHAR(45),
     IN pnLastName VARCHAR(45),
@@ -36,7 +36,7 @@ BEGIN
 END$$
 
 CREATE PROCEDURE `update_person` (
-	IN pnId INT, 
+	IN pnId VARCHAR(30), 
 	IN pnFirstName VARCHAR(45), 
     IN pnMiddleName VARCHAR(45),
     IN pnLastName VARCHAR(45),
@@ -62,13 +62,13 @@ BEGIN
 	WHERE id = pnId;
 END$$
 
-CREATE PROCEDURE `remove_person` (IN pnId INT)
+CREATE PROCEDURE `remove_person` (IN pnId VARCHAR(30))
 BEGIN
 	DELETE FROM person
     WHERE id = pnId;
 END$$
 
-CREATE FUNCTION `getFirstName_person` (vId INT)
+CREATE FUNCTION `getFirstName_person` (vId VARCHAR(30))
 RETURNS VARCHAR(45)
 BEGIN
 	DECLARE result VARCHAR(45);
@@ -79,7 +79,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getMiddleName_person` (vId INT)
+CREATE FUNCTION `getMiddleName_person` (vId VARCHAR(30))
 RETURNS VARCHAR(45)
 BEGIN
 	DECLARE result VARCHAR(45);
@@ -91,7 +91,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getLastName_person` (vId INT)
+CREATE FUNCTION `getLastName_person` (vId VARCHAR(30))
 RETURNS VARCHAR(45)
 BEGIN
 	DECLARE result VARCHAR(45);
@@ -102,7 +102,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getEmail_person` (vId INT)
+CREATE FUNCTION `getEmail_person` (vId VARCHAR(30))
 RETURNS VARCHAR(60)
 BEGIN
 	DECLARE result VARCHAR(60);
@@ -113,7 +113,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getPhoneNumber_person` (vId INT)
+CREATE FUNCTION `getPhoneNumber_person` (vId VARCHAR(30))
 RETURNS VARCHAR(20)
 BEGIN
 	DECLARE result VARCHAR(20);
@@ -124,7 +124,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getBirthday_person` (vId INT)
+CREATE FUNCTION `getBirthday_person` (vId VARCHAR(30))
 RETURNS DATE
 BEGIN
 	DECLARE result DATE;
@@ -135,7 +135,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getPicturePath_person` (vId INT)
+CREATE FUNCTION `getPicturePath_person` (vId VARCHAR(30))
 RETURNS VARCHAR(60)
 BEGIN
 	DECLARE result VARCHAR(60);
@@ -147,7 +147,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getIdGender_person` (vId INT)
+CREATE FUNCTION `getIdGender_person` (vId VARCHAR(30))
 RETURNS INT
 BEGIN
 	DECLARE result INT;
@@ -158,7 +158,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getIdDistrict_person` (vId INT)
+CREATE FUNCTION `getIdDistrict_person` (vId VARCHAR(30))
 RETURNS INT
 BEGIN
 	DECLARE result INT;
@@ -169,7 +169,7 @@ BEGIN
 RETURN result;
 END$$
 
-CREATE FUNCTION `getUsername_person` (vId INT)
+CREATE FUNCTION `getUsername_person` (vId VARCHAR(30))
 RETURNS VARCHAR(45)
 BEGIN
 	DECLARE result VARCHAR(45);

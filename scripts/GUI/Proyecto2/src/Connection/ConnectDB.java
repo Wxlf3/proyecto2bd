@@ -4,9 +4,9 @@ import BL.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
+import java.sql.ResultSet;
 
 /**
  *
@@ -22,8 +22,6 @@ public class ConnectDB {
     private static final String user_person="person_ad";
     private static final String pass_person="person_ad";
     private static final String url_person="jdbc:mysql://127.0.0.1:3306/person_ad?user=person_ad";
-    
-
 
     //Inserts
     
@@ -169,9 +167,6 @@ public class ConnectDB {
             CallableStatement stmt = con.prepareCall("{call insert_reviewType(?)}");
             stmt.setString(1, p.getName());
             stmt.execute();
-            if (con!=null){
-                System.out.println("Conexion establecida");
-            }
         }
         catch (Exception e){
             System.out.println("Error de conexion: " + e);
@@ -298,7 +293,7 @@ public class ConnectDB {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_country`(?,?)}");
+            CallableStatement stmt = con.prepareCall("{call `insert_district`(?,?)}");
             stmt.setString(1, p.getName());
             stmt.setInt(2, p.getId_city());
             stmt.execute();
@@ -334,7 +329,7 @@ public class ConnectDB {
         }
     }
     
-    public void insertPerson(person p) { //terminar, no se si el id de person es un int o un string
+    public void insertPerson(person p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
@@ -357,12 +352,12 @@ public class ConnectDB {
         }
     }
     
-    public void insertPersonXNationality(person_X_nationality p) { //terminar, no se si el id de person es un int o un string
+    public void insertPersonXNationality(person_X_nationality p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_person_x_nationality`(?,?)}");
-            //stmt.setInt(1, p.getId_person());
+            stmt.setString(1, p.getId_person());
             stmt.setInt(2, p.getId_nationality());
             stmt.execute();
         }
@@ -407,7 +402,7 @@ public class ConnectDB {
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_chat(?,?)}");
             stmt.setInt(1, pChat.getId());
-            stmt.setInt(1, pChat.getId_order());
+            stmt.setInt(2, pChat.getId_order());
             stmt.execute();
         }
         catch (Exception e){
@@ -419,24 +414,12 @@ public class ConnectDB {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_chat_message(?,?,?,?)}");
-            stmt.setDate(1, p.getDate());
-            stmt.setString(2, p.getMessage());
-            stmt.setString(3, p.getUsername_writer());
-            stmt.setInt(4, p.getId_chat());
-            stmt.execute();
-        }
-        catch (Exception e){
-            System.out.println("Error de conexion: " + e);
-        }
-    }
-    /*
-    public void insertDeliveryType(delivery_type dt) {
-        con=null;
-        try{
-            con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_delivery_type(?)}");
-            stmt.setString(1, dt.getDescription());
+            CallableStatement stmt = con.prepareCall("{call update_chat_message(?,?,?,?,?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setDate(2, p.getDate());
+            stmt.setString(3, p.getMessage());
+            stmt.setString(4, p.getUsername_writer());
+            stmt.setInt(5, p.getId_chat());
             stmt.execute();
         }
         catch (Exception e){
@@ -444,16 +427,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertOrder(order o) {
+    public void updateDeliveryType(delivery_type dt) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_order(?,?,?,?,?)}");
-            stmt.setFloat(1, o.getPrice());
-            stmt.setInt(2, o.getQuantity());
-            stmt.setDate(3, o.getDate());
-            stmt.setString(4, o.getUser_buyer());
-            stmt.setInt(5, o.getId_product());
+            CallableStatement stmt = con.prepareCall("{call update_delivery_type(?,?)}");
+            stmt.setInt(1, dt.getId());
+            stmt.setString(2, dt.getDescription());
             stmt.execute();
         }
         catch (Exception e){
@@ -461,12 +441,17 @@ public class ConnectDB {
         }
     }
     
-    public void insertPaymentMethod(payment_method pm) {
+    public void updateOrder(order o) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_paymentMethod(?)}");
-            stmt.setString(1, pm.getDescription());
+            CallableStatement stmt = con.prepareCall("{call update_order(?,?,?,?,?,?)}");
+            stmt.setInt(1, o.getId());
+            stmt.setFloat(2, o.getPrice());
+            stmt.setInt(3, o.getQuantity());
+            stmt.setDate(4, o.getDate());
+            stmt.setString(5, o.getUser_buyer());
+            stmt.setInt(6, o.getId_product());
             stmt.execute();
         }
         catch (Exception e){
@@ -474,12 +459,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertPicture(picture p) {
+    public void updatePaymentMethod(payment_method pm) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_picture(?)}");
-            stmt.setString(1, p.getPath());
+            CallableStatement stmt = con.prepareCall("{call update_paymentMethod(?,?)}");
+            stmt.setInt(1, pm.getId());
+            stmt.setString(2, pm.getDescription());
             stmt.execute();
         }
         catch (Exception e){
@@ -487,19 +473,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertProduct(product p) {
+    public void updatePicture(picture p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_product(?,?,?,?,?,?,?,?)}");
-            stmt.setFloat(1, p.getPrice());
-            stmt.setString(2, p.getName());
-            stmt.setString(3, p.getDescription());
-            stmt.setInt(4, p.getQuant_in_stock());
-            stmt.setBoolean(5, p.isIs_visible());
-            stmt.setInt(6, p.getId_category());
-            stmt.setString(7, p.getUsername_seller());
-            stmt.setInt(8, p.getId_delivery_type());
+            CallableStatement stmt = con.prepareCall("{call update_picture(?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getPath());
             stmt.execute();
         }
         catch (Exception e){
@@ -507,15 +487,20 @@ public class ConnectDB {
         }
     }
     
-    public void insertProductReview(product_review p) {
+    public void updateProduct(product p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_product(?,?,?,?)}");
-            stmt.setFloat(1, p.getScore());
-            stmt.setString(2, p.getComment());
-            stmt.setString(3, p.getUsername_writer());
-            stmt.setInt(4, p.getIdProduct());
+            CallableStatement stmt = con.prepareCall("{call update_product(?,?,?,?,?,?,?,?,?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setFloat(2, p.getPrice());
+            stmt.setString(3, p.getName());
+            stmt.setString(4, p.getDescription());
+            stmt.setInt(5, p.getQuant_in_stock());
+            stmt.setBoolean(6, p.isIs_visible());
+            stmt.setInt(7, p.getId_category());
+            stmt.setString(8, p.getUsername_seller());
+            stmt.setInt(9, p.getId_delivery_type());
             stmt.execute();
         }
         catch (Exception e){
@@ -523,28 +508,43 @@ public class ConnectDB {
         }
     }
     
-    public void insertReviewType(review_type p) {
+    public void updateProductReview(product_review p) {
+        con=null;
+        try{
+            con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            CallableStatement stmt = con.prepareCall("{call update_product(?,?,?,?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setFloat(2, p.getScore());
+            stmt.setString(3, p.getComment());
+            stmt.setString(4, p.getUsername_writer());
+            stmt.setInt(5, p.getIdProduct());
+            stmt.execute();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+    }
+    
+    public void updateReviewType(review_type p) {
         con=null;
         
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_reviewType(?)}");
-            stmt.setString(1, p.getName());
+            CallableStatement stmt = con.prepareCall("{call update_reviewType(?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getName());
             stmt.execute();
-            if (con!=null){
-                System.out.println("Conexion establecida");
-            }
         }
         catch (Exception e){
             System.out.println("Error de conexion: " + e);
         }
     }
     
-    public void insertShoppingCart(shopping_cart p) {
+    public void updateShoppingCart(shopping_cart p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_shoppingCart(?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call update_shoppingCart(?,?,?)}");
             stmt.setString(1, p.getUsername());
             stmt.setInt(2, p.getId_product());
             stmt.setInt(3, p.getQuantity());
@@ -555,11 +555,11 @@ public class ConnectDB {
         }
     }
     
-    public void insertUser(user u) {
+    public void updatetUser(user u) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_user(?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call update_user(?,?,?)}");
             stmt.setString(1, u.getUsername());
             stmt.setString(2, u.getPassword());
             stmt.setInt(3, u.getId_user_type());
@@ -570,16 +570,17 @@ public class ConnectDB {
         }
     }
     
-    public void insertUserReview(user_review u) {
+    public void updateUserReview(user_review u) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_userReview(?,?,?,?,?)}");
-            stmt.setFloat(1, u.getScore());
-            stmt.setString(2, u.getComment());
-            stmt.setInt(3, u.getId_type_review());
-            stmt.setString(4, u.getUsername_writer());
-            stmt.setString(5, u.getUsername_receiver());
+            CallableStatement stmt = con.prepareCall("{call update_userReview(?,?,?,?,?,?)}");
+            stmt.setInt(1, u.getId());
+            stmt.setFloat(2, u.getScore());
+            stmt.setString(3, u.getComment());
+            stmt.setInt(4, u.getId_type_review());
+            stmt.setString(5, u.getUsername_writer());
+            stmt.setString(6, u.getUsername_receiver());
             stmt.execute();
         }
         catch (Exception e){
@@ -587,12 +588,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertUserType(user_type ut) {
+    public void updateUserType(user_type ut) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_userType(?)}");
-            stmt.setString(1, ut.getName());
+            CallableStatement stmt = con.prepareCall("{call update_userType(?,?)}");
+            stmt.setInt(1, ut.getId());
+            stmt.setString(2, ut.getName());
             stmt.execute();
         }
         catch (Exception e){
@@ -600,25 +602,11 @@ public class ConnectDB {
         }
     }
     
-    public void insert_userXpaymentMethod(user_X_paymentMethod up) {
+    public void updateWishList(wish_list w) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_userXpaymentMethod(?,?)}");
-            stmt.setString(1, up.getUsername());
-            stmt.setInt(2, up.getId_payment_method());
-            stmt.execute();
-        }
-        catch (Exception e){
-            System.out.println("Error de conexion: " + e);
-        }
-    }
-    
-    public void insertWishList(wish_list w) {
-        con=null;
-        try{
-            con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_wishList(?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call update_wishList(?,?,?)}");
             stmt.setString(1, w.getUsername());
             stmt.setInt(2, w.getId_product());
             stmt.setInt(3, w.getQuantity());
@@ -629,13 +617,14 @@ public class ConnectDB {
         }
     }
     
-    public void insertCity(city c) {
+    public void updateCity(city c) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_city`(?,?)}");
-            stmt.setString(1, c.getName());
-            stmt.setInt(2, c.getId_state());
+            CallableStatement stmt = con.prepareCall("{call `update_city`(?,?,?)}");
+            stmt.setInt(1, c.getId());
+            stmt.setString(2, c.getName());
+            stmt.setInt(3, c.getId_state());
             stmt.execute();
         }
         catch (Exception e){
@@ -643,12 +632,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertCountry(country p) {
+    public void updateCountry(country p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_country`(?)}");
-            stmt.setString(1, p.getName());
+            CallableStatement stmt = con.prepareCall("{call `update_country`(?,?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getName());
             stmt.execute();
         }
         catch (Exception e){
@@ -656,13 +646,14 @@ public class ConnectDB {
         }
     }
     
-    public void insertDistrict(district p) {
+    public void updateDistrict(district p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_country`(?,?)}");
-            stmt.setString(1, p.getName());
-            stmt.setInt(2, p.getId_city());
+            CallableStatement stmt = con.prepareCall("{call `update_district`(?,?,?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getName());
+            stmt.setInt(3, p.getId_city());
             stmt.execute();
         }
         catch (Exception e){
@@ -670,12 +661,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertGender(gender p) {
+    public void updateGender(gender p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_gender`(?)}");
-            stmt.setString(1, p.getName());
+            CallableStatement stmt = con.prepareCall("{call `update_gender`(?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getName());
             stmt.execute();
         }
         catch (Exception e){
@@ -683,12 +675,13 @@ public class ConnectDB {
         }
     }
     
-    public void insertNationality(nationality p) {
+    public void updateNationality(nationality p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_nationality`(?)}");
-            stmt.setString(1, p.getName());
+            CallableStatement stmt = con.prepareCall("{call `update_nationality`(?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getName());
             stmt.execute();
         }
         catch (Exception e){
@@ -696,12 +689,12 @@ public class ConnectDB {
         }
     }
     
-    public void insertPerson(person p) { //terminar, no se si el id de person es un int o un string
+    public void updatePerson(person p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_person`(?,?,?,?,?,?,?,?,?,?,?)}");
-            //stmt.setString(1, p.getId());
+            CallableStatement stmt = con.prepareCall("{call `update_person`(?,?,?,?,?,?,?,?,?,?,?)}");
+            stmt.setString(1, p.getId());
             stmt.setString(2, p.getFirst_name());
             stmt.setString(3, p.getMiddle_name());
             stmt.setString(4, p.getLast_name());
@@ -719,27 +712,14 @@ public class ConnectDB {
         }
     }
     
-    public void insertPersonXNationality(person_X_nationality p) { //terminar, no se si el id de person es un int o un string
+    public void updateState(state p) {
         con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_person_x_nationality`(?,?)}");
-            //stmt.setInt(1, p.getId_person());
-            stmt.setInt(2, p.getId_nationality());
-            stmt.execute();
-        }
-        catch (Exception e){
-            System.out.println("Error de conexion: " + e);
-        }
-    }
-    
-    public void insertState(state p) {
-        con=null;
-        try{
-            con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `insert_state`(?,?)}");
-            stmt.setString(1, p.getName());
-            stmt.setInt(2, p.getId_country());
+            CallableStatement stmt = con.prepareCall("{call `update_state`(?,?,?)}");
+            stmt.setInt(1, p.getId());
+            stmt.setString(2, p.getName());
+            stmt.setInt(3, p.getId_country());
             stmt.execute();
         }
         catch (Exception e){
@@ -784,7 +764,7 @@ public class ConnectDB {
         }
     }
     
-    public void removeWithUsernameandId(String pUsername, int pId, String function, boolean inApp) {
+    public void removeWithStringandInt(String pUsername, int pId, String function, boolean inApp) {
         con=null;
         
         try{
@@ -802,26 +782,11 @@ public class ConnectDB {
         }
     }
     
-    public void remove_person_x_nationality(int pIdPerson, int pIdNationality) {
-        con=null;
-        
-        try{
-            con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{call `remove_person_x_nationality` (?,?)}");
-            stmt.setInt(1, pIdPerson);
-            stmt.setInt(2, pIdNationality);
-            stmt.execute();
-        }
-        catch (Exception e){
-            System.out.println("Error de conexion: " + e);
-        }
-    }
-    
-    
     //Getters
     
-    public void getStringWithId(int pId, String function,boolean inApp) {
+    public String getStringWithInt(int pId, String function,boolean inApp) {
         con=null;
+        String result = null;
         try{
             if(inApp)
                 con=  DriverManager.getConnection(url_app, user_app, pass_app);
@@ -831,10 +796,194 @@ public class ConnectDB {
             stmt.registerOutParameter(1, Types.VARCHAR);
             stmt.setInt(2, pId);
             stmt.execute();
-            
+            result = stmt.getString(1);
         }
         catch (Exception e){
             System.out.println("Error de conexion: " + e);
         }
-    }*/
+        return result;
+    }
+    
+    public int getIntWithId(int pId, String function,boolean inApp) {
+        con=null;
+        int result = -1;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.INTEGER);
+            stmt.setInt(2, pId);
+            stmt.execute();
+            result = stmt.getInt(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public float getFloatWithId(int pId, String function,boolean inApp) {
+        con=null;
+        float result = -1;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.DECIMAL);
+            stmt.setInt(2, pId);
+            stmt.execute();
+            result = stmt.getInt(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public Date getDateWithId(int pId, String function,boolean inApp) {
+        con=null;
+        java.sql.Date result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.DATE);
+            stmt.setInt(2, pId);
+            stmt.execute();
+            result = stmt.getDate(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public String getStringWithString(String p, String function,boolean inApp) {
+        con=null;
+        String result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.VARCHAR);
+            stmt.setString(2, p);
+            stmt.execute();
+            result = stmt.getString(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public int getIntWithString(String p, String function,boolean inApp) {
+        con=null;
+        int result = -1;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.INTEGER);
+            stmt.setString(2, p);
+            stmt.execute();
+            result = stmt.getInt(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public float getFloatWithString(String p, String function,boolean inApp) {
+        con=null;
+        float result = -1;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.DECIMAL);
+            stmt.setString(2, p);
+            stmt.execute();
+            result = stmt.getInt(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public Date getDateWithString(String p, String function,boolean inApp) {
+        con=null;
+        java.sql.Date result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" (?)}");
+            stmt.registerOutParameter(1, Types.DATE);
+            stmt.setString(2, p);
+            stmt.execute();
+            result = stmt.getDate(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    public ResultSet query(String function, boolean inApp)
+    {
+        con=null;
+        java.sql.Date result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" ()}");
+            //stmt.registerOutParameter(1, Types.ARRAY);
+            result = stmt.execute();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
+    
+    // Funciones varias
+    
+     public boolean checkLogin(String username, String password) {
+        con=null;
+        boolean result = false;
+        try{
+            con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            CallableStatement stmt = con.prepareCall("{ ? = call check_login (?,?)}");
+            stmt.registerOutParameter(1, Types.BOOLEAN);
+            stmt.setString(2, username);
+            stmt.setString(3, password);
+            stmt.execute();
+            result = stmt.getBoolean(1);
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+     
+     
+    
 }

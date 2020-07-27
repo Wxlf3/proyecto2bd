@@ -11,19 +11,19 @@ DROP procedure IF EXISTS `getAll_person_x_nationality`;
 
 DELIMITER $$
 
-CREATE PROCEDURE `insert_person_x_nationality` (IN pnIdPerson INT, IN pnIdNationality INT)
+CREATE PROCEDURE `insert_person_x_nationality` (IN pnIdPerson VARCHAR(30), IN pnIdNationality INT)
 BEGIN
 	INSERT INTO person_x_nationality(id_person, id_nationality)
 	VALUES (pnIdPerson, pnIdNationality);
 END$$
 
-CREATE PROCEDURE `remove_person_x_nationality` (IN pnIdPerson INT, IN pnIdNationality INT)
+CREATE PROCEDURE `remove_person_x_nationality` (IN pnIdPerson VARCHAR(30), IN pnIdNationality INT)
 BEGIN
 	DELETE FROM person_x_nationality
     WHERE id_person = pnIdPerson AND id_nationality = pnIdNationality;
 END$$
 
-CREATE PROCEDURE `remove_person_x_nationality_with_idPerson` (IN pnIdPerson INT)
+CREATE PROCEDURE `remove_person_x_nationality_with_idPerson` (IN pnIdPerson VARCHAR(30))
 BEGIN
 	DELETE FROM person_x_nationality
     WHERE id_person = pnIdPerson;
@@ -35,7 +35,7 @@ BEGIN
     WHERE id_nationality = pnIdNationality;
 END$$
 
-CREATE PROCEDURE `get_person_x_nationality_with_idPerson` (IN pnIdPerson INT)
+CREATE PROCEDURE `get_person_x_nationality_with_idPerson` (IN pnIdPerson VARCHAR(30))
 BEGIN
 	SELECT id_person, id_nationality
     FROM person_x_nationality
