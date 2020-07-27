@@ -26,7 +26,6 @@ public class ConnectDB {
     //Inserts
     
     public void insertCategory(category pCategory) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_category(?)}");
@@ -39,7 +38,6 @@ public class ConnectDB {
     }
     
     public void insertChat(chat pChat) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_chat(?)}");
@@ -52,7 +50,6 @@ public class ConnectDB {
     }
     
     public void insertChatMessage(chat_message p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_chat_message(?,?,?,?)}");
@@ -68,7 +65,6 @@ public class ConnectDB {
     }
     
     public void insertDeliveryType(delivery_type dt) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_delivery_type(?)}");
@@ -81,7 +77,6 @@ public class ConnectDB {
     }
     
     public void insertOrder(order o) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_order(?,?,?,?,?)}");
@@ -98,7 +93,6 @@ public class ConnectDB {
     }
     
     public void insertPaymentMethod(payment_method pm) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_paymentMethod(?)}");
@@ -111,7 +105,6 @@ public class ConnectDB {
     }
     
     public void insertPicture(picture p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_picture(?)}");
@@ -124,7 +117,6 @@ public class ConnectDB {
     }
     
     public void insertProduct(product p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_product(?,?,?,?,?,?,?,?)}");
@@ -144,7 +136,6 @@ public class ConnectDB {
     }
     
     public void insertProductReview(product_review p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_product(?,?,?,?)}");
@@ -160,7 +151,6 @@ public class ConnectDB {
     }
     
     public void insertReviewType(review_type p) {
-        con=null;
         
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
@@ -174,7 +164,6 @@ public class ConnectDB {
     }
     
     public void insertShoppingCart(shopping_cart p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_shoppingCart(?,?,?)}");
@@ -189,7 +178,6 @@ public class ConnectDB {
     }
     
     public void insertUser(user u) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_user(?,?,?)}");
@@ -204,7 +192,6 @@ public class ConnectDB {
     }
     
     public void insertUserReview(user_review u) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_userReview(?,?,?,?,?)}");
@@ -221,7 +208,6 @@ public class ConnectDB {
     }
     
     public void insertUserType(user_type ut) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_userType(?)}");
@@ -234,7 +220,6 @@ public class ConnectDB {
     }
     
     public void insert_userXpaymentMethod(user_X_paymentMethod up) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_userXpaymentMethod(?,?)}");
@@ -248,7 +233,6 @@ public class ConnectDB {
     }
     
     public void insertWishList(wish_list w) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_wishList(?,?,?)}");
@@ -263,7 +247,6 @@ public class ConnectDB {
     }
     
     public void insertCity(city c) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_city`(?,?)}");
@@ -277,7 +260,6 @@ public class ConnectDB {
     }
     
     public void insertCountry(country p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_country`(?)}");
@@ -290,7 +272,6 @@ public class ConnectDB {
     }
     
     public void insertDistrict(district p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_district`(?,?)}");
@@ -304,7 +285,6 @@ public class ConnectDB {
     }
     
     public void insertGender(gender p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_gender`(?)}");
@@ -317,7 +297,6 @@ public class ConnectDB {
     }
     
     public void insertNationality(nationality p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_nationality`(?)}");
@@ -330,7 +309,6 @@ public class ConnectDB {
     }
     
     public void insertPerson(person p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_person`(?,?,?,?,?,?,?,?,?,?,?)}");
@@ -353,7 +331,6 @@ public class ConnectDB {
     }
     
     public void insertPersonXNationality(person_X_nationality p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_person_x_nationality`(?,?)}");
@@ -367,7 +344,6 @@ public class ConnectDB {
     }
     
     public void insertState(state p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `insert_state`(?,?)}");
@@ -383,7 +359,6 @@ public class ConnectDB {
     // Updates
     
     public void updateCategory(category pCategory) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_category(?,?)}");
@@ -397,7 +372,6 @@ public class ConnectDB {
     }
     
     public void updateChat(chat pChat) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_chat(?,?)}");
@@ -411,7 +385,6 @@ public class ConnectDB {
     }
     
     public void updateChatMessage(chat_message p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_chat_message(?,?,?,?,?)}");
@@ -428,7 +401,6 @@ public class ConnectDB {
     }
     
     public void updateDeliveryType(delivery_type dt) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_delivery_type(?,?)}");
@@ -442,7 +414,6 @@ public class ConnectDB {
     }
     
     public void updateOrder(order o) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_order(?,?,?,?,?,?)}");
@@ -460,7 +431,6 @@ public class ConnectDB {
     }
     
     public void updatePaymentMethod(payment_method pm) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_paymentMethod(?,?)}");
@@ -474,7 +444,6 @@ public class ConnectDB {
     }
     
     public void updatePicture(picture p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_picture(?)}");
@@ -488,7 +457,6 @@ public class ConnectDB {
     }
     
     public void updateProduct(product p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_product(?,?,?,?,?,?,?,?,?)}");
@@ -509,7 +477,6 @@ public class ConnectDB {
     }
     
     public void updateProductReview(product_review p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_product(?,?,?,?)}");
@@ -526,7 +493,6 @@ public class ConnectDB {
     }
     
     public void updateReviewType(review_type p) {
-        con=null;
         
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
@@ -541,7 +507,6 @@ public class ConnectDB {
     }
     
     public void updateShoppingCart(shopping_cart p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_shoppingCart(?,?,?)}");
@@ -556,7 +521,6 @@ public class ConnectDB {
     }
     
     public void updatetUser(user u) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_user(?,?,?)}");
@@ -571,7 +535,6 @@ public class ConnectDB {
     }
     
     public void updateUserReview(user_review u) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_userReview(?,?,?,?,?,?)}");
@@ -589,7 +552,6 @@ public class ConnectDB {
     }
     
     public void updateUserType(user_type ut) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_userType(?,?)}");
@@ -603,7 +565,6 @@ public class ConnectDB {
     }
     
     public void updateWishList(wish_list w) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_wishList(?,?,?)}");
@@ -618,7 +579,6 @@ public class ConnectDB {
     }
     
     public void updateCity(city c) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_city`(?,?,?)}");
@@ -633,7 +593,6 @@ public class ConnectDB {
     }
     
     public void updateCountry(country p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_country`(?,?)}");
@@ -647,7 +606,6 @@ public class ConnectDB {
     }
     
     public void updateDistrict(district p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_district`(?,?,?)}");
@@ -662,7 +620,6 @@ public class ConnectDB {
     }
     
     public void updateGender(gender p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_gender`(?)}");
@@ -676,7 +633,6 @@ public class ConnectDB {
     }
     
     public void updateNationality(nationality p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_nationality`(?)}");
@@ -690,7 +646,6 @@ public class ConnectDB {
     }
     
     public void updatePerson(person p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_person`(?,?,?,?,?,?,?,?,?,?,?)}");
@@ -713,7 +668,6 @@ public class ConnectDB {
     }
     
     public void updateState(state p) {
-        con=null;
         try{
             con=  DriverManager.getConnection(url_person, user_person, pass_person);
             CallableStatement stmt = con.prepareCall("{call `update_state`(?,?,?)}");
@@ -731,7 +685,6 @@ public class ConnectDB {
     
     //Removes
     public void removeWithId(int pId, String function,boolean inApp) {
-        con=null;
         
         try{
             if(inApp)
@@ -747,9 +700,7 @@ public class ConnectDB {
         }
     }
     
-    public void removeWithUsername(String pUsername, String function, boolean inApp) {
-        con=null;
-        
+    public void removeWithUsername(String pUsername, String function, boolean inApp) {        
         try{
             if(inApp)
                 con=  DriverManager.getConnection(url_app, user_app, pass_app);
@@ -764,9 +715,7 @@ public class ConnectDB {
         }
     }
     
-    public void removeWithStringandInt(String pUsername, int pId, String function, boolean inApp) {
-        con=null;
-        
+    public void removeWithStringandInt(String pUsername, int pId, String function, boolean inApp) {        
         try{
             if(inApp)
                 con=  DriverManager.getConnection(url_app, user_app, pass_app);
@@ -785,7 +734,6 @@ public class ConnectDB {
     //Getters
     
     public String getStringWithInt(int pId, String function,boolean inApp) {
-        con=null;
         String result = null;
         try{
             if(inApp)
@@ -805,7 +753,6 @@ public class ConnectDB {
     }
     
     public int getIntWithId(int pId, String function,boolean inApp) {
-        con=null;
         int result = -1;
         try{
             if(inApp)
@@ -825,7 +772,6 @@ public class ConnectDB {
     }
     
     public float getFloatWithId(int pId, String function,boolean inApp) {
-        con=null;
         float result = -1;
         try{
             if(inApp)
@@ -845,7 +791,6 @@ public class ConnectDB {
     }
     
     public Date getDateWithId(int pId, String function,boolean inApp) {
-        con=null;
         java.sql.Date result = null;
         try{
             if(inApp)
@@ -885,7 +830,6 @@ public class ConnectDB {
     }
     
     public int getIntWithString(String p, String function,boolean inApp) {
-        con=null;
         int result = -1;
         try{
             if(inApp)
@@ -905,7 +849,6 @@ public class ConnectDB {
     }
     
     public float getFloatWithString(String p, String function,boolean inApp) {
-        con=null;
         float result = -1;
         try{
             if(inApp)
@@ -925,7 +868,6 @@ public class ConnectDB {
     }
     
     public Date getDateWithString(String p, String function,boolean inApp) {
-        con=null;
         java.sql.Date result = null;
         try{
             if(inApp)
@@ -944,18 +886,15 @@ public class ConnectDB {
         return result;
     }
     
-    public ResultSet query(String function, boolean inApp)
-    {
-        con=null;
-        java.sql.Date result = null;
+    public ResultSet query(String function, boolean inApp){
+        ResultSet result = null;
         try{
             if(inApp)
                 con=  DriverManager.getConnection(url_app, user_app, pass_app);
             else
                 con=  DriverManager.getConnection(url_person, user_person, pass_person);
-            CallableStatement stmt = con.prepareCall("{ ? = call "+ function +" ()}");
-            //stmt.registerOutParameter(1, Types.ARRAY);
-            result = stmt.execute();
+            CallableStatement stmt = con.prepareCall("{call "+ function +" ()}");
+            result = stmt.executeQuery();
         }
         catch (Exception e){
             System.out.println("Error de conexion: " + e);
@@ -967,7 +906,6 @@ public class ConnectDB {
     // Funciones varias
     
      public boolean checkLogin(String username, String password) {
-        con=null;
         boolean result = false;
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
