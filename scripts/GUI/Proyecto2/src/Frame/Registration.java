@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frame;
 
-/**
- *
- * @author sebas
- */
+
 public class Registration extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Registration
-     */
+    
     public Registration() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -187,6 +179,11 @@ public class Registration extends javax.swing.JFrame {
         ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
         ButtonCancel.setText("Cancel");
         ButtonCancel.setBorder(null);
+        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 110, 30));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
@@ -194,6 +191,11 @@ public class Registration extends javax.swing.JFrame {
         ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
         ButtonConfirm.setText("Confirm");
         ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, 110, 30));
 
         FieldPhone.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -317,6 +319,16 @@ public class Registration extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
+
+    private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonCancelActionPerformed
 
     /**
      * @param args the command line arguments

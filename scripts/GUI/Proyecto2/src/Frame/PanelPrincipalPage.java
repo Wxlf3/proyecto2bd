@@ -2,28 +2,26 @@
 package Frame;
 
 import Connection.ConnectDB;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
 public class PanelPrincipalPage extends javax.swing.JFrame {
 
     private List<Object> products = new ArrayList<>();
-    private JComponent PanelLogin;
-    private JComponent PanelProfile;
-    public String user = "guest";
-    Container contentPane;
+    public String user;
     
     public PanelPrincipalPage() {
         initComponents();
         setLocationRelativeTo(null);
-        //ButtonConfiguration1.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(29,41,81), 2));
+        user = "guest";
+    }
+    
+    public PanelPrincipalPage(String puser) {
+        initComponents();
+        setLocationRelativeTo(null);
+        user = puser;
     }
 
     @SuppressWarnings("unchecked")
@@ -43,15 +41,15 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonBasketUser = new javax.swing.JButton();
         ButtonQueryUser = new javax.swing.JButton();
         ButtonSettingsUser = new javax.swing.JButton();
-        ButtonWishlistAdmin1 = new javax.swing.JButton();
+        ButtonWishlistUser = new javax.swing.JButton();
         PanelAdmin = new javax.swing.JPanel();
         ButtonProfileAdmin = new javax.swing.JButton();
         ButtonHistoryAdmin = new javax.swing.JButton();
         ButtonBasketAdmin = new javax.swing.JButton();
-        ButtonQueryUser1 = new javax.swing.JButton();
+        ButtonQueryAdmin = new javax.swing.JButton();
         ButtonStatistics = new javax.swing.JButton();
         ButtonSettingsAdmin = new javax.swing.JButton();
-        ButtonWishlistAdmin = new javax.swing.JButton();
+        ButtonWishlist = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("framepanelprincipal"); // NOI18N
@@ -76,6 +74,9 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelGuestMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PanelGuestMouseExited(evt);
+            }
         });
         PanelGuest.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -84,6 +85,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonProfile.setForeground(new java.awt.Color(76, 40, 130));
         ButtonProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user(1).png"))); // NOI18N
         ButtonProfile.setBorder(null);
+        ButtonProfile.setBorderPainted(false);
         ButtonProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonProfileActionPerformed(evt);
@@ -105,6 +107,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonBasket.setText("Basket");
         ButtonBasket.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonBasket.setContentAreaFilled(false);
+        ButtonBasket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBasketActionPerformed(evt);
+            }
+        });
         PanelGuest.add(ButtonBasket, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
 
         PanelPrincipal.add(PanelGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
@@ -117,6 +124,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonProfileUser.setForeground(new java.awt.Color(76, 40, 130));
         ButtonProfileUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user(1).png"))); // NOI18N
         ButtonProfileUser.setBorder(null);
+        ButtonProfileUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonProfileUserActionPerformed(evt);
+            }
+        });
         PanelUser.add(ButtonProfileUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
 
         ButtonHistoryUser.setBackground(new java.awt.Color(255, 255, 255));
@@ -125,6 +137,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonHistoryUser.setText("My history");
         ButtonHistoryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonHistoryUser.setContentAreaFilled(false);
+        ButtonHistoryUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonHistoryUserActionPerformed(evt);
+            }
+        });
         PanelUser.add(ButtonHistoryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
 
         ButtonBasketUser.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,6 +150,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonBasketUser.setText("Basket");
         ButtonBasketUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonBasketUser.setContentAreaFilled(false);
+        ButtonBasketUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBasketUserActionPerformed(evt);
+            }
+        });
         PanelUser.add(ButtonBasketUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
 
         ButtonQueryUser.setBackground(new java.awt.Color(255, 255, 255));
@@ -141,6 +163,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonQueryUser.setText("Queries");
         ButtonQueryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonQueryUser.setContentAreaFilled(false);
+        ButtonQueryUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonQueryUserActionPerformed(evt);
+            }
+        });
         PanelUser.add(ButtonQueryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 250, 160, 30));
 
         ButtonSettingsUser.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,16 +176,26 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonSettingsUser.setText("Profile settings");
         ButtonSettingsUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonSettingsUser.setContentAreaFilled(false);
+        ButtonSettingsUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSettingsUserActionPerformed(evt);
+            }
+        });
         PanelUser.add(ButtonSettingsUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 300, 160, 30));
 
-        ButtonWishlistAdmin1.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonWishlistAdmin1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonWishlistAdmin1.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonWishlistAdmin1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
-        ButtonWishlistAdmin1.setText(" Wishlist");
-        ButtonWishlistAdmin1.setBorder(null);
-        ButtonWishlistAdmin1.setContentAreaFilled(false);
-        PanelUser.add(ButtonWishlistAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 350, 121, 50));
+        ButtonWishlistUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonWishlistUser.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonWishlistUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonWishlistUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
+        ButtonWishlistUser.setText(" Wishlist");
+        ButtonWishlistUser.setBorder(null);
+        ButtonWishlistUser.setContentAreaFilled(false);
+        ButtonWishlistUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonWishlistUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonWishlistUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 350, 121, 50));
 
         PanelPrincipal.add(PanelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
@@ -170,6 +207,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonProfileAdmin.setForeground(new java.awt.Color(76, 40, 130));
         ButtonProfileAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user(1).png"))); // NOI18N
         ButtonProfileAdmin.setBorder(null);
+        ButtonProfileAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonProfileAdminActionPerformed(evt);
+            }
+        });
         PanelAdmin.add(ButtonProfileAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
 
         ButtonHistoryAdmin.setBackground(new java.awt.Color(255, 255, 255));
@@ -191,15 +233,25 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonBasketAdmin.setText("Basket");
         ButtonBasketAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonBasketAdmin.setContentAreaFilled(false);
+        ButtonBasketAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBasketAdminActionPerformed(evt);
+            }
+        });
         PanelAdmin.add(ButtonBasketAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
 
-        ButtonQueryUser1.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonQueryUser1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonQueryUser1.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonQueryUser1.setText("Queries");
-        ButtonQueryUser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonQueryUser1.setContentAreaFilled(false);
-        PanelAdmin.add(ButtonQueryUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 250, 160, 30));
+        ButtonQueryAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonQueryAdmin.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonQueryAdmin.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonQueryAdmin.setText("Queries");
+        ButtonQueryAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonQueryAdmin.setContentAreaFilled(false);
+        ButtonQueryAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonQueryAdminActionPerformed(evt);
+            }
+        });
+        PanelAdmin.add(ButtonQueryAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 250, 160, 30));
 
         ButtonStatistics.setBackground(new java.awt.Color(255, 255, 255));
         ButtonStatistics.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -207,6 +259,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonStatistics.setText("Statistics");
         ButtonStatistics.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonStatistics.setContentAreaFilled(false);
+        ButtonStatistics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonStatisticsActionPerformed(evt);
+            }
+        });
         PanelAdmin.add(ButtonStatistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 300, 160, 30));
 
         ButtonSettingsAdmin.setBackground(new java.awt.Color(255, 255, 255));
@@ -215,16 +272,26 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonSettingsAdmin.setText("Profile settings");
         ButtonSettingsAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonSettingsAdmin.setContentAreaFilled(false);
+        ButtonSettingsAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSettingsAdminActionPerformed(evt);
+            }
+        });
         PanelAdmin.add(ButtonSettingsAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 350, 160, 30));
 
-        ButtonWishlistAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonWishlistAdmin.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonWishlistAdmin.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonWishlistAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
-        ButtonWishlistAdmin.setText(" Wishlist");
-        ButtonWishlistAdmin.setBorder(null);
-        ButtonWishlistAdmin.setContentAreaFilled(false);
-        PanelAdmin.add(ButtonWishlistAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 400, 121, 50));
+        ButtonWishlist.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonWishlist.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonWishlist.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonWishlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
+        ButtonWishlist.setText(" Wishlist");
+        ButtonWishlist.setBorder(null);
+        ButtonWishlist.setContentAreaFilled(false);
+        ButtonWishlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonWishlistActionPerformed(evt);
+            }
+        });
+        PanelAdmin.add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 400, 121, 50));
 
         PanelPrincipal.add(PanelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
@@ -256,22 +323,10 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void ButtonProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileActionPerformed
-        Login m = new Login();
-        m.show();
+        Login w = new Login(user);
+        w.show();
         this.dispose();
-        
-        /*
-        if(user == "guest"){
-            
-            //PanelLogin
-        } else {
-            //PanelProfile
-        }*/
     }//GEN-LAST:event_ButtonProfileActionPerformed
-
-    private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
-
-    }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
 
     private void PanelGuestMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelGuestMouseEntered
         if(user == "guest"){
@@ -288,6 +343,102 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             PanelUser.setVisible(true);
         }
     }//GEN-LAST:event_PanelGuestMouseEntered
+
+    private void PanelGuestMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelGuestMouseExited
+        if(user == "guest"){
+            PanelGuest.setVisible(true);
+            PanelAdmin.setVisible(false);
+            PanelUser.setVisible(false);
+        } else if(user == "admin"){
+            PanelGuest.setVisible(false);
+            PanelAdmin.setVisible(true);
+            PanelUser.setVisible(false);
+        } else {
+            PanelGuest.setVisible(false);
+            PanelAdmin.setVisible(false);
+            PanelUser.setVisible(true);
+        }
+    }//GEN-LAST:event_PanelGuestMouseExited
+
+    private void ButtonBasketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketActionPerformed
+        Basket w = new Basket(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBasketActionPerformed
+
+    private void ButtonProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileUserActionPerformed
+        Profile w = new Profile(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonProfileUserActionPerformed
+
+    private void ButtonHistoryUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryUserActionPerformed
+        History w = new History(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonHistoryUserActionPerformed
+
+    private void ButtonBasketUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketUserActionPerformed
+        Basket w = new Basket(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBasketUserActionPerformed
+
+    private void ButtonQueryUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQueryUserActionPerformed
+        QueryUser w = new QueryUser();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonQueryUserActionPerformed
+
+    private void ButtonSettingsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSettingsUserActionPerformed
+        ProfileSettings w = new ProfileSettings();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonSettingsUserActionPerformed
+
+    private void ButtonWishlistUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWishlistUserActionPerformed
+        Wishlist w = new Wishlist(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonWishlistUserActionPerformed
+
+    private void ButtonProfileAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileAdminActionPerformed
+        Profile w = new Profile(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonProfileAdminActionPerformed
+
+    private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
+        History w = new History(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
+
+    private void ButtonBasketAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketAdminActionPerformed
+        Basket w = new Basket(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBasketAdminActionPerformed
+
+    private void ButtonQueryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQueryAdminActionPerformed
+        QueryAdmin w = new QueryAdmin();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonQueryAdminActionPerformed
+
+    private void ButtonSettingsAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSettingsAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonSettingsAdminActionPerformed
+
+    private void ButtonStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonStatisticsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonStatisticsActionPerformed
+
+    private void ButtonWishlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWishlistActionPerformed
+        Wishlist w = new Wishlist(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonWishlistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,13 +486,13 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     private javax.swing.JButton ButtonProfile;
     private javax.swing.JButton ButtonProfileAdmin;
     private javax.swing.JButton ButtonProfileUser;
+    private javax.swing.JButton ButtonQueryAdmin;
     private javax.swing.JButton ButtonQueryUser;
-    private javax.swing.JButton ButtonQueryUser1;
     private javax.swing.JButton ButtonSettingsAdmin;
     private javax.swing.JButton ButtonSettingsUser;
     private javax.swing.JButton ButtonStatistics;
-    private javax.swing.JButton ButtonWishlistAdmin;
-    private javax.swing.JButton ButtonWishlistAdmin1;
+    private javax.swing.JButton ButtonWishlist;
+    private javax.swing.JButton ButtonWishlistUser;
     private javax.swing.JPanel PanelAdmin;
     private javax.swing.JPanel PanelGuest;
     private javax.swing.JPanel PanelPrincipal;

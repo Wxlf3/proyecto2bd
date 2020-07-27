@@ -1,21 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frame;
 
-/**
- *
- * @author sebas
- */
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 public class Basket extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Basket
-     */
+    private List<Object> products = new ArrayList<>();
+    public String user;
+    
     public Basket() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public Basket(String puser) {
+        initComponents();
+        setLocationRelativeTo(null);
+        user = puser;
     }
 
     /**
@@ -37,6 +41,14 @@ public class Basket extends javax.swing.JFrame {
         Decoration = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,6 +65,11 @@ public class Basket extends javax.swing.JFrame {
         ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
         ButtonBack.setBorder(null);
         ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
@@ -60,6 +77,11 @@ public class Basket extends javax.swing.JFrame {
         ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
         ButtonCancel.setText("Cancel");
         ButtonCancel.setBorder(null);
+        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 110, 30));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
@@ -90,33 +112,33 @@ public class Basket extends javax.swing.JFrame {
 
         jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 100, 580));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
+        //Eliminar todos los productos
+        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonCancelActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        /*for(int i = 0; i < products.size(); i++){
+            JButton product = new JButton();
+            product.setText("example");
+            product.setIcon(new ImageIcon("close-button.png"));
+            PanelProducts.add(product);
+        }*/
+    }//GEN-LAST:event_formWindowGainedFocus
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

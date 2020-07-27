@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frame;
 
-/**
- *
- * @author sebas
- */
+import java.awt.Cursor;
+
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    public String user;
+    
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public Login(String puser) {
+        initComponents();
+        setLocationRelativeTo(null);
+        user = puser;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Login extends javax.swing.JFrame {
         PanelLogin = new javax.swing.JPanel();
         IconSignIn = new javax.swing.JLabel();
         IconPassword = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        ButtonRegistration = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         FieldPassword = new javax.swing.JTextField();
@@ -60,10 +60,21 @@ public class Login extends javax.swing.JFrame {
         IconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/padlock.png"))); // NOI18N
         PanelLogin.add(IconPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Register here");
-        PanelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
+        ButtonRegistration.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonRegistration.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonRegistration.setText("Register here");
+        ButtonRegistration.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ButtonRegistrationMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ButtonRegistrationMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ButtonRegistrationMouseExited(evt);
+            }
+        });
+        PanelLogin.add(ButtonRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,6 +108,11 @@ public class Login extends javax.swing.JFrame {
         ButtonConfirm.setAlignmentX(0.5F);
         ButtonConfirm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         ButtonConfirm.setContentAreaFilled(false);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         PanelLogin.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 390, 120, 40));
 
         PanelBackground.add(PanelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 580));
@@ -156,14 +172,40 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
-        PanelPrincipalPage m = new PanelPrincipalPage();
-        m.show();
+        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void ButtonRegistrationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonRegistrationMouseClicked
+        Registration w = new Registration();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonRegistrationMouseClicked
+
+    private void ButtonRegistrationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonRegistrationMouseEntered
+        Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+        ButtonRegistration.setCursor(cursor);
+    }//GEN-LAST:event_ButtonRegistrationMouseEntered
+
+    private void ButtonRegistrationMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonRegistrationMouseExited
+        Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+        ButtonRegistration.setCursor(cursor);
+    }//GEN-LAST:event_ButtonRegistrationMouseExited
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        //Aquí que revise si es admin o no
+        boolean admin = false;
+        if(admin){
+            user = "admin";
+        } else {
+            user = "regular";
+        }
+        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -199,6 +241,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonConfirm;
+    private javax.swing.JLabel ButtonRegistration;
     private javax.swing.JTextField FieldPassword;
     private javax.swing.JTextField FieldUsername;
     private javax.swing.JLabel IconPassword;
@@ -206,7 +249,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel PanelBackground;
     private javax.swing.JPanel PanelDecoration;
     private javax.swing.JPanel PanelLogin;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

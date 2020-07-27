@@ -1,21 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frame;
 
-/**
- *
- * @author sebas
- */
 public class Profile extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Profile
-     */
+    public String user;
+    
     public Profile() {
         initComponents();
+    }
+    
+    public Profile(String puser) {
+        initComponents();
+        user = puser;
     }
 
     /**

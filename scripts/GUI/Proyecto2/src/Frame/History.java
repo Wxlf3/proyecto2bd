@@ -11,11 +11,17 @@ package Frame;
  */
 public class History extends javax.swing.JFrame {
 
-    /**
-     * Creates new form History
-     */
+    public String user;
+    
     public History() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public History(String puser) {
+        initComponents();
+        setLocationRelativeTo(null);
+        user = puser;
     }
 
     /**
