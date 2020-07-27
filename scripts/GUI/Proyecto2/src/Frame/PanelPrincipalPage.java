@@ -263,8 +263,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonProfileActionPerformed
 
     private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
-        ConnectDB c = new ConnectDB();
-        c.insertDeliveryType("hola");
+
     }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
 
     private void PanelGuestMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelGuestMouseEntered
