@@ -1,3 +1,9 @@
+-- Connected from SYS
+
+grant select on `log_ad`.`top_5_sellers_score` to 'app_ad'@'localhost';
+grant select on `log_ad`.`top_10_expensive_sales` to 'app_ad'@'localhost';
+
+
 -- Connected from APP_AD
 
 DROP procedure IF EXISTS `top_sellers`;
@@ -5,7 +11,9 @@ DROP procedure IF EXISTS `top_buyers`;
 DROP procedure IF EXISTS `best_scores`;
 DROP procedure IF EXISTS `worst_scores`;
 DROP procedure IF EXISTS `top_expensives_of_category`;
-DROP procedure IF EXISTs `max_min_prices_by_category`;
+DROP procedure IF EXISTS `max_min_prices_by_category`;
+DROP procedure IF EXISTS `job_top_5_sellers`;
+DROP procedure IF EXISTS `job_top_10_sales`;
 
 DELIMITER //
 
@@ -70,6 +78,18 @@ BEGIN
     INNER JOIN `category` c ON p.id_category = c.id
     GROUP BY p.id_category
     ORDER BY p.id_category;
+END//
+
+CREATE PROCEDURE `job_top_5_sellers`()
+BEGIN
+	SELECT position, username, seller_score
+    FROM `log_ad`.`top_5_sellers_score`;
+END//
+
+CREATE PROCEDURE `job_top_10_sales`()
+BEGIN
+	SELECT position, order_id, date, product_name, final_price, username_seller, username_buyer
+    FROM `log_ad`.`top_10_expensive_sales`;
 END//
 
 DELIMITER ;
