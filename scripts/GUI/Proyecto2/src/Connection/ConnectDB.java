@@ -887,9 +887,7 @@ public class ConnectDB {
     }
     
     // Funciones varias
-    
-      
-      
+
     public boolean checkLogin(String username, String password) {
         boolean result = false;
         try{
@@ -988,10 +986,5 @@ public class ConnectDB {
             System.out.println("Error de conexion: " + e);
         }
         return result;
-    }
-     
-    
-     
-     
-    
+    } 
 }

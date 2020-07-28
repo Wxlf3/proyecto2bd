@@ -1,6 +1,6 @@
-
 package Frame;
 
+import Connection.*;
 import java.awt.Cursor;
 
 public class Login extends javax.swing.JFrame {
@@ -195,15 +195,30 @@ public class Login extends javax.swing.JFrame {
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
         //Aquí que revise si es admin o no
-        boolean admin = false;
-        if(admin){
-            user = "admin";
-        } else {
-            user = "regular";
+        String username = FieldUsername.getText();
+        String password = FieldPassword.getText();
+        ConnectDB c = new ConnectDB();
+        var cU = currentUser.getInstance();
+        boolean correct = c.checkLogin(username, password);
+        System.out.println("username: " + username + "password: " + password);
+        if(correct)
+        {
+            cU.setUsername(username);
+            cU.setId_userType(c.getIntWithString(user, "getIdUserType_user", true));
+            if(cU.isAdmin()){
+                user = "admin";
+            } else {
+                user = "regular";
+            }
+            PanelPrincipalPage w = new PanelPrincipalPage(user);
+            w.show();
+            this.dispose();
         }
-        PanelPrincipalPage w = new PanelPrincipalPage(user);
-        w.show();
-        this.dispose();
+        else
+        {
+            // poner un jOptionPane de que el usuario no existe
+        }
+        
     }//GEN-LAST:event_ButtonConfirmActionPerformed
     
     public static void main(String args[]) {
