@@ -200,7 +200,6 @@ public class Login extends javax.swing.JFrame {
         ConnectDB c = new ConnectDB();
         var cU = currentUser.getInstance();
         boolean correct = c.checkLogin(username, password);
-        System.out.println("username: " + username + "password: " + password);
         if(correct)
         {
             cU.setUsername(username);

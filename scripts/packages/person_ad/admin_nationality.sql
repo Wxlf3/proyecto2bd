@@ -42,7 +42,7 @@ END$$
 
 CREATE PROCEDURE `getAll_nationality` ()
 BEGIN
-	SELECT id, name, id_city
+	SELECT id, name
     FROM nationality;
 END$$
 

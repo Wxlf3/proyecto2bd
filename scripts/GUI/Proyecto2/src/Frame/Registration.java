@@ -1,12 +1,12 @@
 package Frame;
 
 import BL.person;
+import BL.user;
 import Connection.ConnectDB;
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 public class Registration extends javax.swing.JFrame {
     
@@ -395,20 +395,32 @@ public class Registration extends javax.swing.JFrame {
         ConnectDB c = new ConnectDB();
         var id = FieldId.getText();
         var first_name = FieldName.getText();
-        var middle_name = FieldMiddleName.getText();
+        var middle_name = " ";
+        try {
+        middle_name = FieldMiddleName.getText();
+        }
+        catch (NullPointerException e) {}
         var last_name = FieldLastName.getText();
         var email = FieldEmail.getText();
         var phone_number = FieldPhone.getText();
-        String birthday_ = (String) FieldBirthday.getText();
-        Date birthday = Date.valueOf(birthday_);
+        java.util.Date birthday = null;
+        try {
+            birthday = new SimpleDateFormat("dd/MM/yy").parse(FieldBirthday.getText());
+        }
+        catch (Exception e){}
+        java.sql.Date birthday_sql = new java.sql.Date(birthday.getTime());
         var picture_path = "";
         var username = FieldUsername.getText();
+        var password = FieldPassword.getText();
         String id_gender_element = (String) BoxGender.getSelectedItem();
         var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
         String id_district_element = (String) BoxDistrict.getSelectedItem();
-        var id_district = c.getIntWithString(id_gender_element, "getId_gender", false);
-        person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday, picture_path, id_gender, id_district, username);
+        var id_district = c.getIntWithString(id_district_element, "getId_gender", false);
+        person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
         c.insertPerson(p);
+        user u = new user(username, password, 2);
+        c.insertUser(u);
+        JOptionPane.showMessageDialog(this, "The person was created successfully in the system.");
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
