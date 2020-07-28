@@ -129,6 +129,7 @@ public class Registration extends javax.swing.JFrame {
         Decoration = new javax.swing.JPanel();
         PanelDecoration1 = new javax.swing.JPanel();
         PanelDecoration2 = new javax.swing.JPanel();
+        ButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -365,6 +366,19 @@ public class Registration extends javax.swing.JFrame {
 
         Decoration.add(PanelDecoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 580));
 
+        ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack.setBorder(null);
+        ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 50, 50));
+
         jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -429,6 +443,12 @@ public class Registration extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonCancelActionPerformed
 
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        Login w = new Login();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,6 +491,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> BoxGender;
     private javax.swing.JComboBox<String> BoxNationality;
     private javax.swing.JComboBox<String> BoxState;
+    private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonPicture;
