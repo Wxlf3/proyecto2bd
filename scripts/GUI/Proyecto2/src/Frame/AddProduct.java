@@ -26,7 +26,7 @@ public class AddProduct extends javax.swing.JFrame {
         fillCombo();
     }
     
-        void fillCombo()
+    void fillCombo()
     {
         ConnectDB c = new ConnectDB();
         

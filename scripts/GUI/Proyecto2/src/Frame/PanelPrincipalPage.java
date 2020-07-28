@@ -1,27 +1,48 @@
 
 package Frame;
 
+import BL.product;
 import Connection.ConnectDB;
+import Connection.currentUser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class PanelPrincipalPage extends javax.swing.JFrame {
 
     private List<Object> products = new ArrayList<>();
-    public String user;
     
     public PanelPrincipalPage() {
         initComponents();
         setLocationRelativeTo(null);
-        user = "guest";
     }
     
-    public PanelPrincipalPage(String puser) {
-        initComponents();
-        setLocationRelativeTo(null);
-        user = puser;
+    public void lock()
+    {
+        try{
+        currentUser cu = currentUser.getInstance();
+        if(cu.getUsername() == "Guest"){
+            PanelGuest.setVisible(true);
+            PanelAdmin.setVisible(false);
+            PanelUser.setVisible(false);
+        } else if(cu.isAdmin()){
+            PanelAdmin.setVisible(true);
+            PanelGuest.setVisible(false);
+            PanelUser.setVisible(false);
+        } else if(cu.getUsername() != null){
+            PanelUser.setVisible(true);
+            PanelGuest.setVisible(false);
+            PanelAdmin.setVisible(false);
+        }
+        }catch(Exception e)
+        {
+            System.out.println("Error: " +e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -86,6 +107,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user(1).png"))); // NOI18N
         ButtonProfile.setBorder(null);
         ButtonProfile.setBorderPainted(false);
+        ButtonProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ButtonProfileMouseClicked(evt);
+            }
+        });
         ButtonProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonProfileActionPerformed(evt);
@@ -306,63 +332,53 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        /*for(int i = 0; i < products.size(); i++){
-            JButton product = new JButton();
-            product.setText("example");
-            product.setIcon(new ImageIcon("close-button.png"));
-            PanelProducts.add(product);
-        }*/
-        if(user == "guest"){
-            PanelGuest.setVisible(true);
-            PanelAdmin.setVisible(false);
-            PanelUser.setVisible(false);
-        } else if(user == "admin"){
-            PanelGuest.setVisible(false);
-            PanelAdmin.setVisible(true);
-            PanelUser.setVisible(false);
-        } else {
-            PanelGuest.setVisible(false);
-            PanelAdmin.setVisible(false);
-            PanelUser.setVisible(true);
+        ConnectDB c = new ConnectDB();
+        ResultSet pro = c.query("getAll_product",true);
+        try {
+            while(pro.next()){
+                    product p = new product(pro.getFloat("price"),
+                                            pro.getString("name"),
+                                            pro.getString("description"),
+                                            pro.getInt("quant_in_stock"),
+                                            pro.getBoolean("is_visible"),
+                                            pro.getFloat("average_score"),
+                                            pro.getInt("id_category"),
+                                            pro.getString("username_seller"),
+                                            pro.getInt("id_delivery_type"));
+                    products.add(p);
+            }
+        } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error. Try later");
+        } finally{
+            currentUser cu = currentUser.getInstance();
+            for(Object p : this.products){
+                JButton Bttnproduct = new JButton();
+                var prod = (product) p;
+                Bttnproduct.setText(prod.getName());
+                Bttnproduct.setIcon(new ImageIcon("close-button.png"));
+                PanelProducts.add(Bttnproduct);
+                Bttnproduct.addActionListener(new ActionListener(){  
+                    public void actionPerformed(ActionEvent e){  
+                        cu.insertInHistory(prod);
+                    }  
+                });
+            lock();
+            }
         }
     }//GEN-LAST:event_formFocusGained
 
     private void ButtonProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileActionPerformed
-        Login w = new Login(user);
+        Login w = new Login();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileActionPerformed
 
     private void PanelGuestMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelGuestMouseEntered
-        if(user == "guest"){
-            PanelGuest.setVisible(true);
-            PanelAdmin.setVisible(false);
-            PanelUser.setVisible(false);
-        } else if(user == "admin"){
-            PanelGuest.setVisible(false);
-            PanelAdmin.setVisible(true);
-            PanelUser.setVisible(false);
-        } else {
-            PanelGuest.setVisible(false);
-            PanelAdmin.setVisible(false);
-            PanelUser.setVisible(true);
-        }
+        lock();
     }//GEN-LAST:event_PanelGuestMouseEntered
 
     private void PanelGuestMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelGuestMouseExited
-        if(user == "guest"){
-            PanelGuest.setVisible(true);
-            PanelAdmin.setVisible(false);
-            PanelUser.setVisible(false);
-        } else if(user == "admin"){
-            PanelGuest.setVisible(false);
-            PanelAdmin.setVisible(true);
-            PanelUser.setVisible(false);
-        } else {
-            PanelGuest.setVisible(false);
-            PanelAdmin.setVisible(false);
-            PanelUser.setVisible(true);
-        }
+        lock();
     }//GEN-LAST:event_PanelGuestMouseExited
 
     private void ButtonBasketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketActionPerformed
@@ -372,13 +388,13 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBasketActionPerformed
 
     private void ButtonProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileUserActionPerformed
-        Profile w = new Profile(user);
+        Profile w = new Profile();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileUserActionPerformed
 
     private void ButtonHistoryUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryUserActionPerformed
-        History w = new History(user);
+        History w = new History();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonHistoryUserActionPerformed
@@ -402,19 +418,19 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSettingsUserActionPerformed
 
     private void ButtonWishlistUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWishlistUserActionPerformed
-        Wishlist w = new Wishlist(user);
+        Wishlist w = new Wishlist();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonWishlistUserActionPerformed
 
     private void ButtonProfileAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileAdminActionPerformed
-        Profile w = new Profile(user);
+        Profile w = new Profile();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileAdminActionPerformed
 
     private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
-        History w = new History(user);
+        History w = new History();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
@@ -440,16 +456,20 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonStatisticsActionPerformed
 
     private void ButtonWishlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWishlistActionPerformed
-        Wishlist w = new Wishlist(user);
+        Wishlist w = new Wishlist();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonWishlistActionPerformed
 
     private void ButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryActionPerformed
-        History w = new History(user);
+        History w = new History();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonHistoryActionPerformed
+
+    private void ButtonProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProfileMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonProfileMouseClicked
 
     /**
      * @param args the command line arguments

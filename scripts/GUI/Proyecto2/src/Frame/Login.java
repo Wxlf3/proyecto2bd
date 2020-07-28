@@ -5,18 +5,13 @@ import java.awt.Cursor;
 
 public class Login extends javax.swing.JFrame {
 
-    public String user;
     
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public Login(String puser) {
-        initComponents();
-        setLocationRelativeTo(null);
-        user = puser;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,7 +167,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
-        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
@@ -194,7 +189,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonRegistrationMouseExited
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        //Aquí que revise si es admin o no
         String username = FieldUsername.getText();
         String password = FieldPassword.getText();
         ConnectDB c = new ConnectDB();
@@ -203,13 +197,9 @@ public class Login extends javax.swing.JFrame {
         if(correct)
         {
             cU.setUsername(username);
-            cU.setId_userType(c.getIntWithString(user, "getIdUserType_user", true));
-            if(cU.isAdmin()){
-                user = "admin";
-            } else {
-                user = "regular";
-            }
-            PanelPrincipalPage w = new PanelPrincipalPage(user);
+            
+            cU.setId_userType(c.getIntWithString("username", "getIdUserType_user", true));
+            PanelPrincipalPage w = new PanelPrincipalPage();
             w.show();
             this.dispose();
         }

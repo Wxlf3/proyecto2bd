@@ -1,5 +1,8 @@
 package Connection;
 
+import BL.product;
+import java.util.ArrayList;
+
 /**
  *
  * @author Sebas
@@ -9,6 +12,7 @@ public class currentUser
     private String username;
     private int id_userType;
     private boolean isAdmin;
+    private ArrayList<product> history;
     private static currentUser instance = null;
     protected currentUser(){}
 
@@ -43,5 +47,13 @@ public class currentUser
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public ArrayList<product> getHistory() {
+        return history;
+    }
+
+    public void insertInHistory(product p) {
+        this.history.add(p);
     }
 }

@@ -11,18 +11,12 @@ package Frame;
  */
 public class History extends javax.swing.JFrame {
 
-    public String user;
     
     public History() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
-    public History(String puser) {
-        initComponents();
-        setLocationRelativeTo(null);
-        user = puser;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,7 +88,7 @@ public class History extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
-        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed

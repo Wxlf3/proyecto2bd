@@ -685,7 +685,6 @@ public class ConnectDB {
     
     //Removes
     public void removeWithId(int pId, String function,boolean inApp) {
-        
         try{
             if(inApp)
                 con=  DriverManager.getConnection(url_app, user_app, pass_app);

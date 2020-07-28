@@ -1,6 +1,7 @@
 package Frame;
 
 import BL.person;
+import BL.person_X_nationality;
 import BL.user;
 import Connection.ConnectDB;
 import java.sql.Date;
@@ -428,10 +429,13 @@ public class Registration extends javax.swing.JFrame {
         var password = FieldPassword.getText();
         String id_gender_element = (String) BoxGender.getSelectedItem();
         String id_district_element = (String) BoxDistrict.getSelectedItem();
+        String id_nationality_element = (String) BoxNationality.getSelectedItem();
         if(id_gender_element == "Default")  
             JOptionPane.showMessageDialog(this, "Select the gender box.");
         else if(id_district_element == "Default")
             JOptionPane.showMessageDialog(this, "Select the district box.");
+        else if(id_nationality_element == "Default")
+            JOptionPane.showMessageDialog(this, "Select the nationality box.");
         else if(id == "")
         {
             JOptionPane.showMessageDialog(this, "Fill the id field.");
@@ -468,10 +472,13 @@ public class Registration extends javax.swing.JFrame {
         {
             var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
             var id_district = c.getIntWithString(id_district_element, "getId_district", false);
+            var id_nationality = c.getIntWithString(id_nationality_element, "getId_nationality", false);
             person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
             c.insertPerson(p);
             user u = new user(username, password, 0, 0, 2);
             c.insertUser(u);
+            person_X_nationality n = new person_X_nationality(id,id_nationality);
+            c.insertPersonXNationality(n);
             JOptionPane.showMessageDialog(this, "The person was created successfully in the system.");
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed

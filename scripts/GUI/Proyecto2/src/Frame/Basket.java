@@ -1,19 +1,30 @@
 
 package Frame;
 
+import BL.product;
+import Connection.ConnectDB;
+import Connection.currentUser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class Basket extends javax.swing.JFrame {
 
-    private List<Object> products = new ArrayList<>();
+    private List<product> products = new ArrayList<>();
     
     public Basket() {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
     
 
     /**
@@ -69,8 +80,7 @@ public class Basket extends javax.swing.JFrame {
         ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
         ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonCancel.setText("Cancel");
-        ButtonCancel.setBorder(null);
+        ButtonCancel.setText("Clear");
         ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonCancelActionPerformed(evt);
@@ -123,19 +133,49 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
-        //Eliminar todos los productos
+        ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
+        for(product p : products){
+            c.removeWithStringandInt(cu.getUsername(),p.getId(),"remove_shoppingCart",true);
+        }
+        JOptionPane.showMessageDialog(this, "All products have been removed.");
         PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonCancelActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        /*for(int i = 0; i < products.size(); i++){
-            JButton product = new JButton();
-            product.setText("example");
-            product.setIcon(new ImageIcon("close-button.png"));
-            PanelProducts.add(product);
-        }*/
+        ConnectDB c = new ConnectDB();
+        ResultSet cart = c.query("getAll_shoppingCart",true);
+        try {
+            while(cart.next()){
+                    product p = new product(cart.getFloat("price"),
+                            cart.getString("name"),
+                            cart.getString("description"),
+                            cart.getInt("quant_in_stock"),
+                            cart.getBoolean("is_visible"),
+                            cart.getFloat("average_score"),
+                            cart.getInt("id_category"),
+                            cart.getString("username_seller"),
+                            cart.getInt("id_delivery_type"));
+                    products.add(p);
+            }
+        } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error. Try later.");
+        } finally{
+            currentUser cu = currentUser.getInstance();
+            for(product p : products){
+                JButton Bttnproduct = new JButton();
+                Bttnproduct.setText(p.getName());
+                Bttnproduct.setIcon(new ImageIcon("close-button.png"));
+                PanelProducts.add(Bttnproduct);
+                Bttnproduct.addActionListener(new ActionListener(){  
+                    public void actionPerformed(ActionEvent e){  
+                        cu.insertInHistory(p);
+                    }  
+                });
+            }
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
