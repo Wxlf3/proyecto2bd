@@ -32,11 +32,11 @@ CREATE PROCEDURE remove_user(IN pnUsername VARCHAR(45))
     END//
 
 CREATE FUNCTION getPassword_user(pnUsername VARCHAR(45))
-RETURNS VARCHAR(30)
+RETURNS VARBINARY(128)
 DETERMINISTIC
     BEGIN
-        DECLARE rPassword VARCHAR(30);
-        SET rPassword = "";
+        DECLARE rPassword VARBINARY(128);
+        SET rPassword = null;
             SELECT password
             INTO rPassword
             FROM user

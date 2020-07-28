@@ -2,7 +2,7 @@
 
 CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varbinary(128) NOT NULL,
   `average_score_buyer` decimal(4,2) NULL,
   `average_score_seller` decimal(4,2) NULL,
   `id_user_type` int NOT NULL,
