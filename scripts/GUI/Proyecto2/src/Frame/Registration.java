@@ -1,6 +1,8 @@
-
 package Frame;
 
+import BL.person;
+import Connection.ConnectDB;
+import java.sql.Date;
 
 public class Registration extends javax.swing.JFrame {
 
@@ -8,6 +10,12 @@ public class Registration extends javax.swing.JFrame {
     public Registration() {
         initComponents();
         setLocationRelativeTo(null);
+        fillCombo();
+    }
+    
+    public void fillCombo()
+    {
+        
     }
 
     /**
@@ -321,7 +329,23 @@ public class Registration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = ConnectDB.getInstance();
+        var id = FieldId.getText();
+        var first_name = FieldName.getText();
+        var middle_name = FieldMiddleName.getText();
+        var last_name = FieldLastName.getText();
+        var email = FieldEmail.getText();
+        var phone_number = FieldPhone.getText();
+        String birthday_ = (String) FieldBirthday.getText();
+        Date birthday = Date.valueOf(birthday_);
+        var picture_path = "";
+        var username = FieldUsername.getText();
+        String id_gender_element = (String) BoxGender.getSelectedItem();
+        var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
+        String id_district_element = (String) BoxDistrict.getSelectedItem();
+        var id_district = c.getIntWithString(id_gender_element, "getId_gender", false);
+        person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday, picture_path, id_gender, id_district, username);
+        c.insertPerson(p);
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
