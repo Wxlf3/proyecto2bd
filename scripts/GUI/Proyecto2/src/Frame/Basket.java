@@ -9,18 +9,12 @@ import javax.swing.JButton;
 public class Basket extends javax.swing.JFrame {
 
     private List<Object> products = new ArrayList<>();
-    public String user;
     
     public Basket() {
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public Basket(String puser) {
-        initComponents();
-        setLocationRelativeTo(null);
-        user = puser;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,14 +117,14 @@ public class Basket extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
-        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
         //Eliminar todos los productos
-        PanelPrincipalPage w = new PanelPrincipalPage(user);
+        PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonCancelActionPerformed

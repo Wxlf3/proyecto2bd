@@ -206,14 +206,14 @@ public class AddProduct extends javax.swing.JFrame {
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel9.setText("Review:");
+        jLabel9.setText("Seller Rating:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
         FieldDescription1.setColumns(20);
         FieldDescription1.setRows(5);
         jScrollPane3.setViewportView(FieldDescription1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 240, 40));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 240, 40));
 
         Decoration1.setBackground(new java.awt.Color(239, 184, 16));
 

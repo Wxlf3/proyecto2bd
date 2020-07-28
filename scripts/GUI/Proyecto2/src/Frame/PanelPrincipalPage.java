@@ -366,7 +366,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelGuestMouseExited
 
     private void ButtonBasketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketActionPerformed
-        Basket w = new Basket(user);
+        Basket w = new Basket();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBasketActionPerformed
@@ -384,7 +384,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonHistoryUserActionPerformed
 
     private void ButtonBasketUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketUserActionPerformed
-        Basket w = new Basket(user);
+        Basket w = new Basket();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBasketUserActionPerformed
@@ -420,7 +420,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
 
     private void ButtonBasketAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketAdminActionPerformed
-        Basket w = new Basket(user);
+        Basket w = new Basket();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBasketAdminActionPerformed

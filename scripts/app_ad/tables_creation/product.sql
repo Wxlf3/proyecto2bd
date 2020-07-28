@@ -22,4 +22,4 @@ CREATE TABLE `product` (
   CONSTRAINT `fk_product_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`),
   CONSTRAINT `fk_product_deliveryType` FOREIGN KEY (`id_delivery_type`) REFERENCES `delivery_type` (`id`),
   CONSTRAINT `fk_product_user` FOREIGN KEY (`username_seller`) REFERENCES `user` (`username`)
-) 
+)
