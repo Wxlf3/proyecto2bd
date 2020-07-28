@@ -1,5 +1,7 @@
 package Frame;
 
+import Connection.ConnectDB;
+
 /**
  *
  * @author sebas
@@ -446,7 +448,7 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        ConnectDB c = new ConnectDB();
+      /*  ConnectDB c = new ConnectDB();
         var id = FieldId.getText();
         var first_name = FieldName.getText();
         var middle_name = " ";
@@ -523,7 +525,7 @@ public class QueryAdmin extends javax.swing.JFrame {
             {
                 System.out.println("Error:" +e);
             }
-        }
+        }*/
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack1ActionPerformed

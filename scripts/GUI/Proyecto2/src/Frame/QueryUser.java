@@ -267,7 +267,7 @@ public class QueryUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        ConnectDB c = new ConnectDB();
+       /* ConnectDB c = new ConnectDB();
         var id = FieldId.getText();
         var first_name = FieldName.getText();
         var middle_name = " ";
@@ -344,7 +344,7 @@ public class QueryUser extends javax.swing.JFrame {
             {
                 System.out.println("Error:" +e);
             }
-        }
+        }*/
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
