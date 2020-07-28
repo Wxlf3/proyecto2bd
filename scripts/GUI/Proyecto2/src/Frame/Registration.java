@@ -3,9 +3,12 @@ package Frame;
 import BL.person;
 import Connection.ConnectDB;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Registration extends javax.swing.JFrame {
-
     
     public Registration() {
         initComponents();
@@ -13,11 +16,71 @@ public class Registration extends javax.swing.JFrame {
         fillCombo();
     }
     
-    public void fillCombo()
+    void fillCombo()
     {
+        ConnectDB c = new ConnectDB();
         
+        BoxNationality.removeAllItems();
+        BoxNationality.addItem("Default");
+        
+        ResultSet nationality = c.query("`getAll_nationality`",false);
+        
+        BoxGender.removeAllItems();
+        BoxGender.addItem("Default");
+        
+        ResultSet gender = c.query("`getAll_gender`",false);
+        
+        BoxCountry.removeAllItems();
+        BoxCountry.addItem("Default");
+        
+        ResultSet country = c.query("`getAll_country`",false);
+        
+        BoxState.removeAllItems();
+        BoxState.addItem("Default");
+        
+        ResultSet state = c.query("`getAll_state`",false);
+        
+        BoxCity.removeAllItems();
+        BoxCity.addItem("Default");
+        
+        ResultSet city = c.query("`getAll_city`",false);
+        
+        BoxDistrict.removeAllItems();
+        BoxDistrict.addItem("Default");
+        
+        ResultSet district = c.query("`getAll_district`",false);
+        
+        try {
+            while(nationality.next())
+            {
+                BoxNationality.addItem(String.valueOf(nationality.getString("name")));
+            }
+            while(gender.next())
+            {
+                BoxGender.addItem(String.valueOf(gender.getString("name")));
+            }
+            while(country.next())
+            {
+                BoxCountry.addItem(String.valueOf(country.getString("name")));
+            }
+            while(state.next())
+            {
+                BoxState.addItem(String.valueOf(state.getString("name")));
+            }
+            while(city.next())
+            {
+                BoxCity.addItem(String.valueOf(city.getString("name")));
+            }
+            while(district.next())
+            {
+                BoxDistrict.addItem(String.valueOf(district.getString("name")));
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,7 +392,7 @@ public class Registration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        ConnectDB c = ConnectDB.getInstance();
+        ConnectDB c = new ConnectDB();
         var id = FieldId.getText();
         var first_name = FieldName.getText();
         var middle_name = FieldMiddleName.getText();

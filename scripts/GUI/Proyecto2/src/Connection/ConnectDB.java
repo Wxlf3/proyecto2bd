@@ -23,18 +23,6 @@ public class ConnectDB {
     private static final String pass_person="person_ad";
     private static final String url_person="jdbc:mysql://127.0.0.1:3306/person_ad?user=person_ad";
 
-    private static ConnectDB instance = null;
-    protected ConnectDB(){}
-
-    public static ConnectDB getInstance()
-    {
-	if (instance == null)
-	{
-            instance = new ConnectDB();
-	}
-       return instance;
-    }
-
     //Inserts
     
     public void insertCategory(category pCategory) {

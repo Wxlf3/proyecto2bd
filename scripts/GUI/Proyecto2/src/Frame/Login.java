@@ -197,7 +197,7 @@ public class Login extends javax.swing.JFrame {
         //Aquí que revise si es admin o no
         String username = FieldUsername.getText();
         String password = FieldPassword.getText();
-        ConnectDB c = ConnectDB.getInstance();
+        ConnectDB c = new ConnectDB();
         var cU = currentUser.getInstance();
         boolean correct = c.checkLogin(username, password);
         System.out.println("username: " + username + "password: " + password);
