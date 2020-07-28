@@ -106,7 +106,7 @@ public class ProductView extends javax.swing.JFrame {
         ButtonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shopping-basket.png"))); // NOI18N
         ButtonConfirm.setText("  Add to the basket");
         ButtonConfirm.setBorder(null);
-        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 200, 50));
+        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 240, 50));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N

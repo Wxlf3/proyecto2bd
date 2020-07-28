@@ -411,7 +411,7 @@ public class Registration extends javax.swing.JFrame {
         var first_name = FieldName.getText();
         var middle_name = " ";
         try {
-        middle_name = FieldMiddleName.getText();
+            middle_name = FieldMiddleName.getText();
         }
         catch (NullPointerException e) {}
         var last_name = FieldLastName.getText();
@@ -427,14 +427,53 @@ public class Registration extends javax.swing.JFrame {
         var username = FieldUsername.getText();
         var password = FieldPassword.getText();
         String id_gender_element = (String) BoxGender.getSelectedItem();
-        var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
         String id_district_element = (String) BoxDistrict.getSelectedItem();
-        var id_district = c.getIntWithString(id_district_element, "getId_gender", false);
-        person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
-        c.insertPerson(p);
-        user u = new user(username, password, 2);
-        c.insertUser(u);
-        JOptionPane.showMessageDialog(this, "The person was created successfully in the system.");
+        if(id_gender_element == "Default")  
+            JOptionPane.showMessageDialog(this, "Select the gender box.");
+        else if(id_district_element == "Default")
+            JOptionPane.showMessageDialog(this, "Select the district box.");
+        else if(id == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the id field.");
+        }
+        else if(first_name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the first name field.");
+        }
+        else if(last_name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the last name field.");
+        }
+        else if(email == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the email field.");
+        }
+        else if(phone_number == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the email field.");
+        }
+        else if(FieldBirthday.getText() == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the birthday field.");
+        }
+        else if(username == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the username field.");
+        }
+        else if(password == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the username field.");
+        }
+        else
+        {
+            var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
+            var id_district = c.getIntWithString(id_district_element, "getId_district", false);
+            person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
+            c.insertPerson(p);
+            user u = new user(username, password, 0, 0, 2);
+            c.insertUser(u);
+            JOptionPane.showMessageDialog(this, "The person was created successfully in the system.");
+        }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed

@@ -78,7 +78,7 @@ public class Profile extends javax.swing.JFrame {
         SpaceRatingSeller.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         SpaceRatingSeller.setForeground(new java.awt.Color(76, 40, 130));
         SpaceRatingSeller.setText("Rating as seller");
-        jPanel1.add(SpaceRatingSeller, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 120, -1));
+        jPanel1.add(SpaceRatingSeller, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 140, -1));
 
         SpaceRatingBuyer.setBackground(new java.awt.Color(255, 255, 255));
         SpaceRatingBuyer.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N

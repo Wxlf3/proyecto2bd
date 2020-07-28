@@ -5,6 +5,13 @@
  */
 package Frame;
 
+import BL.person;
+import BL.user;
+import Connection.ConnectDB;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sebas
@@ -16,6 +23,36 @@ public class AddProduct extends javax.swing.JFrame {
      */
     public AddProduct() {
         initComponents();
+        fillCombo();
+    }
+    
+        void fillCombo()
+    {
+        ConnectDB c = new ConnectDB();
+        
+        BoxCategory.removeAllItems();
+        BoxCategory.addItem("Default");
+        
+        ResultSet category = c.query("`getAll_category`",true);
+        
+        BoxShipping.removeAllItems();
+        BoxShipping.addItem("Default");
+        
+        ResultSet deliveryType = c.query("`getAll_delivery_type`",true);
+        
+        
+        try {
+            while(category.next())
+            {
+                BoxCategory.addItem(String.valueOf(category.getString("name")));
+            }
+            while(deliveryType.next())
+            {
+                BoxShipping.addItem(String.valueOf(deliveryType.getString("description")));
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
     }
 
     /**
@@ -73,6 +110,11 @@ public class AddProduct extends javax.swing.JFrame {
         ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
         ButtonConfirm.setText("Confirm");
         ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 110, 30));
 
         ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
@@ -261,6 +303,40 @@ public class AddProduct extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        ConnectDB c = new ConnectDB();
+        var name = FieldName.getText();
+        var description = FieldDescription.getText();
+        var price = FieldPrice.getText();
+        var picture_path = "";
+        String category_element = (String) BoxCategory.getSelectedItem();
+        String delivery_type_element = (String) BoxShipping.getSelectedItem();
+        if(category_element == "Default")  
+            JOptionPane.showMessageDialog(this, "Select the category box.");
+        else if(delivery_type_element == "Default")
+            JOptionPane.showMessageDialog(this, "Select the shipping box.");
+        else if(name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the name field.");
+        }
+        else if(description == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the description field.");
+        }
+        else if(price == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the price field.");
+        }
+        else
+        {
+            var id_category = c.getIntWithString(category_element, "getId_category", true);
+            var id_delivery_type = c.getIntWithString(delivery_type_element, "getId_delivery_type", true);
+            //product p = new product(price, name, description, quantityInStock, isVisible, id_category, usernameSeller, id_delivery_type);
+            //c.insertProduct(p);
+            JOptionPane.showMessageDialog(this, "The product was inserted successfully in the system.");
+        }
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     /**
      * @param args the command line arguments

@@ -57,6 +57,11 @@ public class ProductSettings extends javax.swing.JFrame {
         ButtonAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/paint-palette.png"))); // NOI18N
         ButtonAddProduct.setBorder(null);
         ButtonAddProduct.setContentAreaFilled(false);
+        ButtonAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddProductActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 80, 80));
 
         ButtonEditProduct.setBackground(new java.awt.Color(255, 255, 255));
@@ -156,6 +161,10 @@ public class ProductSettings extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddProductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonAddProductActionPerformed
 
     /**
      * @param args the command line arguments

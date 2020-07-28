@@ -520,7 +520,7 @@ public class ConnectDB {
         }
     }
     
-    public void updatetUser(user u) {
+    public void updateUser(user u) {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_user(?,?,?)}");

@@ -5,6 +5,14 @@
  */
 package Frame;
 
+import BL.person;
+import BL.user;
+import Connection.ConnectDB;
+import Connection.currentUser;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sebas
@@ -16,6 +24,86 @@ public class ProfileSettings extends javax.swing.JFrame {
      */
     public ProfileSettings() {
         initComponents();
+        fillCombo();
+    }
+    
+    void fillCombo()
+    {
+        ConnectDB c = new ConnectDB();
+        
+        BoxNationality.removeAllItems();
+        BoxNationality.addItem("Default");
+        
+        ResultSet nationality = c.query("`getAll_nationality`",false);
+        
+        BoxGender.removeAllItems();
+        BoxGender.addItem("Default");
+        
+        ResultSet gender = c.query("`getAll_gender`",false);
+        
+        BoxCountry.removeAllItems();
+        BoxCountry.addItem("Default");
+        
+        ResultSet country = c.query("`getAll_country`",false);
+        
+        BoxState.removeAllItems();
+        BoxState.addItem("Default");
+        
+        ResultSet state = c.query("`getAll_state`",false);
+        
+        BoxCity.removeAllItems();
+        BoxCity.addItem("Default");
+        
+        ResultSet city = c.query("`getAll_city`",false);
+        
+        BoxDistrict.removeAllItems();
+        BoxDistrict.addItem("Default");
+        
+        ResultSet district = c.query("`getAll_district`",false);
+        
+        BoxUserType.removeAllItems();
+        BoxUserType.addItem("Default");
+        
+        ResultSet userType = c.query("`getAll_userType`",true);
+        
+        try {
+            while(nationality.next())
+            {
+                BoxNationality.addItem(String.valueOf(nationality.getString("name")));
+            }
+            while(gender.next())
+            {
+                BoxGender.addItem(String.valueOf(gender.getString("name")));
+            }
+            while(country.next())
+            {
+                BoxCountry.addItem(String.valueOf(country.getString("name")));
+            }
+            while(state.next())
+            {
+                BoxState.addItem(String.valueOf(state.getString("name")));
+            }
+            while(city.next())
+            {
+                BoxCity.addItem(String.valueOf(city.getString("name")));
+            }
+            while(district.next())
+            {
+                BoxDistrict.addItem(String.valueOf(district.getString("name")));
+            }
+            while(userType.next())
+            {
+                currentUser cu = currentUser.getInstance();
+                if(userType.isFirst())
+                    if(cu.isAdmin())
+                    BoxUserType.addItem(String.valueOf(userType.getString("name")));
+                else
+                    BoxUserType.addItem(String.valueOf(userType.getString("name")));    
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
     }
 
     /**
@@ -72,6 +160,7 @@ public class ProfileSettings extends javax.swing.JFrame {
         ButtonWishlist1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         BoxUserType = new javax.swing.JComboBox<>();
+        ButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -308,6 +397,11 @@ public class ProfileSettings extends javax.swing.JFrame {
         ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
         ButtonCancel.setText("Cancel");
         ButtonCancel.setBorder(null);
+        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelActionPerformed(evt);
+            }
+        });
         Decoration.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, 110, 30));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
@@ -315,6 +409,11 @@ public class ProfileSettings extends javax.swing.JFrame {
         ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
         ButtonConfirm.setText("Confirm");
         ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         Decoration.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 110, 30));
 
         ButtonWishlist1.setBackground(new java.awt.Color(255, 255, 255));
@@ -334,6 +433,19 @@ public class ProfileSettings extends javax.swing.JFrame {
         BoxUserType.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         BoxUserType.setForeground(new java.awt.Color(76, 40, 130));
         Decoration.add(BoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 170, -1));
+
+        ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack.setBorder(null);
+        ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 50, 50));
 
         jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -360,6 +472,99 @@ public class ProfileSettings extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        ConnectDB c = new ConnectDB();
+        var id = FieldId.getText();
+        var first_name = FieldName.getText();
+        var middle_name = " ";
+        try {
+            middle_name = FieldMiddleName.getText();
+        }
+        catch (NullPointerException e) {}
+        var last_name = FieldLastName.getText();
+        var email = FieldEmail.getText();
+        var phone_number = FieldPhone.getText();
+        java.util.Date birthday = null;
+        try {
+            birthday = new SimpleDateFormat("dd/MM/yy").parse(FieldBirthday.getText());
+        }
+        catch (Exception e){}
+        java.sql.Date birthday_sql = new java.sql.Date(birthday.getTime());
+        var picture_path = "";
+        var username = FieldUsername.getText();
+        var password = FieldPassword.getText();
+        String id_gender_element = (String) BoxGender.getSelectedItem();
+        String id_district_element = (String) BoxDistrict.getSelectedItem();
+        String id_user_type_element = (String) BoxUserType.getSelectedItem();
+        if(id_gender_element == "Default")  
+            JOptionPane.showMessageDialog(this, "Select the gender box.");
+        else if(id_district_element == "Default")
+            JOptionPane.showMessageDialog(this, "Select the district box.");
+        else if(id_user_type_element == "Default")
+            JOptionPane.showMessageDialog(this, "Select the user type box.");
+        else if(id == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the id field.");
+        }
+        else if(first_name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the first name field.");
+        }
+        else if(last_name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the last name field.");
+        }
+        else if(email == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the email field.");
+        }
+        else if(phone_number == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the email field.");
+        }
+        else if(FieldBirthday.getText() == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the birthday field.");
+        }
+        else if(username == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the username field.");
+        }
+        else if(password == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the username field.");
+        }
+        else
+        {
+            try{
+            var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
+            var id_district = c.getIntWithString(id_district_element, "getId_district", false);
+            var id_user_type = c.getIntWithString(id_user_type_element, "getId_userType", true);
+            person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
+            user u = new user(username, password, 0, 0, id_user_type);
+            c.updatePerson(p);
+            c.updateUser(u);
+            JOptionPane.showMessageDialog(this, "The person was updated successfully in the system.");
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error:" +e);
+            }
+        }
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,6 +610,7 @@ public class ProfileSettings extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> BoxPayment;
     private javax.swing.JComboBox<String> BoxState;
     private javax.swing.JComboBox<String> BoxUserType;
+    private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonPicture;

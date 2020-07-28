@@ -89,6 +89,11 @@ public class Basket extends javax.swing.JFrame {
         ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
         ButtonConfirm.setText("Confirm");
         ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 110, 30));
 
         PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,6 +143,10 @@ public class Basket extends javax.swing.JFrame {
             PanelProducts.add(product);
         }*/
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

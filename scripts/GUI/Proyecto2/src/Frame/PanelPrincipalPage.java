@@ -99,6 +99,11 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonHistory.setText("My history");
         ButtonHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         ButtonHistory.setContentAreaFilled(false);
+        ButtonHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonHistoryActionPerformed(evt);
+            }
+        });
         PanelGuest.add(ButtonHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
 
         ButtonBasket.setBackground(new java.awt.Color(255, 255, 255));
@@ -439,6 +444,12 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonWishlistActionPerformed
+
+    private void ButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryActionPerformed
+        History w = new History(user);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonHistoryActionPerformed
 
     /**
      * @param args the command line arguments
