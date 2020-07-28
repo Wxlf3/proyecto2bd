@@ -27,12 +27,71 @@ public class QueryUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        PanelSearchingProduct = new javax.swing.JPanel();
+        FieldNameProduct = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        ButtonConfirm = new javax.swing.JButton();
+        Product = new javax.swing.JButton();
         ButtonBack = new javax.swing.JButton();
+        PanelPurchaseHistory = new javax.swing.JPanel();
+        ButtonBack1 = new javax.swing.JButton();
+        ButtonConfirm2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        BoxCategoryExpensive = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablePurchaseHistory = new javax.swing.JTable();
+        PanelRecentlyViewed = new javax.swing.JPanel();
+        ButtonBack2 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        ListRecentlyViewed = new javax.swing.JList<>();
+        PanelListProductsSold = new javax.swing.JPanel();
+        ButtonBack3 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        ListProductsSold = new javax.swing.JList<>();
+        PanelPurchasesMade = new javax.swing.JPanel();
+        ButtonBack4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableUserPurchases = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setForeground(new java.awt.Color(79, 40, 130));
+        jTabbedPane1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+
+        PanelSearchingProduct.setBackground(new java.awt.Color(255, 255, 255));
+        PanelSearchingProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        FieldNameProduct.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        FieldNameProduct.setForeground(new java.awt.Color(76, 40, 130));
+        FieldNameProduct.setBorder(null);
+        PanelSearchingProduct.add(FieldNameProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 390, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(76, 40, 130));
+        jSeparator1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        PanelSearchingProduct.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 390, 30));
+
+        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm.setText("Search");
+        ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
+        PanelSearchingProduct.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 110, 30));
+
+        Product.setBackground(new java.awt.Color(255, 255, 255));
+        Product.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        Product.setForeground(new java.awt.Color(76, 40, 130));
+        Product.setText("Search");
+        Product.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        Product.setContentAreaFilled(false);
+        PanelSearchingProduct.add(Product, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 190, 150));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -45,49 +104,282 @@ public class QueryUser extends javax.swing.JFrame {
                 ButtonBackActionPerformed(evt);
             }
         });
+        PanelSearchingProduct.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(994, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(524, Short.MAX_VALUE))
-        );
+        jTabbedPane1.addTab("Searching product", PanelSearchingProduct);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        PanelPurchaseHistory.setBackground(new java.awt.Color(255, 255, 255));
+        PanelPurchaseHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ButtonBack1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack1.setBorder(null);
+        ButtonBack1.setContentAreaFilled(false);
+        ButtonBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBack1ActionPerformed(evt);
+            }
+        });
+        PanelPurchaseHistory.add(ButtonBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        ButtonConfirm2.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm2.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm2.setText("Confirm");
+        ButtonConfirm2.setBorder(null);
+        ButtonConfirm2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm2ActionPerformed(evt);
+            }
+        });
+        PanelPurchaseHistory.add(ButtonConfirm2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 110, 30));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel6.setText("Time:");
+        PanelPurchaseHistory.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+
+        BoxCategoryExpensive.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxCategoryExpensive.setForeground(new java.awt.Color(76, 40, 130));
+        PanelPurchaseHistory.add(BoxCategoryExpensive, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 170, 30));
+
+        TablePurchaseHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TablePurchaseHistory);
+
+        PanelPurchaseHistory.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, 290));
+
+        jTabbedPane1.addTab("Purchase history", PanelPurchaseHistory);
+
+        PanelRecentlyViewed.setBackground(new java.awt.Color(255, 255, 255));
+        PanelRecentlyViewed.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ButtonBack2.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack2.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack2.setBorder(null);
+        ButtonBack2.setContentAreaFilled(false);
+        ButtonBack2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBack2ActionPerformed(evt);
+            }
+        });
+        PanelRecentlyViewed.add(ButtonBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        jScrollPane5.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane5.setBorder(null);
+        jScrollPane5.setForeground(new java.awt.Color(76, 40, 130));
+        jScrollPane5.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+
+        ListRecentlyViewed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ListRecentlyViewed.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        ListRecentlyViewed.setForeground(new java.awt.Color(76, 40, 130));
+        ListRecentlyViewed.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(ListRecentlyViewed);
+
+        PanelRecentlyViewed.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 340, 430));
+
+        jTabbedPane1.addTab("Recently viewed products", PanelRecentlyViewed);
+
+        PanelListProductsSold.setBackground(new java.awt.Color(255, 255, 255));
+        PanelListProductsSold.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ButtonBack3.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack3.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBack3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack3.setBorder(null);
+        ButtonBack3.setContentAreaFilled(false);
+        ButtonBack3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBack3ActionPerformed(evt);
+            }
+        });
+        PanelListProductsSold.add(ButtonBack3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane6.setBorder(null);
+        jScrollPane6.setForeground(new java.awt.Color(76, 40, 130));
+        jScrollPane6.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+
+        ListProductsSold.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ListProductsSold.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        ListProductsSold.setForeground(new java.awt.Color(76, 40, 130));
+        ListProductsSold.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane6.setViewportView(ListProductsSold);
+
+        PanelListProductsSold.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 340, 430));
+
+        jTabbedPane1.addTab("List of products sold for each user", PanelListProductsSold);
+
+        PanelPurchasesMade.setBackground(new java.awt.Color(255, 255, 255));
+        PanelPurchasesMade.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ButtonBack4.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack4.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack4.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBack4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack4.setBorder(null);
+        ButtonBack4.setContentAreaFilled(false);
+        ButtonBack4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBack4ActionPerformed(evt);
+            }
+        });
+        PanelPurchasesMade.add(ButtonBack4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        TableUserPurchases.setAutoCreateColumnsFromModel(false);
+        TableUserPurchases.setAutoCreateRowSorter(true);
+        TableUserPurchases.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        TableUserPurchases.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        TableUserPurchases.setForeground(new java.awt.Color(76, 40, 130));
+        TableUserPurchases.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Category", "Products"
+            }
+        ));
+        TableUserPurchases.setGridColor(new java.awt.Color(76, 40, 130));
+        jScrollPane2.setViewportView(TableUserPurchases);
+
+        PanelPurchasesMade.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 490, 390));
+
+        jTabbedPane1.addTab("Total purchases made by category greater than $ 1,000", PanelPurchasesMade);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        ConnectDB c = new ConnectDB();
+        var id = FieldId.getText();
+        var first_name = FieldName.getText();
+        var middle_name = " ";
+        try {
+            middle_name = FieldMiddleName.getText();
+        }
+        catch (NullPointerException e) {}
+        var last_name = FieldLastName.getText();
+        var email = FieldEmail.getText();
+        var phone_number = FieldPhone.getText();
+        java.util.Date birthday = null;
+        try {
+            birthday = new SimpleDateFormat("dd/MM/yy").parse(FieldBirthday.getText());
+        }
+        catch (Exception e){}
+        java.sql.Date birthday_sql = new java.sql.Date(birthday.getTime());
+        var picture_path = "";
+        var username = FieldUsername.getText();
+        var password = FieldPassword.getText();
+        String id_gender_element = (String) BoxGender.getSelectedItem();
+        String id_district_element = (String) BoxDistrict.getSelectedItem();
+        String id_user_type_element = (String) BoxUserType.getSelectedItem();
+        if(id_gender_element == "Default")
+        JOptionPane.showMessageDialog(this, "Select the gender box.");
+        else if(id_district_element == "Default")
+        JOptionPane.showMessageDialog(this, "Select the district box.");
+        else if(id_user_type_element == "Default")
+        JOptionPane.showMessageDialog(this, "Select the user type box.");
+        else if(id == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the id field.");
+        }
+        else if(first_name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the first name field.");
+        }
+        else if(last_name == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the last name field.");
+        }
+        else if(email == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the email field.");
+        }
+        else if(phone_number == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the email field.");
+        }
+        else if(FieldBirthday.getText() == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the birthday field.");
+        }
+        else if(username == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the username field.");
+        }
+        else if(password == "")
+        {
+            JOptionPane.showMessageDialog(this, "Fill the username field.");
+        }
+        else
+        {
+            try{
+                var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
+                var id_district = c.getIntWithString(id_district_element, "getId_district", false);
+                var id_user_type = c.getIntWithString(id_user_type_element, "getId_userType", true);
+                person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
+                user u = new user(username, password, 0, 0, id_user_type);
+                c.updatePerson(p);
+                c.updateUser(u);
+                JOptionPane.showMessageDialog(this, "The person was updated successfully in the system.");
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error:" +e);
+            }
+        }
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
         PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void ButtonBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack1ActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBack1ActionPerformed
+
+    private void ButtonBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack2ActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBack2ActionPerformed
+
+    private void ButtonBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack3ActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBack3ActionPerformed
+
+    private void ButtonBack4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack4ActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBack4ActionPerformed
+
+    private void ButtonConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonConfirm2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,7 +417,31 @@ public class QueryUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> BoxCategoryExpensive;
     private javax.swing.JButton ButtonBack;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ButtonBack1;
+    private javax.swing.JButton ButtonBack2;
+    private javax.swing.JButton ButtonBack3;
+    private javax.swing.JButton ButtonBack4;
+    private javax.swing.JButton ButtonConfirm;
+    private javax.swing.JButton ButtonConfirm2;
+    private javax.swing.JTextField FieldNameProduct;
+    private javax.swing.JList<String> ListProductsSold;
+    private javax.swing.JList<String> ListRecentlyViewed;
+    private javax.swing.JPanel PanelListProductsSold;
+    private javax.swing.JPanel PanelPurchaseHistory;
+    private javax.swing.JPanel PanelPurchasesMade;
+    private javax.swing.JPanel PanelRecentlyViewed;
+    private javax.swing.JPanel PanelSearchingProduct;
+    private javax.swing.JButton Product;
+    private javax.swing.JTable TablePurchaseHistory;
+    private javax.swing.JTable TableUserPurchases;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

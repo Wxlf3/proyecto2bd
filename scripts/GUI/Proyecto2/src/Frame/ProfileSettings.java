@@ -24,6 +24,7 @@ public class ProfileSettings extends javax.swing.JFrame {
      */
     public ProfileSettings() {
         initComponents();
+        setLocationRelativeTo(null);
         fillCombo();
     }
     
