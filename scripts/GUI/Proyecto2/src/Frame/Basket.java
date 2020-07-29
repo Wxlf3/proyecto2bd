@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Basket extends javax.swing.JFrame {
 
@@ -43,7 +44,10 @@ public class Basket extends javax.swing.JFrame {
         ButtonConfirm = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PanelProducts = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableProducts = new javax.swing.JTable();
         Decoration = new javax.swing.JPanel();
+        ButtonRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -99,10 +103,26 @@ public class Basket extends javax.swing.JFrame {
                 ButtonConfirmActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 110, 30));
+        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 110, 30));
 
         PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
         PanelProducts.setLayout(new java.awt.GridLayout(0, 3));
+
+        TableProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TableProducts);
+
+        PanelProducts.add(jScrollPane2);
+
         jScrollPane1.setViewportView(PanelProducts);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 850, 390));
@@ -121,6 +141,17 @@ public class Basket extends javax.swing.JFrame {
         );
 
         jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 100, 580));
+
+        ButtonRefresh.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonRefresh.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonRefresh.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonRefresh.setText("Refresh");
+        ButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonRefreshActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 110, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -187,6 +218,32 @@ public class Basket extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
+    private void ButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRefreshActionPerformed
+        currentUser cu = currentUser.getInstance();
+        String username = cu.getUsername();
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet q = c.queryWithString(username,"getAll_shoppingCart",true);
+        try {
+            modelo = (DefaultTableModel)TableProducts.getModel();
+            modelo.addColumn("Username");
+            modelo.addColumn("Id product");
+            modelo.addColumn("Quantity");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getInt("username"),
+                                            q.getString("id_product"),
+                                            q.getInt("quantity")});
+            }
+            TableProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error. Try again.");
+        }
+    }//GEN-LAST:event_ButtonRefreshActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -223,10 +280,13 @@ public class Basket extends javax.swing.JFrame {
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonClear;
     private javax.swing.JButton ButtonConfirm;
+    private javax.swing.JButton ButtonRefresh;
     private javax.swing.JPanel Decoration;
     private javax.swing.JPanel PanelProducts;
+    private javax.swing.JTable TableProducts;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

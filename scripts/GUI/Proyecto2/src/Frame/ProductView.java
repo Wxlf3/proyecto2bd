@@ -5,6 +5,8 @@
  */
 package Frame;
 
+import BL.product;
+
 /**
  *
  * @author sebas
@@ -15,6 +17,10 @@ public class ProductView extends javax.swing.JFrame {
      * Creates new form ProductView
      */
     public ProductView() {
+        initComponents();
+    }
+    
+    public ProductView(int p) {
         initComponents();
     }
 
