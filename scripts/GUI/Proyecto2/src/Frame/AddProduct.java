@@ -103,6 +103,11 @@ public class AddProduct extends javax.swing.JFrame {
         ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
         ButtonBack.setBorder(null);
         ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 50, 50));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
@@ -123,6 +128,11 @@ public class AddProduct extends javax.swing.JFrame {
         ButtonAddPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
         ButtonAddPic.setBorder(null);
         ButtonAddPic.setContentAreaFilled(false);
+        ButtonAddPic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPicActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 50, 50));
 
         ButtonDeletePic.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,6 +141,11 @@ public class AddProduct extends javax.swing.JFrame {
         ButtonDeletePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
         ButtonDeletePic.setBorder(null);
         ButtonDeletePic.setContentAreaFilled(false);
+        ButtonDeletePic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePicActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 50, 50));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -337,6 +352,20 @@ public class AddProduct extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "The product was inserted successfully in the system.");
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void ButtonAddPicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonAddPicActionPerformed
+
+    private void ButtonDeletePicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonDeletePicActionPerformed
 
     /**
      * @param args the command line arguments

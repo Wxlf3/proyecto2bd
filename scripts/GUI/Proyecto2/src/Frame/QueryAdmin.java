@@ -2,17 +2,11 @@ package Frame;
 
 import Connection.ConnectDB;
 
-/**
- *
- * @author sebas
- */
 public class QueryAdmin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form QueryAdmin
-     */
+    
     public QueryAdmin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -529,7 +523,9 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack1ActionPerformed
-        // TODO add your handling code here:
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBack1ActionPerformed
 
     private void ButtonConfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm1ActionPerformed
@@ -537,19 +533,27 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
     private void ButtonBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack2ActionPerformed
-        // TODO add your handling code here:
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBack2ActionPerformed
 
     private void ButtonBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack3ActionPerformed
-        // TODO add your handling code here:
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBack3ActionPerformed
 
     private void ButtonBack6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack6ActionPerformed
-        // TODO add your handling code here:
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBack6ActionPerformed
 
     private void ButtonBack4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack4ActionPerformed
-        // TODO add your handling code here:
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBack4ActionPerformed
 
     private void ButtonConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm2ActionPerformed
@@ -557,7 +561,9 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonConfirm2ActionPerformed
 
     private void ButtonBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack5ActionPerformed
-        // TODO add your handling code here:
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBack5ActionPerformed
 
     private void ButtonConfirm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm3ActionPerformed

@@ -1,18 +1,17 @@
 
 package Frame;
 
+import Connection.ConnectDB;
+import Connection.currentUser;
+
 public class Profile extends javax.swing.JFrame {
 
-    public String user;
     
     public Profile() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
-    public Profile(String puser) {
-        initComponents();
-        user = puser;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,6 +99,11 @@ public class Profile extends javax.swing.JFrame {
         ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
         ButtonBack.setBorder(null);
         ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,6 +196,12 @@ public class Profile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
 
     /**
      * @param args the command line arguments

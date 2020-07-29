@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frame;
 
 import BL.person;
@@ -13,15 +9,9 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author sebas
- */
-public class ProfileSettings extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ProfileSettings
-     */
+public class ProfileSettings extends javax.swing.JFrame {
+    
     public ProfileSettings() {
         initComponents();
         setLocationRelativeTo(null);
@@ -120,6 +110,9 @@ public class ProfileSettings extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ButtonWishlist = new javax.swing.JButton();
         ButtonPicture = new javax.swing.JButton();
+        ButtonCancel = new javax.swing.JButton();
+        ButtonConfirm = new javax.swing.JButton();
+        ButtonProducts = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -153,14 +146,11 @@ public class ProfileSettings extends javax.swing.JFrame {
         BoxNationality = new javax.swing.JComboBox<>();
         BoxGender = new javax.swing.JComboBox<>();
         BoxPayment = new javax.swing.JComboBox<>();
+        LabelUserType = new javax.swing.JLabel();
+        BoxUserType = new javax.swing.JComboBox<>();
         Decoration = new javax.swing.JPanel();
         PanelDecoration1 = new javax.swing.JPanel();
         PanelDecoration2 = new javax.swing.JPanel();
-        ButtonCancel = new javax.swing.JButton();
-        ButtonConfirm = new javax.swing.JButton();
-        ButtonWishlist1 = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        BoxUserType = new javax.swing.JComboBox<>();
         ButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -190,6 +180,43 @@ public class ProfileSettings extends javax.swing.JFrame {
         ButtonPicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 40, 130), 2, true));
         ButtonPicture.setContentAreaFilled(false);
         jPanel1.add(ButtonPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 120, 150));
+
+        ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonCancel.setText("Cancel");
+        ButtonCancel.setBorder(null);
+        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, 110, 30));
+
+        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm.setText("Confirm");
+        ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 110, 30));
+
+        ButtonProducts.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonProducts.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonProducts.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonProducts.setText("Products");
+        ButtonProducts.setBorder(null);
+        ButtonProducts.setContentAreaFilled(false);
+        ButtonProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonProductsActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 355, 120, 40));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -360,6 +387,16 @@ public class ProfileSettings extends javax.swing.JFrame {
         BoxPayment.setForeground(new java.awt.Color(76, 40, 130));
         jPanel1.add(BoxPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 170, 30));
 
+        LabelUserType.setBackground(new java.awt.Color(255, 255, 255));
+        LabelUserType.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        LabelUserType.setForeground(new java.awt.Color(76, 40, 130));
+        LabelUserType.setText("User type:");
+        jPanel1.add(LabelUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, -1, -1));
+
+        BoxUserType.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxUserType.setForeground(new java.awt.Color(76, 40, 130));
+        jPanel1.add(BoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 170, -1));
+
         Decoration.setBackground(new java.awt.Color(255, 255, 255));
         Decoration.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -393,48 +430,6 @@ public class ProfileSettings extends javax.swing.JFrame {
 
         Decoration.add(PanelDecoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 580));
 
-        ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonCancel.setText("Cancel");
-        ButtonCancel.setBorder(null);
-        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCancelActionPerformed(evt);
-            }
-        });
-        Decoration.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, 110, 30));
-
-        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm.setText("Confirm");
-        ButtonConfirm.setBorder(null);
-        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonConfirmActionPerformed(evt);
-            }
-        });
-        Decoration.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 110, 30));
-
-        ButtonWishlist1.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonWishlist1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonWishlist1.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonWishlist1.setText("Products");
-        ButtonWishlist1.setBorder(null);
-        ButtonWishlist1.setContentAreaFilled(false);
-        Decoration.add(ButtonWishlist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 355, 120, 40));
-
-        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel21.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel21.setText("User type:");
-        Decoration.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, -1, -1));
-
-        BoxUserType.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxUserType.setForeground(new java.awt.Color(76, 40, 130));
-        Decoration.add(BoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 170, -1));
-
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         ButtonBack.setForeground(new java.awt.Color(76, 40, 130));
@@ -446,7 +441,7 @@ public class ProfileSettings extends javax.swing.JFrame {
                 ButtonBackActionPerformed(evt);
             }
         });
-        Decoration.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 50, 50));
+        Decoration.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 50, 50));
 
         jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -567,6 +562,12 @@ public class ProfileSettings extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonCancelActionPerformed
 
+    private void ButtonProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProductsActionPerformed
+        ProductSettings w = new ProductSettings();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonProductsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -615,8 +616,8 @@ public class ProfileSettings extends javax.swing.JFrame {
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonPicture;
+    private javax.swing.JButton ButtonProducts;
     private javax.swing.JButton ButtonWishlist;
-    private javax.swing.JButton ButtonWishlist1;
     private javax.swing.JPanel Decoration;
     private javax.swing.JFormattedTextField FieldBirthday;
     private javax.swing.JTextField FieldEmail;
@@ -627,6 +628,7 @@ public class ProfileSettings extends javax.swing.JFrame {
     private javax.swing.JTextField FieldPassword;
     private javax.swing.JTextField FieldPhone;
     private javax.swing.JTextField FieldUsername;
+    private javax.swing.JLabel LabelUserType;
     private javax.swing.JPanel PanelDecoration1;
     private javax.swing.JPanel PanelDecoration2;
     private javax.swing.JLabel jLabel1;
@@ -641,7 +643,6 @@ public class ProfileSettings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

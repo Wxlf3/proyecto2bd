@@ -39,7 +39,7 @@ public class Basket extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ButtonBack = new javax.swing.JButton();
-        ButtonCancel = new javax.swing.JButton();
+        ButtonClear = new javax.swing.JButton();
         ButtonConfirm = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PanelProducts = new javax.swing.JPanel();
@@ -77,16 +77,17 @@ public class Basket extends javax.swing.JFrame {
         });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonCancel.setText("Clear");
-        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+        ButtonClear.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonClear.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonClear.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonClear.setText("Clear");
+        ButtonClear.setBorder(null);
+        ButtonClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCancelActionPerformed(evt);
+                ButtonClearActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 110, 30));
+        jPanel1.add(ButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 110, 30));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -132,7 +133,7 @@ public class Basket extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
 
-    private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
+    private void ButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonClearActionPerformed
         ConnectDB c = new ConnectDB();
         currentUser cu = currentUser.getInstance();
         for(product p : products){
@@ -142,7 +143,7 @@ public class Basket extends javax.swing.JFrame {
         PanelPrincipalPage w = new PanelPrincipalPage();
         w.show();
         this.dispose();
-    }//GEN-LAST:event_ButtonCancelActionPerformed
+    }//GEN-LAST:event_ButtonClearActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         ConnectDB c = new ConnectDB();
@@ -179,7 +180,11 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Your purchase has been successful.");
+        /*Registrar la compra en el sistema*/
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     public static void main(String args[]) {
@@ -216,7 +221,7 @@ public class Basket extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBack;
-    private javax.swing.JButton ButtonCancel;
+    private javax.swing.JButton ButtonClear;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JPanel Decoration;
     private javax.swing.JPanel PanelProducts;

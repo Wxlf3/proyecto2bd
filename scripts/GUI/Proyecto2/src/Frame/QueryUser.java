@@ -11,11 +11,10 @@ package Frame;
  */
 public class QueryUser extends javax.swing.JFrame {
 
-    /**
-     * Creates new form QueryUser
-     */
+    
     public QueryUser() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
