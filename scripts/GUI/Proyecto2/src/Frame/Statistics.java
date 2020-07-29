@@ -7,6 +7,9 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -230,23 +233,26 @@ public class Statistics extends javax.swing.JFrame {
             id_gender = 0;
         else
             id_gender = c.getIntWithString(gender_element, "getId_gender", false);
-        ResultSet q = c.queryWithInt(1,"gender_age_range_sellers",true);
+        ResultSet q = c.queryWithInt(id_gender,"gender_age_range_sellers",true);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         try {
             while(q.next())
             {
-                dataset.addValue(q.getInt("percentage"), Integer.toString(q.getInt("users")), q.getString("age_range"));
+                dataset.addValue(q.getInt("users"), q.getString("gender"), q.getString("age_range"));
             }
-        JFreeChart barChart = ChartFactory.createBarChart("Sales by Gender", "Age", "Quantity", dataset, PlotOrientation.VERTICAL,true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart("Sales by Gender", "Age range", "Quantity", dataset, PlotOrientation.VERTICAL,true, true, false);
+        CategoryPlot plot = barChart.getCategoryPlot();
+        ValueAxis range = plot.getRangeAxis();
+        range.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         ChartPanel panel = new ChartPanel(barChart);
         panel.setPreferredSize(new java.awt.Dimension(560, 367));
         JFrame ventana = new JFrame("Grafica");
         ventana.setVisible(true);
         ventana.setSize(800, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.add(panel);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
+            JOptionPane.showMessageDialog(this, "There iss a problem with this statistic.");
         }
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
@@ -263,14 +269,14 @@ public class Statistics extends javax.swing.JFrame {
         try {
             while(q.next())
             {
-                dataset.setValue(q.getString("gender") + q.getInt("sales"), q.getFloat("percentage"));
+                dataset.setValue(q.getString("gender") + "/" + q.getInt("sales") + "/" + q.getFloat("percentage") + "%", q.getFloat("percentage"));
             }
-            JFreeChart chart = ChartFactory.createPieChart("Sales by Gender", dataset, true, true, false);
+            JFreeChart chart = ChartFactory.createPieChart("Sales by Gender", dataset, false, true, false);
         ChartPanel panel= new ChartPanel(chart);
         JFrame ventana = new JFrame("Grafica");
         ventana.setVisible(true);
         ventana.setSize(800, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.add(panel);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
@@ -290,14 +296,14 @@ public class Statistics extends javax.swing.JFrame {
         try {
             while(q.next())
             {
-                dataset.setValue(q.getString("category") + q.getInt("total_products"), q.getFloat("percentage"));
+                dataset.setValue(q.getString("category") +  "/" + q.getInt("total_products") + "/" + q.getFloat("percentage") + "%", q.getFloat("percentage"));
             }
-            JFreeChart chart = ChartFactory.createPieChart("Products by Category", dataset, true, true, false);
+            JFreeChart chart = ChartFactory.createPieChart("Products by Category", dataset, false, true, false);
         ChartPanel panel= new ChartPanel(chart);
         JFrame ventana = new JFrame("Grafica");
         ventana.setVisible(true);
         ventana.setSize(800, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.add(panel);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
@@ -311,14 +317,14 @@ public class Statistics extends javax.swing.JFrame {
         try {
             while(q.next())
             {
-                dataset.setValue(q.getString("gender") + q.getInt("sales"), q.getFloat("percentage"));
+                dataset.setValue(q.getString("gender") + "/" + q.getInt("sales") + "/" + q.getFloat("percentage") + "%", q.getFloat("percentage"));
             }
-            JFreeChart chart = ChartFactory.createPieChart("Sales by Gender", dataset, true, true, false);
+            JFreeChart chart = ChartFactory.createPieChart("Sales by Gender", dataset, false, true, false);
         ChartPanel panel= new ChartPanel(chart);
         JFrame ventana = new JFrame("Grafica");
         ventana.setVisible(true);
         ventana.setSize(800, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.add(panel);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
