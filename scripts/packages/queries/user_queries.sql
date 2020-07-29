@@ -22,12 +22,16 @@ END//
 CREATE PROCEDURE `purchase_history`(IN pusername VARCHAR(45), IN months INT)
 BEGIN
 	DECLARE vdate DATETIME;
-    SET vdate = DATE_SUB(current_timestamp(), INTERVAL months MONTH);
+    IF months = 0 THEN
+		SET vdate = null;
+	ELSE 
+		SET vdate = DATE_SUB(current_timestamp(), INTERVAL months MONTH);
+	END IF;
     
     SELECT o.date, p.id `product_id`, p.name `product_name`, o.quantity, o.price `price_by_unit`,  o.price*o.quantity `final_price`, p.username_seller
     FROM `order` o
     INNER JOIN `product` p ON p.id = o.id_product
-    WHERE o.user_buyer = pusername AND o.date BETWEEN vdate AND current_timestamp()
+    WHERE o.user_buyer = pusername AND o.date BETWEEN ifnull(vdate, o.date) AND current_timestamp()
     ORDER BY o.date DESC;
 END //
 
