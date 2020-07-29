@@ -1,9 +1,14 @@
-
 package Frame;
+import Connection.ConnectDB;
 import javax. swing.JFrame;
-import javax.swing.JPanel;
-
-
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 
 /**
@@ -17,6 +22,28 @@ public class Statistics extends javax.swing.JFrame {
      */
     public Statistics() {
         initComponents();
+        FillIn();
+    }
+    
+    public void FillIn(){
+        
+        ConnectDB c = new ConnectDB();
+        
+        BoxGender.removeAllItems();
+        BoxGender.addItem("Default");
+
+        ResultSet gender = c.query("getAll_gender",false);
+        
+        try {
+            while(gender.next())
+            {
+                BoxGender.addItem(String.valueOf(gender.getString("name")));
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
+        
+        
     }
 
     /**
@@ -31,26 +58,18 @@ public class Statistics extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelProductsCategory = new javax.swing.JPanel();
         ButtonBack = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        BoxCategoryExpensive = new javax.swing.JComboBox<>();
         ButtonConfirm4 = new javax.swing.JButton();
         PanelTotalSellers = new javax.swing.JPanel();
         ButtonBack1 = new javax.swing.JButton();
         ButtonConfirm1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        BoxCategoryExpensive1 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        BoxCategoryExpensive2 = new javax.swing.JComboBox<>();
+        BoxGender = new javax.swing.JComboBox<>();
         PanelTotalSales = new javax.swing.JPanel();
         ButtonBack2 = new javax.swing.JButton();
         ButtonConfirm2 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        BoxCategoryExpensive3 = new javax.swing.JComboBox<>();
         PanelTotalAmountSales = new javax.swing.JPanel();
         ButtonBack3 = new javax.swing.JButton();
         ButtonConfirm5 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        BoxCategoryExpensive4 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,21 +94,10 @@ public class Statistics extends javax.swing.JFrame {
         });
         PanelProductsCategory.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel7.setText("Category:");
-        PanelProductsCategory.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
-
-        BoxCategoryExpensive.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive.setForeground(new java.awt.Color(76, 40, 130));
-        PanelProductsCategory.add(BoxCategoryExpensive, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 170, 30));
-
         ButtonConfirm4.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm4.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm4.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm4.setText("Confirm");
-        ButtonConfirm4.setBorder(null);
+        ButtonConfirm4.setText("Show");
         ButtonConfirm4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonConfirm4ActionPerformed(evt);
@@ -125,27 +133,17 @@ public class Statistics extends javax.swing.JFrame {
                 ButtonConfirm1ActionPerformed(evt);
             }
         });
-        PanelTotalSellers.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 110, 30));
+        PanelTotalSellers.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 110, 30));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(76, 40, 130));
         jLabel4.setText("Gender:");
-        PanelTotalSellers.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        PanelTotalSellers.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
-        BoxCategoryExpensive1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive1.setForeground(new java.awt.Color(76, 40, 130));
-        PanelTotalSellers.add(BoxCategoryExpensive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 170, 30));
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel8.setText("Age Range:");
-        PanelTotalSellers.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, -1));
-
-        BoxCategoryExpensive2.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive2.setForeground(new java.awt.Color(76, 40, 130));
-        PanelTotalSellers.add(BoxCategoryExpensive2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 170, 30));
+        BoxGender.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxGender.setForeground(new java.awt.Color(76, 40, 130));
+        PanelTotalSellers.add(BoxGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 170, 30));
 
         jTabbedPane1.addTab("Total sellers", PanelTotalSellers);
 
@@ -168,24 +166,13 @@ public class Statistics extends javax.swing.JFrame {
         ButtonConfirm2.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm2.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm2.setText("Confirm");
-        ButtonConfirm2.setBorder(null);
+        ButtonConfirm2.setText("Show");
         ButtonConfirm2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonConfirm2ActionPerformed(evt);
             }
         });
         PanelTotalSales.add(ButtonConfirm2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 110, 30));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel9.setText("Gender:");
-        PanelTotalSales.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
-
-        BoxCategoryExpensive3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive3.setForeground(new java.awt.Color(76, 40, 130));
-        PanelTotalSales.add(BoxCategoryExpensive3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 170, 30));
 
         jTabbedPane1.addTab("Total sales", PanelTotalSales);
 
@@ -208,24 +195,13 @@ public class Statistics extends javax.swing.JFrame {
         ButtonConfirm5.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm5.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm5.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm5.setText("Confirm");
-        ButtonConfirm5.setBorder(null);
+        ButtonConfirm5.setText("Show");
         ButtonConfirm5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonConfirm5ActionPerformed(evt);
             }
         });
         PanelTotalAmountSales.add(ButtonConfirm5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 110, 30));
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel10.setText("Gender:");
-        PanelTotalAmountSales.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
-
-        BoxCategoryExpensive4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive4.setForeground(new java.awt.Color(76, 40, 130));
-        PanelTotalAmountSales.add(BoxCategoryExpensive4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 170, 30));
 
         jTabbedPane1.addTab("Total amount of sales", PanelTotalAmountSales);
 
@@ -247,84 +223,31 @@ public class Statistics extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack1ActionPerformed
 
     private void ButtonConfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm1ActionPerformed
-        /*  ConnectDB c = new ConnectDB();
-        var id = FieldId.getText();
-        var first_name = FieldName.getText();
-        var middle_name = " ";
-        try {
-            middle_name = FieldMiddleName.getText();
-        }
-        catch (NullPointerException e) {}
-        var last_name = FieldLastName.getText();
-        var email = FieldEmail.getText();
-        var phone_number = FieldPhone.getText();
-        java.util.Date birthday = null;
-        try {
-            birthday = new SimpleDateFormat("dd/MM/yy").parse(FieldBirthday.getText());
-        }
-        catch (Exception e){}
-        java.sql.Date birthday_sql = new java.sql.Date(birthday.getTime());
-        var picture_path = "";
-        var username = FieldUsername.getText();
-        var password = FieldPassword.getText();
-        String id_gender_element = (String) BoxGender.getSelectedItem();
-        String id_district_element = (String) BoxDistrict.getSelectedItem();
-        String id_user_type_element = (String) BoxUserType.getSelectedItem();
-        if(id_gender_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the gender box.");
-        else if(id_district_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the district box.");
-        else if(id_user_type_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the user type box.");
-        else if(id == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the id field.");
-        }
-        else if(first_name == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the first name field.");
-        }
-        else if(last_name == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the last name field.");
-        }
-        else if(email == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the email field.");
-        }
-        else if(phone_number == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the email field.");
-        }
-        else if(FieldBirthday.getText() == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the birthday field.");
-        }
-        else if(username == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the username field.");
-        }
-        else if(password == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the username field.");
-        }
+        ConnectDB c = new ConnectDB();
+        String gender_element = (String) BoxGender.getSelectedItem();
+        int id_gender;
+        if(gender_element == "Default")
+            id_gender = 0;
         else
-        {
-            try{
-                var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
-                var id_district = c.getIntWithString(id_district_element, "getId_district", false);
-                var id_user_type = c.getIntWithString(id_user_type_element, "getId_userType", true);
-                person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
-                user u = new user(username, password, 0, 0, id_user_type);
-                c.updatePerson(p);
-                c.updateUser(u);
-                JOptionPane.showMessageDialog(this, "The person was updated successfully in the system.");
-            }
-            catch(Exception e)
+            id_gender = c.getIntWithString(gender_element, "getId_gender", false);
+        ResultSet q = c.queryWithInt(1,"gender_age_range_sellers",true);
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        try {
+            while(q.next())
             {
-                System.out.println("Error:" +e);
+                dataset.addValue(q.getInt(""), q.getString("percentage"), q.getString(""));
             }
-        }*/
+        JFreeChart barChart = ChartFactory.createBarChart("Sales by Gender", "Categoría", "Puntuación", dataset, PlotOrientation.VERTICAL,true, true, false);
+        ChartPanel panel = new ChartPanel(barChart);
+        panel.setPreferredSize(new java.awt.Dimension(560, 367));
+        JFrame ventana = new JFrame("Grafica");
+        ventana.setVisible(true);
+        ventana.setSize(800, 600);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.add(panel);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
+        }
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
     private void ButtonBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack2ActionPerformed
@@ -334,84 +257,24 @@ public class Statistics extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack2ActionPerformed
 
     private void ButtonConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm2ActionPerformed
-        /*  ConnectDB c = new ConnectDB();
-        var id = FieldId.getText();
-        var first_name = FieldName.getText();
-        var middle_name = " ";
+        ConnectDB c = new ConnectDB();
+        ResultSet q = c.query("sales_by_gender",true);
+        DefaultPieDataset dataset = new DefaultPieDataset();
         try {
-            middle_name = FieldMiddleName.getText();
-        }
-        catch (NullPointerException e) {}
-        var last_name = FieldLastName.getText();
-        var email = FieldEmail.getText();
-        var phone_number = FieldPhone.getText();
-        java.util.Date birthday = null;
-        try {
-            birthday = new SimpleDateFormat("dd/MM/yy").parse(FieldBirthday.getText());
-        }
-        catch (Exception e){}
-        java.sql.Date birthday_sql = new java.sql.Date(birthday.getTime());
-        var picture_path = "";
-        var username = FieldUsername.getText();
-        var password = FieldPassword.getText();
-        String id_gender_element = (String) BoxGender.getSelectedItem();
-        String id_district_element = (String) BoxDistrict.getSelectedItem();
-        String id_user_type_element = (String) BoxUserType.getSelectedItem();
-        if(id_gender_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the gender box.");
-        else if(id_district_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the district box.");
-        else if(id_user_type_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the user type box.");
-        else if(id == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the id field.");
-        }
-        else if(first_name == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the first name field.");
-        }
-        else if(last_name == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the last name field.");
-        }
-        else if(email == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the email field.");
-        }
-        else if(phone_number == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the email field.");
-        }
-        else if(FieldBirthday.getText() == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the birthday field.");
-        }
-        else if(username == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the username field.");
-        }
-        else if(password == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the username field.");
-        }
-        else
-        {
-            try{
-                var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
-                var id_district = c.getIntWithString(id_district_element, "getId_district", false);
-                var id_user_type = c.getIntWithString(id_user_type_element, "getId_userType", true);
-                person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
-                user u = new user(username, password, 0, 0, id_user_type);
-                c.updatePerson(p);
-                c.updateUser(u);
-                JOptionPane.showMessageDialog(this, "The person was updated successfully in the system.");
-            }
-            catch(Exception e)
+            while(q.next())
             {
-                System.out.println("Error:" +e);
+                dataset.setValue(q.getString("gender") + q.getInt("sales"), q.getFloat("percentage"));
             }
-        }*/
+            JFreeChart chart = ChartFactory.createPieChart("Sales by Gender", dataset, true, true, false);
+        ChartPanel panel= new ChartPanel(chart);
+        JFrame ventana = new JFrame("Grafica");
+        ventana.setVisible(true);
+        ventana.setSize(800, 600);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.add(panel);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
+        }
     }//GEN-LAST:event_ButtonConfirm2ActionPerformed
 
     private void ButtonBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack3ActionPerformed
@@ -421,11 +284,45 @@ public class Statistics extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack3ActionPerformed
 
     private void ButtonConfirm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm4ActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        ResultSet q = c.query("products_by_category",true);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        try {
+            while(q.next())
+            {
+                dataset.setValue(q.getString("category") + q.getInt("total_products"), q.getFloat("percentage"));
+            }
+            JFreeChart chart = ChartFactory.createPieChart("Products by Category", dataset, true, true, false);
+        ChartPanel panel= new ChartPanel(chart);
+        JFrame ventana = new JFrame("Grafica");
+        ventana.setVisible(true);
+        ventana.setSize(800, 600);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.add(panel);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
+        }
     }//GEN-LAST:event_ButtonConfirm4ActionPerformed
 
     private void ButtonConfirm5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm5ActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        ResultSet q = c.query("sales_by_gender",true);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        try {
+            while(q.next())
+            {
+                dataset.setValue(q.getString("gender") + q.getInt("sales"), q.getFloat("percentage"));
+            }
+            JFreeChart chart = ChartFactory.createPieChart("Sales by Gender", dataset, true, true, false);
+        ChartPanel panel= new ChartPanel(chart);
+        JFrame ventana = new JFrame("Grafica");
+        ventana.setVisible(true);
+        ventana.setSize(800, 600);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.add(panel);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
+        }
     }//GEN-LAST:event_ButtonConfirm5ActionPerformed
 
     /**
@@ -464,11 +361,7 @@ public class Statistics extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> BoxCategoryExpensive;
-    private javax.swing.JComboBox<String> BoxCategoryExpensive1;
-    private javax.swing.JComboBox<String> BoxCategoryExpensive2;
-    private javax.swing.JComboBox<String> BoxCategoryExpensive3;
-    private javax.swing.JComboBox<String> BoxCategoryExpensive4;
+    private javax.swing.JComboBox<String> BoxGender;
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonBack1;
     private javax.swing.JButton ButtonBack2;
@@ -481,11 +374,7 @@ public class Statistics extends javax.swing.JFrame {
     private javax.swing.JPanel PanelTotalAmountSales;
     private javax.swing.JPanel PanelTotalSales;
     private javax.swing.JPanel PanelTotalSellers;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
