@@ -56,6 +56,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonProfile = new javax.swing.JButton();
         ButtonHistory = new javax.swing.JButton();
         ButtonBasket = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         PanelUser = new javax.swing.JPanel();
         ButtonProfileUser = new javax.swing.JButton();
         ButtonHistoryUser = new javax.swing.JButton();
@@ -63,6 +64,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonQueryUser = new javax.swing.JButton();
         ButtonSettingsUser = new javax.swing.JButton();
         ButtonWishlistUser = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         PanelAdmin = new javax.swing.JPanel();
         ButtonProfileAdmin = new javax.swing.JButton();
         ButtonHistoryAdmin = new javax.swing.JButton();
@@ -71,6 +73,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonStatistics = new javax.swing.JButton();
         ButtonSettingsAdmin = new javax.swing.JButton();
         ButtonWishlist = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("framepanelprincipal"); // NOI18N
@@ -144,6 +147,9 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
         });
         PanelGuest.add(ButtonBasket, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
+        PanelGuest.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
         PanelPrincipal.add(PanelGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
@@ -227,6 +233,9 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
         });
         PanelUser.add(ButtonWishlistUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 350, 121, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
+        PanelUser.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
         PanelPrincipal.add(PanelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
@@ -323,6 +332,9 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
         });
         PanelAdmin.add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 400, 121, 50));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
+        PanelAdmin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
         PanelPrincipal.add(PanelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
@@ -535,6 +547,9 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JPanel PanelProducts;
     private javax.swing.JPanel PanelUser;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
