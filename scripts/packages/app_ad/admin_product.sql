@@ -185,4 +185,11 @@ CREATE PROCEDURE getAll_product()
             SELECT id, price, name, description, quant_in_stock, is_visible, average_score, id_category, username_seller, id_delivery_type
             FROM product;
     END//
+
+CREATE PROCEDURE getAll_product_username(vuser VARCHAR(45))
+    BEGIN
+            SELECT id, name, quant_in_stock, price
+            FROM product
+            WHERE username_seller = vuser;
+    END//
 DELIMITER ;

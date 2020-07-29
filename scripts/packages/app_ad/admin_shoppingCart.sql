@@ -55,9 +55,10 @@ DETERMINISTIC
     RETURN rQuantity;
     END //
 
-CREATE PROCEDURE getAll_shoppingCart()
+CREATE PROCEDURE getAll_shoppingCart(vUser VARCHAR(45))
     BEGIN
             SELECT username, id_product, quantity
-            FROM shopping_cart;
+            FROM shopping_cart
+            WHERE username = vUser;
     END//
 DELIMITER ;
