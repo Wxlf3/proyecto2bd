@@ -1,12 +1,34 @@
 package Frame;
 
 import Connection.ConnectDB;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class QueryAdmin extends javax.swing.JFrame {
     
     public QueryAdmin() {
         initComponents();
         setLocationRelativeTo(null);
+        FillIn();
+    }
+        
+    public void FillIn(){
+        ConnectDB c = new ConnectDB();
+        
+        BoxCategoryExpensive.removeAllItems();
+        BoxCategoryExpensive.addItem("Default");
+        
+        ResultSet category = c.query("getAll_category",true);
+        
+        try {
+            while(category.next())
+            {
+                BoxCategoryExpensive.addItem(String.valueOf(category.getString("name")));
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
     }
 
     /**
@@ -39,11 +61,13 @@ public class QueryAdmin extends javax.swing.JFrame {
         ButtonBack2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableUserBetterRatings = new javax.swing.JTable();
+        ButtonConfirm4 = new javax.swing.JButton();
         PanelWorseRatings = new javax.swing.JPanel();
         ButtonBack3 = new javax.swing.JButton();
         ButtonBack6 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         TableUserWorseRatings = new javax.swing.JTable();
+        ButtonConfirm5 = new javax.swing.JButton();
         PanelExpensiveProducts = new javax.swing.JPanel();
         ButtonBack4 = new javax.swing.JButton();
         ButtonConfirm2 = new javax.swing.JButton();
@@ -52,12 +76,10 @@ public class QueryAdmin extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         BoxCategoryExpensive = new javax.swing.JComboBox<>();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        ListMostExpensive = new javax.swing.JList<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         PanelMinimumMaximumProducts = new javax.swing.JPanel();
         ButtonBack5 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        BoxCategoryExpensive1 = new javax.swing.JComboBox<>();
         ButtonConfirm3 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         TableMinMaxProducts = new javax.swing.JTable();
@@ -237,6 +259,17 @@ public class QueryAdmin extends javax.swing.JFrame {
 
         PanelBetterRatings.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, 390));
 
+        ButtonConfirm4.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm4.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm4.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm4.setText("Refresh");
+        ButtonConfirm4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm4ActionPerformed(evt);
+            }
+        });
+        PanelBetterRatings.add(ButtonConfirm4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 110, 30));
+
         jTabbedPane1.addTab("Users with better ratings", PanelBetterRatings);
 
         PanelWorseRatings.setBackground(new java.awt.Color(255, 255, 255));
@@ -294,6 +327,17 @@ public class QueryAdmin extends javax.swing.JFrame {
 
         PanelWorseRatings.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, 390));
 
+        ButtonConfirm5.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm5.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm5.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm5.setText("Refresh");
+        ButtonConfirm5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm5ActionPerformed(evt);
+            }
+        });
+        PanelWorseRatings.add(ButtonConfirm5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 110, 30));
+
         jTabbedPane1.addTab("Users with worse ratings", PanelWorseRatings);
 
         PanelExpensiveProducts.setBackground(new java.awt.Color(255, 255, 255));
@@ -349,18 +393,20 @@ public class QueryAdmin extends javax.swing.JFrame {
         BoxCategoryExpensive.setForeground(new java.awt.Color(76, 40, 130));
         PanelExpensiveProducts.add(BoxCategoryExpensive, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 170, 30));
 
-        jScrollPane5.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane5.setBorder(null);
-        jScrollPane5.setForeground(new java.awt.Color(76, 40, 130));
-        jScrollPane5.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable1);
 
-        ListMostExpensive.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ListMostExpensive.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        ListMostExpensive.setForeground(new java.awt.Color(76, 40, 130));
-        ListMostExpensive.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane5.setViewportView(ListMostExpensive);
-
-        PanelExpensiveProducts.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 260, 300));
+        PanelExpensiveProducts.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
         jTabbedPane1.addTab("Top of most expensive products by category", PanelExpensiveProducts);
 
@@ -380,27 +426,16 @@ public class QueryAdmin extends javax.swing.JFrame {
         });
         PanelMinimumMaximumProducts.add(ButtonBack5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel7.setText("Category:");
-        PanelMinimumMaximumProducts.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
-
-        BoxCategoryExpensive1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive1.setForeground(new java.awt.Color(76, 40, 130));
-        PanelMinimumMaximumProducts.add(BoxCategoryExpensive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 170, 30));
-
         ButtonConfirm3.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm3.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm3.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm3.setText("Confirm");
-        ButtonConfirm3.setBorder(null);
+        ButtonConfirm3.setText("Refresh");
         ButtonConfirm3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonConfirm3ActionPerformed(evt);
             }
         });
-        PanelMinimumMaximumProducts.add(ButtonConfirm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 110, 30));
+        PanelMinimumMaximumProducts.add(ButtonConfirm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 110, 30));
 
         TableMinMaxProducts.setAutoCreateColumnsFromModel(false);
         TableMinMaxProducts.setAutoCreateRowSorter(true);
@@ -442,7 +477,25 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-      
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableUserMostSales.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        int top = Integer.parseInt(FieldNumberMostSales.getText());
+        ResultSet q = c.queryWithInt(top,"top_sellers",true);
+        try {
+            modelo = (DefaultTableModel)TableUserMostSales.getModel();
+            modelo.addColumn("Username");
+            modelo.addColumn("Sales");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getString("username"),q.getFloat("sales")});
+            }
+            TableUserMostSales.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack1ActionPerformed
@@ -452,7 +505,25 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack1ActionPerformed
 
     private void ButtonConfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm1ActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableUserMostPurchases.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        int top = Integer.parseInt(FieldNumberMostPurchases.getText());
+        ResultSet q = c.queryWithInt(top,"top_buyers",true);
+        try {
+            modelo = (DefaultTableModel)TableUserMostPurchases.getModel();
+            modelo.addColumn("Username");
+            modelo.addColumn("Purchases");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getString("username"),q.getFloat("purchases")});
+            }
+            TableUserMostPurchases.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
     private void ButtonBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack2ActionPerformed
@@ -480,7 +551,28 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack4ActionPerformed
 
     private void ButtonConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm2ActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableUserBetterRatings.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        int top = Integer.parseInt(FieldNumberMostSales1.getText());
+        String category_element = (String) BoxCategoryExpensive.getSelectedItem();
+        int id_category = c.getIntWithString(category_element, "getId_category", true);
+        ResultSet q = c.topExpensivesOfCategory(top, id_category);
+        try {
+            modelo = (DefaultTableModel)TableUserBetterRatings.getModel();
+            modelo.addColumn("Product id");
+            modelo.addColumn("Name");
+            modelo.addColumn("Price");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getInt("product_id"),q.getString("product_name"),q.getFloat("price")});
+            }
+            TableUserBetterRatings.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error.Try again later.");
+        }
     }//GEN-LAST:event_ButtonConfirm2ActionPerformed
 
     private void ButtonBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBack5ActionPerformed
@@ -490,8 +582,72 @@ public class QueryAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack5ActionPerformed
 
     private void ButtonConfirm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm3ActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableMinMaxProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet q = c.query("max_min_prices_by_category",true);
+        try {
+            modelo = (DefaultTableModel)TableMinMaxProducts.getModel();
+            modelo.addColumn("Category");
+            modelo.addColumn("Max Price");
+            modelo.addColumn("Min Price");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getString("category"),q.getFloat("max_price"),q.getFloat("min_price")});
+            }
+            TableMinMaxProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error.Try again later.");
+        }
     }//GEN-LAST:event_ButtonConfirm3ActionPerformed
+
+    private void ButtonConfirm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm4ActionPerformed
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableUserBetterRatings.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet q = c.query("best_scores",true);
+        try {
+            modelo = (DefaultTableModel)TableUserBetterRatings.getModel();
+            modelo.addColumn("Username");
+            modelo.addColumn("Score Buyer");
+            modelo.addColumn("Score Seller");
+            modelo.addColumn("General Score");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getString("username"),q.getFloat("score_buyer"),q.getFloat("score_seller"),q.getFloat("general_score")});
+            }
+            TableUserBetterRatings.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
+    }//GEN-LAST:event_ButtonConfirm4ActionPerformed
+
+    private void ButtonConfirm5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm5ActionPerformed
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableUserWorseRatings.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet q = c.query("worst_scores",true);
+        try {
+            modelo = (DefaultTableModel)TableUserWorseRatings.getModel();
+            modelo.addColumn("Username");
+            modelo.addColumn("Score Buyer");
+            modelo.addColumn("Score Seller");
+            modelo.addColumn("General Score");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getString("username"),q.getFloat("score_buyer"),q.getFloat("score_seller"),q.getFloat("general_score")});
+            }
+            TableUserWorseRatings.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
+    }//GEN-LAST:event_ButtonConfirm5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,7 +686,6 @@ public class QueryAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BoxCategoryExpensive;
-    private javax.swing.JComboBox<String> BoxCategoryExpensive1;
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonBack1;
     private javax.swing.JButton ButtonBack2;
@@ -542,10 +697,11 @@ public class QueryAdmin extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConfirm1;
     private javax.swing.JButton ButtonConfirm2;
     private javax.swing.JButton ButtonConfirm3;
+    private javax.swing.JButton ButtonConfirm4;
+    private javax.swing.JButton ButtonConfirm5;
     private javax.swing.JTextField FieldNumberMostPurchases;
     private javax.swing.JTextField FieldNumberMostSales;
     private javax.swing.JTextField FieldNumberMostSales1;
-    private javax.swing.JList<String> ListMostExpensive;
     private javax.swing.JPanel PanelBetterRatings;
     private javax.swing.JPanel PanelExpensiveProducts;
     private javax.swing.JPanel PanelMinimumMaximumProducts;
@@ -561,16 +717,16 @@ public class QueryAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
