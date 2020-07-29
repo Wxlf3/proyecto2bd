@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frame;
 
 import Connection.ConnectDB;
+import Connection.currentUser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -27,7 +24,11 @@ public class QueryUser extends javax.swing.JFrame {
     }
     
     public void FillIn(){
-        
+        BoxMonth.removeAllItems();
+        BoxCategoryAllProducts.addItem("3 months");
+        BoxCategoryAllProducts.addItem("6 months");
+        BoxCategoryAllProducts.addItem("12 months");
+        BoxCategoryAllProducts.addItem("All");
         ConnectDB c = new ConnectDB();
         
         BoxCategoryAllProducts.removeAllItems();
@@ -69,7 +70,7 @@ public class QueryUser extends javax.swing.JFrame {
         ButtonBack1 = new javax.swing.JButton();
         ButtonConfirm2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        BoxCategoryExpensive = new javax.swing.JComboBox<>();
+        BoxMonth = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePurchaseHistory = new javax.swing.JTable();
         PanelRecentlyViewed = new javax.swing.JPanel();
@@ -80,6 +81,7 @@ public class QueryUser extends javax.swing.JFrame {
         ButtonBack3 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         ListProductsSold = new javax.swing.JList<>();
+        ButtonConfirm3 = new javax.swing.JButton();
         PanelPurchasesMade = new javax.swing.JPanel();
         ButtonBack4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -196,9 +198,9 @@ public class QueryUser extends javax.swing.JFrame {
         jLabel6.setText("Time:");
         PanelPurchaseHistory.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
-        BoxCategoryExpensive.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCategoryExpensive.setForeground(new java.awt.Color(76, 40, 130));
-        PanelPurchaseHistory.add(BoxCategoryExpensive, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 170, 30));
+        BoxMonth.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxMonth.setForeground(new java.awt.Color(76, 40, 130));
+        PanelPurchaseHistory.add(BoxMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 170, 30));
 
         TablePurchaseHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,6 +277,18 @@ public class QueryUser extends javax.swing.JFrame {
 
         PanelListProductsSold.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 340, 430));
 
+        ButtonConfirm3.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm3.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm3.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm3.setText("Confirm");
+        ButtonConfirm3.setBorder(null);
+        ButtonConfirm3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm3ActionPerformed(evt);
+            }
+        });
+        PanelListProductsSold.add(ButtonConfirm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 110, 30));
+
         jTabbedPane1.addTab("List of products sold for each user", PanelListProductsSold);
 
         PanelPurchasesMade.setBackground(new java.awt.Color(255, 255, 255));
@@ -333,11 +347,6 @@ public class QueryUser extends javax.swing.JFrame {
             id_category = c.getIntWithString(category_element, "getId_category", true);
         ResultSet q = c.queryWithStringAndInt(name, id_category,"search_product",true);
         try {
-            System.out.println("name:"+ q.getString("name"));
-        } catch (Exception ex) {
-            System.out.println("Error: " + ex);
-        }
-        try {
             modelo = (DefaultTableModel)TableAllProducts.getModel();
             modelo.addColumn("Id");
             modelo.addColumn("Price");
@@ -349,7 +358,7 @@ public class QueryUser extends javax.swing.JFrame {
             }
             TableAllProducts.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this statistic.");
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
@@ -384,8 +393,82 @@ public class QueryUser extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBack4ActionPerformed
 
     private void ButtonConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm2ActionPerformed
-        // TODO add your handling code here:
+        currentUser cu = currentUser.getInstance();
+        String username = cu.getUsername();
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableAllProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        int month_element = BoxMonth.getSelectedIndex();
+        int month;
+        if(month_element == 1)
+            month = 3;
+        else if(month_element == 2)
+            month = 6;
+        else if(month_element == 3)
+            month = 12;
+        else
+            month = 0;
+        ResultSet q = c.queryWithStringAndInt(username, month,"purchase_history",true);
+        try {
+            modelo = (DefaultTableModel)TableAllProducts.getModel();
+            modelo.addColumn("Id");
+            modelo.addColumn("Name");
+            modelo.addColumn("Date");
+            modelo.addColumn("Quantity");
+            modelo.addColumn("Price by Unit");
+            modelo.addColumn("Final Price");
+            modelo.addColumn("Username Seller");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getInt("product_id"),
+                                            q.getString("product_name"),
+                                            q.getDate("date"),
+                                            q.getInt("quantity"),
+                                            q.getFloat("price_by_unit"),
+                                            q.getFloat("final_price"),
+                                            q.getString("username_seller")});
+            }
+            TableAllProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
     }//GEN-LAST:event_ButtonConfirm2ActionPerformed
+
+    private void ButtonConfirm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm3ActionPerformed
+        currentUser cu = currentUser.getInstance();
+        String username = cu.getUsername();
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableAllProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet q = c.queryWithString(username,"selling_history",true);
+        try {
+            modelo = (DefaultTableModel)TableAllProducts.getModel();
+            modelo.addColumn("Id");
+            modelo.addColumn("Name");
+            modelo.addColumn("Date");
+            modelo.addColumn("Quantity");
+            modelo.addColumn("Price by Unit");
+            modelo.addColumn("Final Price");
+            modelo.addColumn("Username Buyer");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getInt("product_id"),
+                                            q.getString("product_name"),
+                                            q.getDate("date"),
+                                            q.getInt("quantity"),
+                                            q.getFloat("price_by_unit"),
+                                            q.getFloat("final_price"),
+                                            q.getString("username_buyer")});
+            }
+            TableAllProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
+    }//GEN-LAST:event_ButtonConfirm3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,7 +507,7 @@ public class QueryUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BoxCategoryAllProducts;
-    private javax.swing.JComboBox<String> BoxCategoryExpensive;
+    private javax.swing.JComboBox<String> BoxMonth;
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonBack1;
     private javax.swing.JButton ButtonBack2;
@@ -432,6 +515,7 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JButton ButtonBack4;
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonConfirm2;
+    private javax.swing.JButton ButtonConfirm3;
     private javax.swing.JTextField FieldNameProduct;
     private javax.swing.JList<String> ListProductsSold;
     private javax.swing.JList<String> ListRecentlyViewed;
