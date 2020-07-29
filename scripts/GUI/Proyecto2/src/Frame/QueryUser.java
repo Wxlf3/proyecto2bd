@@ -86,6 +86,7 @@ public class QueryUser extends javax.swing.JFrame {
         ButtonBack4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableUserPurchases = new javax.swing.JTable();
+        ButtonConfirm4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -325,6 +326,18 @@ public class QueryUser extends javax.swing.JFrame {
 
         PanelPurchasesMade.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 490, 390));
 
+        ButtonConfirm4.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm4.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm4.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm4.setText("Confirm");
+        ButtonConfirm4.setBorder(null);
+        ButtonConfirm4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm4ActionPerformed(evt);
+            }
+        });
+        PanelPurchasesMade.add(ButtonConfirm4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 110, 30));
+
         jTabbedPane1.addTab("Total purchases made by category greater than $ 1,000", PanelPurchasesMade);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
@@ -470,6 +483,30 @@ public class QueryUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ButtonConfirm3ActionPerformed
 
+    private void ButtonConfirm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm4ActionPerformed
+        currentUser cu = currentUser.getInstance();
+        String username = cu.getUsername();
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableAllProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet q = c.queryWithString(username,"purchases_quantity_over_1000_by_category",true);
+        try {
+            modelo = (DefaultTableModel)TableAllProducts.getModel();
+            modelo.addColumn("Category");
+            modelo.addColumn("Purchases over 1000");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getInt("category"),
+                                            q.getString("purchases_over_1000"),});
+            }
+            TableAllProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
+    }//GEN-LAST:event_ButtonConfirm4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -516,6 +553,7 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConfirm;
     private javax.swing.JButton ButtonConfirm2;
     private javax.swing.JButton ButtonConfirm3;
+    private javax.swing.JButton ButtonConfirm4;
     private javax.swing.JTextField FieldNameProduct;
     private javax.swing.JList<String> ListProductsSold;
     private javax.swing.JList<String> ListRecentlyViewed;
