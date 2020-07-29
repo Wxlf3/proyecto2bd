@@ -235,9 +235,9 @@ public class Statistics extends javax.swing.JFrame {
         try {
             while(q.next())
             {
-                dataset.addValue(q.getInt(""), q.getString("percentage"), q.getString(""));
+                dataset.addValue(q.getInt("percentage"), Integer.toString(q.getInt("users")), q.getString("age_range"));
             }
-        JFreeChart barChart = ChartFactory.createBarChart("Sales by Gender", "Categoría", "Puntuación", dataset, PlotOrientation.VERTICAL,true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart("Sales by Gender", "Age", "Quantity", dataset, PlotOrientation.VERTICAL,true, true, false);
         ChartPanel panel = new ChartPanel(barChart);
         panel.setPreferredSize(new java.awt.Dimension(560, 367));
         JFrame ventana = new JFrame("Grafica");

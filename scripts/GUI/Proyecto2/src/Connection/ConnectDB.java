@@ -937,6 +937,24 @@ public class ConnectDB {
         return result;
     }
     
+    public ResultSet queryWithStringAndInt(String p1, int p2, String function, boolean inApp){
+        ResultSet result = null;
+        try{
+            if(inApp)
+                con=  DriverManager.getConnection(url_app, user_app, pass_app);
+            else
+                con=  DriverManager.getConnection(url_person, user_person, pass_person);
+            CallableStatement stmt = con.prepareCall("{call "+ function +" (?,?)}");
+            stmt.setString(1, p1);
+            stmt.setInt(2, p2);
+            result = stmt.executeQuery();
+        }
+        catch (Exception e){
+            System.out.println("Error de conexion: " + e);
+        }
+        return result;
+    }
+    
     public ResultSet queryWithString(String p, String function, boolean inApp){
         ResultSet result = null;
         try{
