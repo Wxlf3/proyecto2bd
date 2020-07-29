@@ -26,8 +26,55 @@ public class Basket extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    
-
+    private void fillInTable() {
+        currentUser cu = currentUser.getInstance();
+        String username = cu.getUsername();      
+        products.clear();
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
+        try {
+            modelo = (DefaultTableModel)TableProducts.getModel();
+            modelo.addColumn("Id product");
+            modelo.addColumn("Quantity");
+            while(cart.next()){
+                modelo.addRow(new Object[]{ cart.getInt("id_product"),
+                                            cart.getInt("quantity")});
+                int id_product = cart.getInt("id_product");
+                ResultSet prod = c.queryWithInt(id_product, "get_product_with_id", true);
+                prod.next();
+                product p = new product(prod.getFloat("price"),
+                    prod.getString("name"),
+                    prod.getString("description"),
+                    prod.getInt("quant_in_stock"),
+                    prod.getBoolean("is_visible"),
+                    prod.getFloat("average_score"),
+                    prod.getInt("id_category"),
+                    prod.getString("username_seller"),
+                    prod.getInt("id_delivery_type"));
+                p.setId(id_product);
+                products.add(p);
+            }
+            TableProducts.setModel(modelo);        
+        } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error. Try later.");
+        } finally{
+            for(product p : products){
+                JButton Bttnproduct = new JButton();
+                Bttnproduct.setText(p.getName());
+                Bttnproduct.setIcon(new ImageIcon("close-button.png"));
+                PanelProducts.add(Bttnproduct);
+                Bttnproduct.addActionListener(new ActionListener(){  
+                    public void actionPerformed(ActionEvent e){  
+                        cu.insertInHistory(p);
+                    }  
+                });
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,37 +224,7 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonClearActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        ConnectDB c = new ConnectDB();
-        ResultSet cart = c.query("getAll_shoppingCart",true);
-        try {
-            while(cart.next()){
-                    product p = new product(cart.getFloat("price"),
-                            cart.getString("name"),
-                            cart.getString("description"),
-                            cart.getInt("quant_in_stock"),
-                            cart.getBoolean("is_visible"),
-                            cart.getFloat("average_score"),
-                            cart.getInt("id_category"),
-                            cart.getString("username_seller"),
-                            cart.getInt("id_delivery_type"));
-                    products.add(p);
-            }
-        } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Error. Try later.");
-        } finally{
-            currentUser cu = currentUser.getInstance();
-            for(product p : products){
-                JButton Bttnproduct = new JButton();
-                Bttnproduct.setText(p.getName());
-                Bttnproduct.setIcon(new ImageIcon("close-button.png"));
-                PanelProducts.add(Bttnproduct);
-                Bttnproduct.addActionListener(new ActionListener(){  
-                    public void actionPerformed(ActionEvent e){  
-                        cu.insertInHistory(p);
-                    }  
-                });
-            }
-        }
+        fillInTable();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
@@ -219,29 +236,7 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRefreshActionPerformed
-        currentUser cu = currentUser.getInstance();
-        String username = cu.getUsername();
-        ConnectDB c = new ConnectDB();
-        DefaultTableModel modelo = new DefaultTableModel();
-        TableProducts.setModel(modelo);
-        modelo.setRowCount(0);
-        modelo.setColumnCount(0);
-        ResultSet q = c.queryWithString(username,"getAll_shoppingCart",true);
-        try {
-            modelo = (DefaultTableModel)TableProducts.getModel();
-            modelo.addColumn("Username");
-            modelo.addColumn("Id product");
-            modelo.addColumn("Quantity");
-            while(q.next())
-            {
-                modelo.addRow(new Object[]{q.getInt("username"),
-                                            q.getString("id_product"),
-                                            q.getInt("quantity")});
-            }
-            TableProducts.setModel(modelo);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error. Try again.");
-        }
+        fillInTable();
     }//GEN-LAST:event_ButtonRefreshActionPerformed
 
     public static void main(String args[]) {

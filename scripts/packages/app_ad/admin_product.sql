@@ -2,6 +2,7 @@
 DROP PROCEDURE IF EXISTS insert_product;
 DROP PROCEDURE IF EXISTS update_product;
 DROP PROCEDURE IF EXISTS remove_product;
+DROP PROCEDURE IF EXISTS get_product_with_id;
 DROP FUNCTION IF EXISTS getPrice_product;
 DROP FUNCTION IF EXISTS getName_product;
 DROP FUNCTION IF EXISTS getDescription_product;
@@ -12,6 +13,7 @@ DROP FUNCTION IF EXISTS getIdCategory_product;
 DROP FUNCTION IF EXISTS getUsernameSeller_product;
 DROP FUNCTION IF EXISTS getIdDeliveryType_product;
 DROP PROCEDURE IF EXISTS getAll_product;
+DROP PROCEDURE IF EXISTS getAll_product_username;
 DELIMITER //
 
 CREATE PROCEDURE insert_product(IN pnPrice DECIMAL(10,2), 
@@ -62,6 +64,13 @@ CREATE PROCEDURE remove_product(IN pnId INT)
             DELETE FROM product
             WHERE id = pnId;
     END//
+    
+CREATE PROCEDURE get_product_with_id(IN pnId INT)
+	BEGIN
+		SELECT id, price, name, description, quant_in_stock, is_visible, average_score, id_category, username_seller, id_delivery_type
+        FROM product
+        WHERE id = pnId;
+	END//
 
 CREATE FUNCTION getPrice_product(vId INT) 
 RETURNS DECIMAL(10,2)
