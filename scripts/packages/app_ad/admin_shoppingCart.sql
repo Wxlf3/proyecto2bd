@@ -42,6 +42,20 @@ CREATE PROCEDURE remove_shoppingCart_with_idProduct(IN pnIdProduct INT)
             WHERE id_product = pnIdProduct;
     END//
 
+CREATE PROCEDURE get_shoppingCart_with_username(IN pnUsername VARCHAR(45))
+    BEGIN
+		SELECT username, id_product, quantity
+		FROM shopping_cart
+		WHERE username = pnUsername;
+    END //
+    
+CREATE PROCEDURE get_shoppingCart_with_idProduct(IN pnIdProduct INT)
+    BEGIN
+		SELECT username, id_product, quantity
+		FROM shopping_cart
+		WHERE id_product = pnIdProduct;
+    END //
+
 CREATE FUNCTION getQuantity_shoppingCart(pnUsername VARCHAR(45), pnIdProduct INT)
 RETURNS INT
 DETERMINISTIC
