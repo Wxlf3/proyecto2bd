@@ -31,7 +31,6 @@ public class Profile extends javax.swing.JFrame {
         ContactComboBox.removeAllItems();
         ContactComboBox.addItem("Default");
         
-        
         ReviewsTextArea.setEditable(false);
         ReviewsTextArea.setLineWrap(true);
         ReviewsTextArea.setWrapStyleWord(true);   
@@ -42,7 +41,8 @@ public class Profile extends javax.swing.JFrame {
         ResultSet person = c.queryWithString(username, "get_person_with_username", false);
         ResultSet reviews = c.queryWithString(username, "get_reviews_of_user", true);
         ResultSet user = c.queryWithString(username, "get_user_with_username", true);
-        ResultSet orders = c.queryWithStrings(cu.getUsername(), username, "get_orders_of_2_users", true);
+        ResultSet orders1 = c.queryWithStrings(cu.getUsername(), username, "get_orders_of_2_users", true);
+        ResultSet orders2 = c.queryWithStrings(username, cu.getUsername(), "get_orders_of_2_users", true);
         
         try { 
             person.next();
@@ -60,8 +60,11 @@ public class Profile extends javax.swing.JFrame {
                 reviews.getString("name") + "): " + reviews.getString("comment") + "\n\n";
             }
             ReviewsTextArea.setText(reviewsText);
-            while (orders.next()) {
-                ContactComboBox.addItem(orders.getInt("id") + " " + orders.getString("name"));
+            while (orders1.next()) {
+                ContactComboBox.addItem(orders1.getInt("id") + " " + orders1.getString("name"));
+            }
+            while (orders2.next()) {
+                ContactComboBox.addItem(orders2.getInt("id") + " " + orders2.getString("name"));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error. Try later.");
