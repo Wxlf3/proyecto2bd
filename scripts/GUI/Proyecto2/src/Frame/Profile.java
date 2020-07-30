@@ -57,7 +57,7 @@ public class Profile extends javax.swing.JFrame {
             while (reviews.next()) {
                 reviewsText = reviewsText + reviews.getString("username_writer") + 
                 " (" + reviews.getFloat("score") + ", " + 
-                reviews.getString("name") + "):" + reviews.getString("comment") + "\n";
+                reviews.getString("name") + "): " + reviews.getString("comment") + "\n\n";
             }
             ReviewsTextArea.setText(reviewsText);
             while (orders.next()) {

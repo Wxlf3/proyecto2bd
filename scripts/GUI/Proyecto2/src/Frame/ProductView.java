@@ -54,6 +54,25 @@ public class ProductView extends javax.swing.JFrame {
         FieldCategory.setText(c.getStringWithInt(p.getId_category(), "getName_category", true));
         FieldPrice.setText(Float.toString(p.getPrice()));
         FieldSeller.setText(p.getUsername_seller());
+        ScoreText.setText(String.valueOf(c.getFloatWithId(p.getId(), "getScore_productReview", true)));
+       
+        ReviewTextArea.setEditable(false);
+        ReviewTextArea.setLineWrap(true);
+        ReviewTextArea.setWrapStyleWord(true);   
+        ReviewTextArea.setText("");
+        
+        ResultSet reviews = c.queryWithInt(p.getId(), "get_reviews_of_product", true);
+        try {
+            String reviewstxt = "";
+            while (reviews.next()) {
+                reviewstxt = reviewstxt + reviews.getString("username_writer") + 
+                " (" + reviews.getFloat("score") + ", " + 
+                "): " + reviews.getString("comment") + "\n\n";
+            }
+            ReviewTextArea.setText(reviewstxt);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Try again later.");
+        }
     }
 
 
@@ -93,10 +112,8 @@ public class ProductView extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         FieldReviewSeller = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        ScoreText = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        TableBuyerReview = new javax.swing.JTable();
         Decoration5 = new javax.swing.JPanel();
         Decoration4 = new javax.swing.JPanel();
         Decoration6 = new javax.swing.JPanel();
@@ -108,6 +125,8 @@ public class ProductView extends javax.swing.JFrame {
         ButtonConfirm1 = new javax.swing.JButton();
         FieldQuantity = new javax.swing.JTextField();
         ButtonWishlist = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ReviewTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -264,44 +283,17 @@ public class ProductView extends javax.swing.JFrame {
         jLabel10.setText("Score:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel11.setText("Estrellitas");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, -1));
+        ScoreText.setBackground(new java.awt.Color(255, 255, 255));
+        ScoreText.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ScoreText.setForeground(new java.awt.Color(76, 40, 130));
+        ScoreText.setText("0");
+        jPanel1.add(ScoreText, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(76, 40, 130));
         jLabel12.setText("Buyers review:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
-
-        jScrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        jScrollPane4.setForeground(new java.awt.Color(76, 40, 130));
-
-        TableBuyerReview.setAutoCreateColumnsFromModel(false);
-        TableBuyerReview.setAutoCreateRowSorter(true);
-        TableBuyerReview.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        TableBuyerReview.setForeground(new java.awt.Color(76, 40, 130));
-        TableBuyerReview.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "User", "Comment"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(TableBuyerReview);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 400, 110));
 
         Decoration5.setBackground(new java.awt.Color(239, 184, 16));
         Decoration5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -388,6 +380,12 @@ public class ProductView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 520, 220, 50));
+
+        ReviewTextArea.setColumns(20);
+        ReviewTextArea.setRows(5);
+        jScrollPane2.setViewportView(ReviewTextArea);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, 440, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -526,10 +524,10 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JTextField FieldQuantity;
     private javax.swing.JTextArea FieldReviewSeller;
     private javax.swing.JLabel FieldSeller;
-    private javax.swing.JTable TableBuyerReview;
+    private javax.swing.JTextArea ReviewTextArea;
+    private javax.swing.JLabel ScoreText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
@@ -541,8 +539,8 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
