@@ -10,3 +10,4 @@ call insert_category("Car");
 call insert_category("Motorcycle");
 call insert_category("Cameras");
 call insert_category("Lamp");
+call insert_category("Bike");
