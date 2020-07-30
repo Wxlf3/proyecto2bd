@@ -117,6 +117,7 @@ public class ProductView extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         FieldQuantity = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
+        ButtonConfirm1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,6 +173,11 @@ public class ProductView extends javax.swing.JFrame {
         ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
         ButtonBack.setBorder(null);
         ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -367,6 +373,17 @@ public class ProductView extends javax.swing.JFrame {
         jSeparator6.setForeground(new java.awt.Color(76, 40, 130));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 160, 20));
 
+        ButtonConfirm1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm1.setText("See Profile");
+        ButtonConfirm1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, 130, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -410,6 +427,18 @@ public class ProductView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
+    private void ButtonConfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm1ActionPerformed
+        Profile w = new Profile(FieldSeller.getText());
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonConfirm1ActionPerformed
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        //Profile w = new Profile(FieldSeller.getText());
+        //w.show();
+        //this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -448,6 +477,7 @@ public class ProductView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonConfirm;
+    private javax.swing.JButton ButtonConfirm1;
     private javax.swing.JButton ButtonLeft;
     private javax.swing.JButton ButtonPicture;
     private javax.swing.JButton ButtonRight;
