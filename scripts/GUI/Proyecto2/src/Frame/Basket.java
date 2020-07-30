@@ -218,14 +218,10 @@ public class Basket extends javax.swing.JFrame {
         try {
             for(product p : products)
             {
-                System.out.println("here");
                 ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
-                System.out.println("heree x1");
                 cart.next();
                 int quantity = cart.getInt("quantity");
-                System.out.println("heree x2");
-                order o = new order(p.getPrice(), quantity, p.getUsername_seller(), username, p.getId());
-                System.out.println("heree x3");
+                order o = new order(p.getPrice(), quantity, username, p.getId());
                 c.insertOrder(o);
             }
             JOptionPane.showMessageDialog(this, "Your purchase has been successful.");
