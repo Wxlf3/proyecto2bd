@@ -104,6 +104,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonWishlist = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         ButtonSettingsAdmin1 = new javax.swing.JButton();
+        ButtonLogOut1 = new javax.swing.JButton();
         PanelUser = new javax.swing.JPanel();
         ButtonProfileUser = new javax.swing.JButton();
         ButtonBasketUser = new javax.swing.JButton();
@@ -111,6 +112,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonSettingsUser = new javax.swing.JButton();
         ButtonWishlistUser = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        ButtonLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("framepanelprincipal"); // NOI18N
@@ -196,7 +198,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
         });
         PanelProducts.add(ButtonShow);
-        ButtonShow.setBounds(550, 450, 150, 30);
+        ButtonShow.setBounds(550, 450, 170, 30);
 
         jScrollPane1.setViewportView(PanelProducts);
 
@@ -242,7 +244,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
                 ButtonBasketActionPerformed(evt);
             }
         });
-        PanelGuest.add(ButtonBasket, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
+        PanelGuest.add(ButtonBasket, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 160, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
         PanelGuest.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
@@ -346,6 +348,19 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         });
         PanelAdmin.add(ButtonSettingsAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 400, 160, 30));
 
+        ButtonLogOut1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonLogOut1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonLogOut1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonLogOut1.setText("Log out");
+        ButtonLogOut1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonLogOut1.setContentAreaFilled(false);
+        ButtonLogOut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLogOut1ActionPerformed(evt);
+            }
+        });
+        PanelAdmin.add(ButtonLogOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 120, 40));
+
         PanelPrincipal.add(PanelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
         PanelUser.setBackground(new java.awt.Color(255, 255, 255));
@@ -418,6 +433,19 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
         PanelUser.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
+
+        ButtonLogOut.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonLogOut.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonLogOut.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonLogOut.setText("Log out");
+        ButtonLogOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonLogOut.setContentAreaFilled(false);
+        ButtonLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLogOutActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 120, 40));
 
         PanelPrincipal.add(PanelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
@@ -598,6 +626,24 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonShowActionPerformed
 
+    private void ButtonLogOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLogOut1ActionPerformed
+        currentUser c = currentUser.getInstance();
+        c.setUsername("Guest");
+        c.setId_userType(0);
+        Login w = new Login();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonLogOut1ActionPerformed
+
+    private void ButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLogOutActionPerformed
+        currentUser c = currentUser.getInstance();
+        c.setUsername("Guest");
+        c.setId_userType(0);
+        Login w = new Login();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonLogOutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -639,6 +685,8 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     private javax.swing.JButton ButtonBasket;
     private javax.swing.JButton ButtonBasketAdmin;
     private javax.swing.JButton ButtonBasketUser;
+    private javax.swing.JButton ButtonLogOut;
+    private javax.swing.JButton ButtonLogOut1;
     private javax.swing.JButton ButtonProfile;
     private javax.swing.JButton ButtonProfileAdmin;
     private javax.swing.JButton ButtonProfileUser;

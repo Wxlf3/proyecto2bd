@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Frame;
 
 import BL.product;
@@ -27,10 +22,10 @@ public class ProductView extends javax.swing.JFrame {
     public ProductView(int pId) {
         initComponents();
         currentUser cu = currentUser.getInstance(); 
-        
         ConnectDB c = new ConnectDB();
         try {
             ResultSet prod = c.queryWithInt(pId, "get_product_with_id",true);
+            prod.next();
             product p = new product(prod.getFloat("price"),
                                     prod.getString("name"),
                                     prod.getString("description"),
@@ -42,11 +37,11 @@ public class ProductView extends javax.swing.JFrame {
                                     prod.getInt("id_delivery_type"));
             p.setId(pId);      
             this.p = p;
+            fillIn();
+            cu.insertInHistory(p);
         } catch (Exception ex) {
-          JOptionPane.showMessageDialog(this, "Error. Try later.");
+         
         }
-        fillIn();
-        cu.insertInHistory(p);
     }
     
     public void fillIn()
@@ -59,6 +54,7 @@ public class ProductView extends javax.swing.JFrame {
         FieldPrice.setEnabled(false);
         FieldSeller.setEnabled(false);
         FieldReviewSeller.setEnabled(false);
+        FieldQuantity.setEnabled(true);
         
         FieldName.setText(p.getName());
         FieldDescription.setText(p.getDescription());
@@ -115,9 +111,9 @@ public class ProductView extends javax.swing.JFrame {
         FieldName1 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
-        FieldQuantity = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         ButtonConfirm1 = new javax.swing.JButton();
+        FieldQuantity = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,7 +225,7 @@ public class ProductView extends javax.swing.JFrame {
         FieldPrice.setBackground(new java.awt.Color(255, 255, 255));
         FieldPrice.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         FieldPrice.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(FieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 190, 20));
+        jPanel1.add(FieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 190, 20));
 
         jSeparator3.setForeground(new java.awt.Color(76, 40, 130));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 190, 20));
@@ -365,13 +361,8 @@ public class ProductView extends javax.swing.JFrame {
         jLabel13.setText("Quantity:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
 
-        FieldQuantity.setBackground(new java.awt.Color(255, 255, 255));
-        FieldQuantity.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        FieldQuantity.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, 160, 20));
-
         jSeparator6.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 160, 20));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 160, 20));
 
         ButtonConfirm1.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -383,6 +374,7 @@ public class ProductView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, 130, 30));
+        jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -434,9 +426,9 @@ public class ProductView extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
-        //Profile w = new Profile(FieldSeller.getText());
-        //w.show();
-        //this.dispose();
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     /**
