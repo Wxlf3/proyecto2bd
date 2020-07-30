@@ -27,10 +27,10 @@ public class QueryUser extends javax.swing.JFrame {
     
     public void FillIn(){
         BoxMonth.removeAllItems();
-        BoxCategoryAllProducts.addItem("3 months");
-        BoxCategoryAllProducts.addItem("6 months");
-        BoxCategoryAllProducts.addItem("12 months");
-        BoxCategoryAllProducts.addItem("All");
+        BoxMonth.addItem("3 months");
+        BoxMonth.addItem("6 months");
+        BoxMonth.addItem("12 months");
+        BoxMonth.addItem("All");
         ConnectDB c = new ConnectDB();
         
         BoxCategoryAllProducts.removeAllItems();
