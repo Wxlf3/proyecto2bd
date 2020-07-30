@@ -11,8 +11,8 @@ public class currentUser
 {
     private String username;
     private int id_userType;
-    private boolean isAdmin;
-    private ArrayList<product> history;
+    private boolean isAdmin ;
+    private ArrayList<product> history = new ArrayList<product>();
     private static currentUser instance = null;
     protected currentUser(){}
 

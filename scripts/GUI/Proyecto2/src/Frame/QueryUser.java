@@ -80,6 +80,7 @@ public class QueryUser extends javax.swing.JFrame {
         ButtonRefreshRecentlyViewedProducts = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         TableHistoryProducts = new javax.swing.JTable();
+        ButtonShow = new javax.swing.JButton();
         PanelListProductsSold = new javax.swing.JPanel();
         ButtonBack3 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -264,6 +265,17 @@ public class QueryUser extends javax.swing.JFrame {
         jScrollPane4.setViewportView(TableHistoryProducts);
 
         PanelRecentlyViewed.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
+
+        ButtonShow.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonShow.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonShow.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonShow.setText("View Product");
+        ButtonShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonShowActionPerformed(evt);
+            }
+        });
+        PanelRecentlyViewed.add(ButtonShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
 
         jTabbedPane1.addTab("Recently viewed products", PanelRecentlyViewed);
 
@@ -533,24 +545,27 @@ public class QueryUser extends javax.swing.JFrame {
         modelo.setColumnCount(0);
         try {
             modelo = (DefaultTableModel)TableHistoryProducts.getModel();
+            modelo.addColumn("Id");
             modelo.addColumn("Name");
-            modelo.addColumn("Average Score");
             modelo.addColumn("Description");
             modelo.addColumn("Price");
-            modelo.addColumn("Username Seller");
             for (product p : pList)
             {
-                modelo.addRow(new Object[]{p.getName(), p.getAverage_score(),p.getDescription(),p.getPrice(), p.getUsername_seller()});
+                modelo.addRow(new Object[]{p.getId(),p.getName(),p.getDescription(),p.getPrice()});
             }
             TableHistoryProducts.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
-        }
-        for (product p : pList)
-        {
-            
+            JOptionPane.showMessageDialog(this, "Is there a problem with this query.");
         }
     }//GEN-LAST:event_ButtonRefreshRecentlyViewedProductsActionPerformed
+
+    private void ButtonShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonShowActionPerformed
+        int row = TableHistoryProducts.getSelectedRow();
+        int pid = (int) TableHistoryProducts.getModel().getValueAt(row, 0);
+        ProductView w = new ProductView(pid);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonShowActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,6 +615,7 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConfirm3;
     private javax.swing.JButton ButtonConfirm4;
     private javax.swing.JButton ButtonRefreshRecentlyViewedProducts;
+    private javax.swing.JButton ButtonShow;
     private javax.swing.JTextField FieldNameProduct;
     private javax.swing.JList<String> ListProductsSold;
     private javax.swing.JPanel PanelListProductsSold;
