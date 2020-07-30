@@ -613,7 +613,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
             TableAllProducts.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error, Try again later.");
+            JOptionPane.showMessageDialog(this, "Error, Try again later." + ex);
         }
     }//GEN-LAST:event_ButtonSearchActionPerformed
 

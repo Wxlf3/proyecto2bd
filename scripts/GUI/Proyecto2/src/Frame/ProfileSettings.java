@@ -2,7 +2,9 @@
 package Frame;
 
 import BL.person;
+import BL.person_X_nationality;
 import BL.user;
+import BL.user_X_paymentMethod;
 import Connection.ConnectDB;
 import Connection.currentUser;
 import java.sql.ResultSet;
@@ -541,6 +543,10 @@ public class ProfileSettings extends javax.swing.JFrame {
             user u = new user(username, password, 0, 0, id_user_type);
             c.updatePerson(p);
             c.updateUser(u);
+            String id_nationality_element = (String) BoxNationality.getSelectedItem();
+            var id_nationality = c.getIntWithString(id_nationality_element, "getId_nationality", false);
+            person_X_nationality x = new person_X_nationality(id, id_nationality);
+            c.insertPersonXNationality(x);
             JOptionPane.showMessageDialog(this, "The person was updated successfully in the system.");
             }
             catch(Exception e)

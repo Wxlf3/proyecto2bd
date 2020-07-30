@@ -470,16 +470,19 @@ public class Registration extends javax.swing.JFrame {
         }
         else
         {
+            try{
             var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
             var id_district = c.getIntWithString(id_district_element, "getId_district", false);
             var id_nationality = c.getIntWithString(id_nationality_element, "getId_nationality", false);
-            person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
-            c.insertPerson(p);
             user u = new user(username, password, 0, 0, 2);
             c.insertUser(u);
+            person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
+            c.insertPerson(p);
             person_X_nationality n = new person_X_nationality(id,id_nationality);
             c.insertPersonXNationality(n);
             JOptionPane.showMessageDialog(this, "The person was created successfully in the system.");
+            }
+            catch(Exception ex){JOptionPane.showMessageDialog(this, "The person was not successfully in the system.");}
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
