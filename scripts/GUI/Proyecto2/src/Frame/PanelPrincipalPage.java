@@ -414,7 +414,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBasketActionPerformed
 
     private void ButtonProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileUserActionPerformed
-        Profile w = new Profile();
+        ProfileSettings w = new ProfileSettings();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileUserActionPerformed
@@ -450,7 +450,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonWishlistUserActionPerformed
 
     private void ButtonProfileAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonProfileAdminActionPerformed
-        Profile w = new Profile();
+        ProfileSettings w = new ProfileSettings();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileAdminActionPerformed
@@ -498,7 +498,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonHistoryActionPerformed
 
     private void ButtonProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProfileMouseClicked
-        Profile w = new Profile();
+        ProfileSettings w = new ProfileSettings();
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileMouseClicked
