@@ -1,10 +1,12 @@
 
 package Frame;
 
+import BL.product;
 import Connection.ConnectDB;
 import Connection.currentUser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -75,8 +77,9 @@ public class QueryUser extends javax.swing.JFrame {
         TablePurchaseHistory = new javax.swing.JTable();
         PanelRecentlyViewed = new javax.swing.JPanel();
         ButtonBack2 = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        ListRecentlyViewed = new javax.swing.JList<>();
+        ButtonRefreshRecentlyViewedProducts = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TableHistoryProducts = new javax.swing.JTable();
         PanelListProductsSold = new javax.swing.JPanel();
         ButtonBack3 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -236,17 +239,31 @@ public class QueryUser extends javax.swing.JFrame {
         });
         PanelRecentlyViewed.add(ButtonBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        jScrollPane5.setBorder(null);
-        jScrollPane5.setForeground(new java.awt.Color(76, 40, 130));
-        jScrollPane5.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        ButtonRefreshRecentlyViewedProducts.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonRefreshRecentlyViewedProducts.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonRefreshRecentlyViewedProducts.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonRefreshRecentlyViewedProducts.setText("Refresh");
+        ButtonRefreshRecentlyViewedProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonRefreshRecentlyViewedProductsActionPerformed(evt);
+            }
+        });
+        PanelRecentlyViewed.add(ButtonRefreshRecentlyViewedProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, 110, 30));
 
-        ListRecentlyViewed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ListRecentlyViewed.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        ListRecentlyViewed.setForeground(new java.awt.Color(76, 40, 130));
-        ListRecentlyViewed.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane5.setViewportView(ListRecentlyViewed);
+        TableHistoryProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(TableHistoryProducts);
 
-        PanelRecentlyViewed.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 340, 430));
+        PanelRecentlyViewed.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         jTabbedPane1.addTab("Recently viewed products", PanelRecentlyViewed);
 
@@ -507,6 +524,34 @@ public class QueryUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ButtonConfirm4ActionPerformed
 
+    private void ButtonRefreshRecentlyViewedProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRefreshRecentlyViewedProductsActionPerformed
+        currentUser cu = currentUser.getInstance();
+        ArrayList<product> pList = cu.getHistory();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableHistoryProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        try {
+            modelo = (DefaultTableModel)TableHistoryProducts.getModel();
+            modelo.addColumn("Name");
+            modelo.addColumn("Average Score");
+            modelo.addColumn("Description");
+            modelo.addColumn("Price");
+            modelo.addColumn("Username Seller");
+            for (product p : pList)
+            {
+                modelo.addRow(new Object[]{p.getName(), p.getAverage_score(),p.getDescription(),p.getPrice(), p.getUsername_seller()});
+            }
+            TableHistoryProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+        }
+        for (product p : pList)
+        {
+            
+        }
+    }//GEN-LAST:event_ButtonRefreshRecentlyViewedProductsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -554,15 +599,16 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConfirm2;
     private javax.swing.JButton ButtonConfirm3;
     private javax.swing.JButton ButtonConfirm4;
+    private javax.swing.JButton ButtonRefreshRecentlyViewedProducts;
     private javax.swing.JTextField FieldNameProduct;
     private javax.swing.JList<String> ListProductsSold;
-    private javax.swing.JList<String> ListRecentlyViewed;
     private javax.swing.JPanel PanelListProductsSold;
     private javax.swing.JPanel PanelPurchaseHistory;
     private javax.swing.JPanel PanelPurchasesMade;
     private javax.swing.JPanel PanelRecentlyViewed;
     private javax.swing.JPanel PanelSearchingProduct;
     private javax.swing.JTable TableAllProducts;
+    private javax.swing.JTable TableHistoryProducts;
     private javax.swing.JTable TablePurchaseHistory;
     private javax.swing.JTable TableUserPurchases;
     private javax.swing.JLabel jLabel6;
@@ -571,7 +617,7 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;

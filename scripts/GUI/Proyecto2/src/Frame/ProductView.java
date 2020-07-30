@@ -6,6 +6,12 @@
 package Frame;
 
 import BL.product;
+import BL.shopping_cart;
+import Connection.ConnectDB;
+import Connection.currentUser;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,16 +19,54 @@ import BL.product;
  */
 public class ProductView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ProductView
-     */
+    product p;
     public ProductView() {
         initComponents();
     }
     
-    public ProductView(int p) {
+    public ProductView(int pId) {
         initComponents();
+        currentUser cu = currentUser.getInstance(); 
+        
+        ConnectDB c = new ConnectDB();
+        try {
+            ResultSet prod = c.queryWithInt(pId, "get_product_with_id",true);
+            product p = new product(prod.getFloat("price"),
+                                    prod.getString("name"),
+                                    prod.getString("description"),
+                                    prod.getInt("quant_in_stock"),
+                                    prod.getBoolean("is_visible"),
+                                    prod.getFloat("average_score"),
+                                    prod.getInt("id_category"),
+                                    prod.getString("username_seller"),
+                                    prod.getInt("id_delivery_type"));
+            p.setId(pId);      
+            this.p = p;
+        } catch (Exception ex) {
+          JOptionPane.showMessageDialog(this, "Error. Try later.");
+        }
+        fillIn();
+        cu.insertInHistory(p);
     }
+    
+    public void fillIn()
+    {
+        currentUser cu = currentUser.getInstance();    
+        ConnectDB c = new ConnectDB();
+        FieldName.setEnabled(false);
+        FieldDescription.setEnabled(false);
+        FieldCategory.setEnabled(false);
+        FieldPrice.setEnabled(false);
+        FieldSeller.setEnabled(false);
+        FieldReviewSeller.setEnabled(false);
+        
+        FieldName.setText(p.getName());
+        FieldDescription.setText(p.getDescription());
+        FieldCategory.setText(c.getStringWithInt(p.getId_category(), "getName_category", true));
+        FieldPrice.setText(Float.toString(p.getPrice()));
+        FieldSeller.setText(p.getUsername_seller());
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +114,9 @@ public class ProductView extends javax.swing.JFrame {
         Decoration8 = new javax.swing.JPanel();
         FieldName1 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        FieldQuantity = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +159,11 @@ public class ProductView extends javax.swing.JFrame {
         ButtonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shopping-basket.png"))); // NOI18N
         ButtonConfirm.setText("  Add to the basket");
         ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 240, 50));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,7 +198,7 @@ public class ProductView extends javax.swing.JFrame {
         FieldDescription.setRows(5);
         jScrollPane1.setViewportView(FieldDescription);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 240, 70));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 240, 70));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -301,6 +353,20 @@ public class ProductView extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(76, 40, 130));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 190, 20));
 
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel13.setText("Quantity:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
+
+        FieldQuantity.setBackground(new java.awt.Color(255, 255, 255));
+        FieldQuantity.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        FieldQuantity.setForeground(new java.awt.Color(76, 40, 130));
+        jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, 160, 20));
+
+        jSeparator6.setForeground(new java.awt.Color(76, 40, 130));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 160, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -324,6 +390,25 @@ public class ProductView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        String quantity_element = FieldQuantity.getText();
+        if(quantity_element.isEmpty())
+            JOptionPane.showMessageDialog(this, "Fill the quantity field.");
+        else
+        {
+            try{
+                currentUser cu = currentUser.getInstance(); 
+                ConnectDB c = new ConnectDB();
+                shopping_cart sc = new shopping_cart(cu.getUsername(),p.getId() , Integer.parseInt(quantity_element));
+                c.insertShoppingCart(sc);
+                JOptionPane.showMessageDialog(this, "The product was added to the basket succesfully.");
+            }catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(this, "The product was not added to the basket.");
+            }
+        }
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,6 +460,7 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JLabel FieldName;
     private javax.swing.JLabel FieldName1;
     private javax.swing.JLabel FieldPrice;
+    private javax.swing.JLabel FieldQuantity;
     private javax.swing.JTextArea FieldReviewSeller;
     private javax.swing.JLabel FieldSeller;
     private javax.swing.JTable TableBuyerReview;
@@ -382,6 +468,7 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -398,5 +485,6 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }

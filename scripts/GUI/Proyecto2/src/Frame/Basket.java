@@ -4,16 +4,9 @@ package Frame;
 import BL.product;
 import Connection.ConnectDB;
 import Connection.currentUser;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,8 +20,7 @@ public class Basket extends javax.swing.JFrame {
     }
     
     private void fillInTable() {
-        currentUser cu = currentUser.getInstance();
-        String username = cu.getUsername();      
+        currentUser cu = currentUser.getInstance();    
         products.clear();
         ConnectDB c = new ConnectDB();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -61,18 +53,6 @@ public class Basket extends javax.swing.JFrame {
             TableProducts.setModel(modelo);        
         } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Error. Try later.");
-        } finally{
-            for(product p : products){
-                JButton Bttnproduct = new JButton();
-                Bttnproduct.setText(p.getName());
-                Bttnproduct.setIcon(new ImageIcon("close-button.png"));
-                PanelProducts.add(Bttnproduct);
-                Bttnproduct.addActionListener(new ActionListener(){  
-                    public void actionPerformed(ActionEvent e){  
-                        cu.insertInHistory(p);
-                    }  
-                });
-            }
         }
     }
     /**
@@ -228,11 +208,27 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        JOptionPane.showMessageDialog(this, "Your purchase has been successful.");
-        /*Registrar la compra en el sistema*/
-        PanelPrincipalPage w = new PanelPrincipalPage();
-        w.show();
-        this.dispose();
+        ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
+        String username = cu.getUsername();
+        try {
+            for(product p : products)
+            {
+                int quantity;
+
+                    ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
+                    quantity = cart.getInt("quantity");
+                    //order o = new order(p.getPrice(), quantity, date, username, p.getId());
+                    //c.insertOrder(o);
+            }
+            JOptionPane.showMessageDialog(this, "Your purchase has been successful.");
+            PanelPrincipalPage w = new PanelPrincipalPage();
+            w.show();
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error. Try again later.");
+        }
+        
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRefreshActionPerformed
