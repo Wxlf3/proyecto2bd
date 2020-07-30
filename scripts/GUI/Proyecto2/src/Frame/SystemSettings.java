@@ -1,12 +1,14 @@
 
 package Frame;
 
+import BL.category;
 import BL.city;
 import BL.country;
 import BL.delivery_type;
 import BL.district;
 import BL.gender;
 import BL.nationality;
+import BL.payment_method;
 import BL.state;
 import Connection.ConnectDB;
 import Connection.currentUser;
@@ -31,7 +33,17 @@ public class SystemSettings extends javax.swing.JFrame {
         BoxShippingMethod.removeAllItems();
         BoxShippingMethod.addItem("Default");
         
-        ResultSet shippingMethod = c.query("`getAll_delivery_type`",true);
+        ResultSet shippingMethod = c.query("getAll_delivery_type",true);
+        
+        BoxCategory.removeAllItems();
+        BoxCategory.addItem("Default");
+        
+        ResultSet category = c.query("getAll_category ",true);
+        
+        BoxPayment.removeAllItems();
+        BoxPayment.addItem("Default");
+        
+        ResultSet payment_method = c.query("getAll_paymentMethod ",true);
         
         BoxNationality.removeAllItems();
         BoxNationality.addItem("Default");
@@ -63,10 +75,19 @@ public class SystemSettings extends javax.swing.JFrame {
         
         ResultSet district = c.query("`getAll_district` ",false);
         
+
         try {
             while(shippingMethod.next())
             {
                 BoxShippingMethod.addItem(String.valueOf(shippingMethod.getString("description")));
+            }
+            while(category.next())
+            {
+                BoxCategory.addItem(String.valueOf(category.getString("name")));
+            }
+            while(payment_method.next())
+            {
+                BoxPayment.addItem(String.valueOf(payment_method.getString("description")));
             }
             while(nationality.next())
             {
@@ -109,23 +130,30 @@ public class SystemSettings extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         ButtonBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Decoration = new javax.swing.JPanel();
+        PanelDecoration1 = new javax.swing.JPanel();
+        PanelDecoration2 = new javax.swing.JPanel();
+        ButtonConfirm1 = new javax.swing.JButton();
+        ButtonConfirm = new javax.swing.JButton();
+        ButtonCancel = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        BoxNationality = new javax.swing.JComboBox<>();
+        BoxGender = new javax.swing.JComboBox<>();
+        ButtonAddPic2 = new javax.swing.JButton();
+        ButtonDeletePic2 = new javax.swing.JButton();
+        ButtonDeletePic1 = new javax.swing.JButton();
+        ButtonAddPic1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        ButtonCancel = new javax.swing.JButton();
-        ButtonAddPic = new javax.swing.JButton();
-        ButtonDeletePic = new javax.swing.JButton();
-        ButtonAddPic1 = new javax.swing.JButton();
-        ButtonDeletePic1 = new javax.swing.JButton();
-        ButtonAddPic2 = new javax.swing.JButton();
-        ButtonDeletePic2 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        BoxCountry = new javax.swing.JComboBox<>();
+        BoxState = new javax.swing.JComboBox<>();
+        BoxCity = new javax.swing.JComboBox<>();
+        BoxDistrict = new javax.swing.JComboBox<>();
         ButtonAddPic3 = new javax.swing.JButton();
         ButtonDeletePic3 = new javax.swing.JButton();
         ButtonDeletePic4 = new javax.swing.JButton();
@@ -134,18 +162,19 @@ public class SystemSettings extends javax.swing.JFrame {
         ButtonDeletePic5 = new javax.swing.JButton();
         ButtonDeletePic6 = new javax.swing.JButton();
         ButtonAddPic6 = new javax.swing.JButton();
-        BoxDistrict = new javax.swing.JComboBox<>();
-        BoxCountry = new javax.swing.JComboBox<>();
-        BoxState = new javax.swing.JComboBox<>();
-        BoxCity = new javax.swing.JComboBox<>();
-        BoxGender = new javax.swing.JComboBox<>();
-        BoxNationality = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        BoxCategory = new javax.swing.JComboBox<>();
+        ButtonAddPic7 = new javax.swing.JButton();
+        ButtonDeletePic7 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        BoxPayment = new javax.swing.JComboBox<>();
+        ButtonAddPic8 = new javax.swing.JButton();
+        ButtonDeletePic8 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         BoxShippingMethod = new javax.swing.JComboBox<>();
-        Decoration = new javax.swing.JPanel();
-        PanelDecoration1 = new javax.swing.JPanel();
-        PanelDecoration2 = new javax.swing.JPanel();
-        ButtonConfirm1 = new javax.swing.JButton();
-        ButtonConfirm = new javax.swing.JButton();
+        ButtonAddPic = new javax.swing.JButton();
+        ButtonDeletePic = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -172,288 +201,6 @@ public class SystemSettings extends javax.swing.JFrame {
         jLabel1.setText("System Settings");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, 30));
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel10.setText("Nationality:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
-
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel11.setText("Gender:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
-
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel12.setText("District:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
-
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel13.setText("Method:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
-
-        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel19.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel19.setText("Shipping");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
-
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel14.setText("Residence");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
-
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel15.setText("Country:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
-
-        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel16.setText("State:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
-
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel17.setText("City:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, -1));
-
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel18.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel18.setText("Person");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
-
-        ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonCancel.setText("Cancel");
-        ButtonCancel.setBorder(null);
-        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCancelActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 110, 30));
-
-        ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic.setBorder(null);
-        ButtonAddPic.setContentAreaFilled(false);
-        ButtonAddPic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPicActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 100, 50, 50));
-
-        ButtonDeletePic.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic.setBorder(null);
-        ButtonDeletePic.setContentAreaFilled(false);
-        ButtonDeletePic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePicActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 100, 50, 50));
-
-        ButtonAddPic1.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic1.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic1.setBorder(null);
-        ButtonAddPic1.setContentAreaFilled(false);
-        ButtonAddPic1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPic1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 50, 50));
-
-        ButtonDeletePic1.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic1.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic1.setBorder(null);
-        ButtonDeletePic1.setContentAreaFilled(false);
-        ButtonDeletePic1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePic1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 50, 50));
-
-        ButtonAddPic2.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic2.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic2.setBorder(null);
-        ButtonAddPic2.setContentAreaFilled(false);
-        ButtonAddPic2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPic2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, 50, 50));
-
-        ButtonDeletePic2.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic2.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic2.setBorder(null);
-        ButtonDeletePic2.setContentAreaFilled(false);
-        ButtonDeletePic2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePic2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 50, 50));
-
-        ButtonAddPic3.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic3.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic3.setBorder(null);
-        ButtonAddPic3.setContentAreaFilled(false);
-        ButtonAddPic3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPic3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 310, 50, 50));
-
-        ButtonDeletePic3.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic3.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic3.setBorder(null);
-        ButtonDeletePic3.setContentAreaFilled(false);
-        ButtonDeletePic3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePic3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 310, 50, 50));
-
-        ButtonDeletePic4.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic4.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic4.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic4.setBorder(null);
-        ButtonDeletePic4.setContentAreaFilled(false);
-        ButtonDeletePic4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePic4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 350, 50, 50));
-
-        ButtonAddPic4.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic4.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic4.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic4.setBorder(null);
-        ButtonAddPic4.setContentAreaFilled(false);
-        ButtonAddPic4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPic4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, 50, 50));
-
-        ButtonAddPic5.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic5.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic5.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic5.setBorder(null);
-        ButtonAddPic5.setContentAreaFilled(false);
-        ButtonAddPic5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPic5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 390, 50, 50));
-
-        ButtonDeletePic5.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic5.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic5.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic5.setBorder(null);
-        ButtonDeletePic5.setContentAreaFilled(false);
-        ButtonDeletePic5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePic5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 390, 50, 50));
-
-        ButtonDeletePic6.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonDeletePic6.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonDeletePic6.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonDeletePic6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
-        ButtonDeletePic6.setBorder(null);
-        ButtonDeletePic6.setContentAreaFilled(false);
-        ButtonDeletePic6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletePic6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonDeletePic6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 430, 50, 50));
-
-        ButtonAddPic6.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonAddPic6.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonAddPic6.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonAddPic6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
-        ButtonAddPic6.setBorder(null);
-        ButtonAddPic6.setContentAreaFilled(false);
-        ButtonAddPic6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddPic6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonAddPic6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 430, 50, 50));
-
-        BoxDistrict.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxDistrict.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxDistrict, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 170, 30));
-
-        BoxCountry.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCountry.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 170, 30));
-
-        BoxState.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxState.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxState, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 170, 30));
-
-        BoxCity.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxCity.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 170, 30));
-
-        BoxGender.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxGender.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 170, -1));
-
-        BoxNationality.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxNationality.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 170, -1));
-
-        BoxShippingMethod.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        BoxShippingMethod.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(BoxShippingMethod, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 170, -1));
-
         Decoration.setBackground(new java.awt.Color(255, 255, 255));
         Decoration.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -467,10 +214,10 @@ public class SystemSettings extends javax.swing.JFrame {
         );
         PanelDecoration1Layout.setVerticalGroup(
             PanelDecoration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
 
-        Decoration.add(PanelDecoration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 580));
+        Decoration.add(PanelDecoration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 620));
 
         PanelDecoration2.setBackground(new java.awt.Color(239, 184, 16));
 
@@ -482,10 +229,10 @@ public class SystemSettings extends javax.swing.JFrame {
         );
         PanelDecoration2Layout.setVerticalGroup(
             PanelDecoration2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
 
-        Decoration.add(PanelDecoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 580));
+        Decoration.add(PanelDecoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 620));
 
         ButtonConfirm1.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -496,7 +243,7 @@ public class SystemSettings extends javax.swing.JFrame {
                 ButtonConfirm1ActionPerformed(evt);
             }
         });
-        Decoration.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 520, 110, 30));
+        Decoration.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 570, 110, 30));
 
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -508,9 +255,363 @@ public class SystemSettings extends javax.swing.JFrame {
                 ButtonConfirmActionPerformed(evt);
             }
         });
-        Decoration.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 110, 30));
+        Decoration.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 570, 110, 30));
 
-        jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
+        ButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonCancel.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonCancel.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonCancel.setText("Cancel");
+        ButtonCancel.setBorder(null);
+        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 570, 110, 30));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel10.setText("Nationality:");
+        Decoration.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
+
+        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel18.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel18.setText("Person");
+        Decoration.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
+
+        BoxNationality.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxNationality.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 170, -1));
+
+        BoxGender.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxGender.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 170, -1));
+
+        ButtonAddPic2.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic2.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic2.setBorder(null);
+        ButtonAddPic2.setContentAreaFilled(false);
+        ButtonAddPic2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic2ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 50, 50));
+
+        ButtonDeletePic2.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic2.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic2.setBorder(null);
+        ButtonDeletePic2.setContentAreaFilled(false);
+        ButtonDeletePic2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic2ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, 50, 50));
+
+        ButtonDeletePic1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic1.setBorder(null);
+        ButtonDeletePic1.setContentAreaFilled(false);
+        ButtonDeletePic1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic1ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 250, 50, 50));
+
+        ButtonAddPic1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic1.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic1.setBorder(null);
+        ButtonAddPic1.setContentAreaFilled(false);
+        ButtonAddPic1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic1ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 50, 50));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel11.setText("Gender:");
+        Decoration.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel14.setText("Residence");
+        Decoration.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, -1, -1));
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel15.setText("Country:");
+        Decoration.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel16.setText("State:");
+        Decoration.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel17.setText("City:");
+        Decoration.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, -1, -1));
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel12.setText("District:");
+        Decoration.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, -1, -1));
+
+        BoxCountry.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxCountry.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 170, 30));
+
+        BoxState.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxState.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxState, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 170, 30));
+
+        BoxCity.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxCity.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 470, 170, 30));
+
+        BoxDistrict.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxDistrict.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxDistrict, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 170, 30));
+
+        ButtonAddPic3.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic3.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic3.setBorder(null);
+        ButtonAddPic3.setContentAreaFilled(false);
+        ButtonAddPic3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic3ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 50, 50));
+
+        ButtonDeletePic3.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic3.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic3.setBorder(null);
+        ButtonDeletePic3.setContentAreaFilled(false);
+        ButtonDeletePic3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic3ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 50, 50));
+
+        ButtonDeletePic4.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic4.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic4.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic4.setBorder(null);
+        ButtonDeletePic4.setContentAreaFilled(false);
+        ButtonDeletePic4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic4ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, 50, 50));
+
+        ButtonAddPic4.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic4.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic4.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic4.setBorder(null);
+        ButtonAddPic4.setContentAreaFilled(false);
+        ButtonAddPic4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic4ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 50, 50));
+
+        ButtonAddPic5.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic5.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic5.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic5.setBorder(null);
+        ButtonAddPic5.setContentAreaFilled(false);
+        ButtonAddPic5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic5ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 460, 50, 50));
+
+        ButtonDeletePic5.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic5.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic5.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic5.setBorder(null);
+        ButtonDeletePic5.setContentAreaFilled(false);
+        ButtonDeletePic5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic5ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 460, 50, 50));
+
+        ButtonDeletePic6.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic6.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic6.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic6.setBorder(null);
+        ButtonDeletePic6.setContentAreaFilled(false);
+        ButtonDeletePic6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic6ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 500, 50, 50));
+
+        ButtonAddPic6.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic6.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic6.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic6.setBorder(null);
+        ButtonAddPic6.setContentAreaFilled(false);
+        ButtonAddPic6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic6ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, 50, 50));
+
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel20.setText("Category:");
+        Decoration.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
+
+        BoxCategory.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxCategory.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 170, -1));
+
+        ButtonAddPic7.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic7.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic7.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic7.setBorder(null);
+        ButtonAddPic7.setContentAreaFilled(false);
+        ButtonAddPic7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic7ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 50, 50));
+
+        ButtonDeletePic7.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic7.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic7.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic7.setBorder(null);
+        ButtonDeletePic7.setContentAreaFilled(false);
+        ButtonDeletePic7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic7ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic7, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, 50, 50));
+
+        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel21.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel21.setText("Paying method:");
+        Decoration.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
+
+        BoxPayment.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxPayment.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 170, -1));
+
+        ButtonAddPic8.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic8.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic8.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic8.setBorder(null);
+        ButtonAddPic8.setContentAreaFilled(false);
+        ButtonAddPic8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPic8ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic8, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, 50, 50));
+
+        ButtonDeletePic8.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic8.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic8.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic8.setBorder(null);
+        ButtonDeletePic8.setContentAreaFilled(false);
+        ButtonDeletePic8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePic8ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 190, 50, 50));
+
+        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel19.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel19.setText("Product");
+        Decoration.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel13.setText("Delivery Type:");
+        Decoration.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
+
+        BoxShippingMethod.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxShippingMethod.setForeground(new java.awt.Color(76, 40, 130));
+        Decoration.add(BoxShippingMethod, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 170, -1));
+
+        ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonAddPic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonAddPic.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonAddPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add(1).png"))); // NOI18N
+        ButtonAddPic.setBorder(null);
+        ButtonAddPic.setContentAreaFilled(false);
+        ButtonAddPic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddPicActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonAddPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 50, 50));
+
+        ButtonDeletePic.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonDeletePic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonDeletePic.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonDeletePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/close-button.png"))); // NOI18N
+        ButtonDeletePic.setBorder(null);
+        ButtonDeletePic.setContentAreaFilled(false);
+        ButtonDeletePic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletePicActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonDeletePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 90, 50, 50));
+
+        jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 620));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -734,6 +835,56 @@ public class SystemSettings extends javax.swing.JFrame {
         fillIn();
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
+    private void ButtonAddPic7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic7ActionPerformed
+        try{    
+            String n = (String) JOptionPane.showInputDialog(null,"New category: ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            category x = new category(n);
+            c.insertCategory(x);
+            JOptionPane.showMessageDialog(this, "The category was created successfully.");
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The category was not created successfully.");}
+    }//GEN-LAST:event_ButtonAddPic7ActionPerformed
+
+    private void ButtonDeletePic7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic7ActionPerformed
+        try{
+            ConnectDB c = new ConnectDB();
+            String category = (String) BoxCategory.getSelectedItem();
+            if(category == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the category box.");
+            else
+            {
+                int id_category = c.getIntWithString(category, "`getId_category`", true);
+                c.removeWithId(id_category,"`remove_category`",true);
+                JOptionPane.showMessageDialog(this, "The category was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The category was not deleted successfully.");} 
+    }//GEN-LAST:event_ButtonDeletePic7ActionPerformed
+
+    private void ButtonAddPic8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic8ActionPerformed
+        try{    
+            String n = (String) JOptionPane.showInputDialog(null,"New payment method: ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            payment_method x = new payment_method(n);
+            c.insertPaymentMethod(x);
+            JOptionPane.showMessageDialog(this, "The payment method was created successfully.");
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The payment method was not created successfully.");}
+    }//GEN-LAST:event_ButtonAddPic8ActionPerformed
+
+    private void ButtonDeletePic8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic8ActionPerformed
+       try{
+            ConnectDB c = new ConnectDB();
+            String pm = (String) BoxPayment.getSelectedItem();
+            if(pm == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the payment method box.");
+            else
+            {
+                int id = c.getIntWithString(pm, "`getId_paymentMethod`", true);
+                c.removeWithId(id,"`remove_paymentMethod`",true);
+                JOptionPane.showMessageDialog(this, "The payment method was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The payment method was not deleted successfully.");} 
+    }//GEN-LAST:event_ButtonDeletePic8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -770,11 +921,13 @@ public class SystemSettings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> BoxCategory;
     private javax.swing.JComboBox<String> BoxCity;
     private javax.swing.JComboBox<String> BoxCountry;
     private javax.swing.JComboBox<String> BoxDistrict;
     private javax.swing.JComboBox<String> BoxGender;
     private javax.swing.JComboBox<String> BoxNationality;
+    private javax.swing.JComboBox<String> BoxPayment;
     private javax.swing.JComboBox<String> BoxShippingMethod;
     private javax.swing.JComboBox<String> BoxState;
     private javax.swing.JButton ButtonAddPic;
@@ -784,6 +937,8 @@ public class SystemSettings extends javax.swing.JFrame {
     private javax.swing.JButton ButtonAddPic4;
     private javax.swing.JButton ButtonAddPic5;
     private javax.swing.JButton ButtonAddPic6;
+    private javax.swing.JButton ButtonAddPic7;
+    private javax.swing.JButton ButtonAddPic8;
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
@@ -795,6 +950,8 @@ public class SystemSettings extends javax.swing.JFrame {
     private javax.swing.JButton ButtonDeletePic4;
     private javax.swing.JButton ButtonDeletePic5;
     private javax.swing.JButton ButtonDeletePic6;
+    private javax.swing.JButton ButtonDeletePic7;
+    private javax.swing.JButton ButtonDeletePic8;
     private javax.swing.JPanel Decoration;
     private javax.swing.JPanel PanelDecoration1;
     private javax.swing.JPanel PanelDecoration2;
@@ -809,6 +966,8 @@ public class SystemSettings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
