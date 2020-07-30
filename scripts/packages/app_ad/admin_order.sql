@@ -10,10 +10,10 @@ DROP FUNCTION IF EXISTS getIdProduct_order;
 DROP PROCEDURE IF EXISTS getAll_order;
 DELIMITER //
 
-CREATE PROCEDURE insert_order(IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnDate DATETIME, IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
+CREATE PROCEDURE insert_order(IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
     BEGIN
-            INSERT INTO `order`(price, quantity, date, user_buyer, id_product)
-            VALUES (pnPrice, pnQuantity, pnDate, pnUserBuyer, pnIdProduct);
+            INSERT INTO `order`(price, quantity, user_buyer, id_product)
+            VALUES (pnPrice, pnQuantity, pnUserBuyer, pnIdProduct);
     END //
 
 CREATE PROCEDURE update_order(IN pnId int, IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnDate DATETIME, IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
