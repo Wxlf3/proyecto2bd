@@ -1,4 +1,3 @@
-
 package Frame;
 
 import BL.product;
@@ -12,6 +11,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class PanelPrincipalPage extends javax.swing.JFrame {
 
@@ -20,6 +20,36 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     public PanelPrincipalPage() {
         initComponents();
         setLocationRelativeTo(null);
+        clear();
+    }
+    
+    public void clear()
+    {
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableAllProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        modelo = (DefaultTableModel)TableAllProducts.getModel();
+        modelo.addColumn("Id");
+        modelo.addColumn("Price");
+        modelo.addColumn("Name");
+        modelo.addColumn("Description");
+       
+        ConnectDB c = new ConnectDB();
+        
+        BoxCategory.removeAllItems();
+        BoxCategory.addItem("Default");
+
+        ResultSet category = c.query("getAll_category",true);
+        
+        try {
+            while(category.next())
+            {
+                BoxCategory.addItem(String.valueOf(category.getString("name")));
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
     }
     
     public void lock()
@@ -52,14 +82,21 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         PanelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         PanelProducts = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TableAllProducts = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        FieldNameProduct = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        BoxCategory = new javax.swing.JComboBox<>();
+        ButtonSearch = new javax.swing.JButton();
+        ButtonShow = new javax.swing.JButton();
         PanelGuest = new javax.swing.JPanel();
         ButtonProfile = new javax.swing.JButton();
-        ButtonHistory = new javax.swing.JButton();
         ButtonBasket = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         PanelAdmin = new javax.swing.JPanel();
         ButtonProfileAdmin = new javax.swing.JButton();
-        ButtonHistoryAdmin = new javax.swing.JButton();
         ButtonBasketAdmin = new javax.swing.JButton();
         ButtonQueryAdmin = new javax.swing.JButton();
         ButtonStatistics = new javax.swing.JButton();
@@ -69,7 +106,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonSettingsAdmin1 = new javax.swing.JButton();
         PanelUser = new javax.swing.JPanel();
         ButtonProfileUser = new javax.swing.JButton();
-        ButtonHistoryUser = new javax.swing.JButton();
         ButtonBasketUser = new javax.swing.JButton();
         ButtonQueryUser = new javax.swing.JButton();
         ButtonSettingsUser = new javax.swing.JButton();
@@ -89,7 +125,79 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         PanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
-        PanelProducts.setLayout(new java.awt.GridLayout(0, 4));
+        PanelProducts.setLayout(null);
+
+        TableAllProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(TableAllProducts);
+
+        PanelProducts.add(jScrollPane4);
+        jScrollPane4.setBounds(0, 0, 454, 580);
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel8.setText("Name Product: ");
+        PanelProducts.add(jLabel8);
+        jLabel8.setBounds(550, 127, 134, 42);
+
+        FieldNameProduct.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        FieldNameProduct.setForeground(new java.awt.Color(76, 40, 130));
+        FieldNameProduct.setBorder(null);
+        PanelProducts.add(FieldNameProduct);
+        FieldNameProduct.setBounds(540, 180, 160, 30);
+
+        jSeparator1.setForeground(new java.awt.Color(76, 40, 130));
+        jSeparator1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        PanelProducts.add(jSeparator1);
+        jSeparator1.setBounds(540, 210, 160, 30);
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel7.setText("Category:");
+        PanelProducts.add(jLabel7);
+        jLabel7.setBounds(560, 250, 83, 22);
+
+        BoxCategory.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        BoxCategory.setForeground(new java.awt.Color(76, 40, 130));
+        PanelProducts.add(BoxCategory);
+        BoxCategory.setBounds(530, 300, 170, 30);
+
+        ButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonSearch.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonSearch.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonSearch.setText("Search");
+        ButtonSearch.setBorder(null);
+        ButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSearchActionPerformed(evt);
+            }
+        });
+        PanelProducts.add(ButtonSearch);
+        ButtonSearch.setBounds(560, 360, 110, 30);
+
+        ButtonShow.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonShow.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonShow.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonShow.setText("View Product");
+        ButtonShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonShowActionPerformed(evt);
+            }
+        });
+        PanelProducts.add(ButtonShow);
+        ButtonShow.setBounds(550, 450, 150, 30);
+
         jScrollPane1.setViewportView(PanelProducts);
 
         PanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 580));
@@ -123,19 +231,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         });
         PanelGuest.add(ButtonProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
 
-        ButtonHistory.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonHistory.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonHistory.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonHistory.setText("My history");
-        ButtonHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonHistory.setContentAreaFilled(false);
-        ButtonHistory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonHistoryActionPerformed(evt);
-            }
-        });
-        PanelGuest.add(ButtonHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
-
         ButtonBasket.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBasket.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         ButtonBasket.setForeground(new java.awt.Color(76, 40, 130));
@@ -168,19 +263,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
         });
         PanelAdmin.add(ButtonProfileAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
-
-        ButtonHistoryAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonHistoryAdmin.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonHistoryAdmin.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonHistoryAdmin.setText("My history");
-        ButtonHistoryAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonHistoryAdmin.setContentAreaFilled(false);
-        ButtonHistoryAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonHistoryAdminActionPerformed(evt);
-            }
-        });
-        PanelAdmin.add(ButtonHistoryAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
 
         ButtonBasketAdmin.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBasketAdmin.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -280,19 +362,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             }
         });
         PanelUser.add(ButtonProfileUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
-
-        ButtonHistoryUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonHistoryUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonHistoryUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonHistoryUser.setText("My history");
-        ButtonHistoryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonHistoryUser.setContentAreaFilled(false);
-        ButtonHistoryUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonHistoryUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonHistoryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
 
         ButtonBasketUser.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBasketUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -419,12 +488,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonProfileUserActionPerformed
 
-    private void ButtonHistoryUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryUserActionPerformed
-        History w = new History();
-        w.show();
-        this.dispose();
-    }//GEN-LAST:event_ButtonHistoryUserActionPerformed
-
     private void ButtonBasketUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketUserActionPerformed
         Basket w = new Basket();
         w.show();
@@ -454,12 +517,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonProfileAdminActionPerformed
-
-    private void ButtonHistoryAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryAdminActionPerformed
-        History w = new History();
-        w.show();
-        this.dispose();
-    }//GEN-LAST:event_ButtonHistoryAdminActionPerformed
 
     private void ButtonBasketAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBasketAdminActionPerformed
         Basket w = new Basket();
@@ -491,12 +548,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonWishlistActionPerformed
 
-    private void ButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryActionPerformed
-        History w = new History();
-        w.show();
-        this.dispose();
-    }//GEN-LAST:event_ButtonHistoryActionPerformed
-
     private void ButtonProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProfileMouseClicked
         ProfileSettings w = new ProfileSettings();
         w.show();
@@ -508,6 +559,44 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonSettingsAdmin1ActionPerformed
+
+    private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableAllProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        String name = FieldNameProduct.getText();
+        String category_element = (String) BoxCategory.getSelectedItem();
+        int id_category;
+        if(category_element == "Default")
+            id_category = 0;
+        else
+            id_category = c.getIntWithString(category_element, "getId_category", true);
+        ResultSet q = c.queryWithStringAndInt(name, id_category,"search_product",true);
+        try {
+            modelo = (DefaultTableModel)TableAllProducts.getModel();
+            modelo.addColumn("Id");
+            modelo.addColumn("Price");
+            modelo.addColumn("Name");
+            modelo.addColumn("Description");
+            while(q.next())
+            {
+                modelo.addRow(new Object[]{q.getInt("id"),q.getFloat("price"),q.getString("name"),q.getString("description")});
+            }
+            TableAllProducts.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error, Try again later.");
+        }
+    }//GEN-LAST:event_ButtonSearchActionPerformed
+
+    private void ButtonShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonShowActionPerformed
+        int row = TableAllProducts.getSelectedRow();
+        int pid = (int) TableAllProducts.getModel().getValueAt(row, 0);
+        ProductView w = new ProductView(pid);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonShowActionPerformed
 
     /**
      * @param args the command line arguments
@@ -546,31 +635,38 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> BoxCategory;
     private javax.swing.JButton ButtonBasket;
     private javax.swing.JButton ButtonBasketAdmin;
     private javax.swing.JButton ButtonBasketUser;
-    private javax.swing.JButton ButtonHistory;
-    private javax.swing.JButton ButtonHistoryAdmin;
-    private javax.swing.JButton ButtonHistoryUser;
     private javax.swing.JButton ButtonProfile;
     private javax.swing.JButton ButtonProfileAdmin;
     private javax.swing.JButton ButtonProfileUser;
     private javax.swing.JButton ButtonQueryAdmin;
     private javax.swing.JButton ButtonQueryUser;
+    private javax.swing.JButton ButtonSearch;
     private javax.swing.JButton ButtonSettingsAdmin;
     private javax.swing.JButton ButtonSettingsAdmin1;
     private javax.swing.JButton ButtonSettingsUser;
+    private javax.swing.JButton ButtonShow;
     private javax.swing.JButton ButtonStatistics;
     private javax.swing.JButton ButtonWishlist;
     private javax.swing.JButton ButtonWishlistUser;
+    private javax.swing.JTextField FieldNameProduct;
     private javax.swing.JPanel PanelAdmin;
     private javax.swing.JPanel PanelGuest;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JPanel PanelProducts;
     private javax.swing.JPanel PanelUser;
+    private javax.swing.JTable TableAllProducts;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

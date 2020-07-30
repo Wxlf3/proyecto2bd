@@ -388,7 +388,7 @@ public class QueryUser extends javax.swing.JFrame {
             }
             TableAllProducts.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+            JOptionPane.showMessageDialog(this, "There is a problem with this query.");
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 

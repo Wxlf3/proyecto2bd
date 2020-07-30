@@ -120,6 +120,11 @@ public class ProductSettings extends javax.swing.JFrame {
         ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
         ButtonBack.setBorder(null);
         ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
@@ -263,6 +268,10 @@ public class ProductSettings extends javax.swing.JFrame {
         }
         catch(Exception e){JOptionPane.showMessageDialog(this, "Is a problem with this query.");}
     }//GEN-LAST:event_ButtonDeleteProductActionPerformed
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
