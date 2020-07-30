@@ -54,12 +54,13 @@ public class Chat extends javax.swing.JFrame {
         
         ResultSet messages = c.queryWithInt(id_chat, "getAll_chat_message_with_idChat", true);
         try {
-            String chattxt = "";
+            String chattxt = ""; 
             while (messages.next()) {
                 DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, hh:mm:ss a");
-                String date = formatter.format(messages.getDate("date"));
-                chattxt = chattxt + messages.getString("username_writer") + " (" + date + "):" + messages.getString("message") + "\n";
+                String date = formatter.format(messages.getTimestamp("date"));
+                chattxt = chattxt + messages.getString("username_writer") + " (" + date + "): " + messages.getString("message") + "\n\n";
             }
+            ChatTextArea.setText(chattxt);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error. Try later.");         
         }

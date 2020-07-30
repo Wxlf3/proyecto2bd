@@ -4,7 +4,6 @@ DROP PROCEDURE IF EXISTS update_userType;
 DROP PROCEDURE IF EXISTS remove_userType;
 DROP FUNCTION IF EXISTS getName_userType;
 DROP PROCEDURE IF EXISTS getAll_userType;
-DROP FUNCTION IF EXISTS getId_userType;
 DELIMITER //
 
 CREATE PROCEDURE insert_userType(IN pnName VARCHAR(45))
@@ -45,16 +44,4 @@ CREATE PROCEDURE getAll_userType()
             FROM user_type;
     END//
 
-CREATE FUNCTION getId_userType(vName VARCHAR(45)) 
-RETURNS INT
-DETERMINISTIC
-    BEGIN
-        DECLARE rId INT;
-        SET rId = 0;
-            SELECT id
-            INTO rId
-            FROM user_type
-            WHERE name = vName;
-    RETURN rId;
-    END //
 DELIMITER ;

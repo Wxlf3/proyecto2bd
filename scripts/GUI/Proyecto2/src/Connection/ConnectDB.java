@@ -52,7 +52,7 @@ public class ConnectDB {
     public void insertChatMessage(chat_message p) {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_chat_message(?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call insert_chat_message(?,?,?)}");
             stmt.setString(1, p.getMessage());
             stmt.setString(2, p.getUsername_writer());
             stmt.setInt(3, p.getId_chat());
@@ -385,7 +385,7 @@ public class ConnectDB {
     public void updateChatMessage(chat_message p) {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call update_chat_message(?,?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call update_chat_message(?,?,?)}");
             stmt.setInt(1, p.getId());
             stmt.setString(2, p.getMessage());
             stmt.setString(3, p.getUsername_writer());

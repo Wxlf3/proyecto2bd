@@ -2,6 +2,7 @@ package Frame;
 
 import Connection.*;
 import java.awt.Cursor;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -198,14 +199,14 @@ public class Login extends javax.swing.JFrame {
         {
             cU.setUsername(username);
             
-            cU.setId_userType(c.getIntWithString("username", "getIdUserType_user", true));
+            cU.setId_userType(c.getIntWithString(username, "getIdUserType_user", true));
             PanelPrincipalPage w = new PanelPrincipalPage();
             w.show();
             this.dispose();
         }
         else
         {
-            // poner un jOptionPane de que el usuario no existe
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
         }
         
     }//GEN-LAST:event_ButtonConfirmActionPerformed

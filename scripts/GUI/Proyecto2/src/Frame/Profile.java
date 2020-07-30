@@ -249,7 +249,7 @@ public class Profile extends javax.swing.JFrame {
             {
                 int id_order = Integer.valueOf(contact_order.substring(0, contact_order.indexOf(" ")));
                 int id_chat = c.getIntWithId(id_order, "get_idChat_with_idOrder", true);
-                Chat chat = new Chat(id_chat, SpaceName.getText(), cu.getUsername());
+                Chat chat = new Chat(id_chat, username, cu.getUsername());
                 chat.show();
                 this.dispose();
                 
