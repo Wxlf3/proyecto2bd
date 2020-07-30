@@ -57,14 +57,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonHistory = new javax.swing.JButton();
         ButtonBasket = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        PanelUser = new javax.swing.JPanel();
-        ButtonProfileUser = new javax.swing.JButton();
-        ButtonHistoryUser = new javax.swing.JButton();
-        ButtonBasketUser = new javax.swing.JButton();
-        ButtonQueryUser = new javax.swing.JButton();
-        ButtonSettingsUser = new javax.swing.JButton();
-        ButtonWishlistUser = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         PanelAdmin = new javax.swing.JPanel();
         ButtonProfileAdmin = new javax.swing.JButton();
         ButtonHistoryAdmin = new javax.swing.JButton();
@@ -74,6 +66,15 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         ButtonSettingsAdmin = new javax.swing.JButton();
         ButtonWishlist = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        ButtonSettingsAdmin1 = new javax.swing.JButton();
+        PanelUser = new javax.swing.JPanel();
+        ButtonProfileUser = new javax.swing.JButton();
+        ButtonHistoryUser = new javax.swing.JButton();
+        ButtonBasketUser = new javax.swing.JButton();
+        ButtonQueryUser = new javax.swing.JButton();
+        ButtonSettingsUser = new javax.swing.JButton();
+        ButtonWishlistUser = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("framepanelprincipal"); // NOI18N
@@ -152,92 +153,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         PanelGuest.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
         PanelPrincipal.add(PanelGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
-
-        PanelUser.setBackground(new java.awt.Color(255, 255, 255));
-        PanelUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        ButtonProfileUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonProfileUser.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonProfileUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonProfileUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user(1).png"))); // NOI18N
-        ButtonProfileUser.setBorder(null);
-        ButtonProfileUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonProfileUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonProfileUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
-
-        ButtonHistoryUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonHistoryUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonHistoryUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonHistoryUser.setText("My history");
-        ButtonHistoryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonHistoryUser.setContentAreaFilled(false);
-        ButtonHistoryUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonHistoryUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonHistoryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
-
-        ButtonBasketUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonBasketUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonBasketUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonBasketUser.setText("Basket");
-        ButtonBasketUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonBasketUser.setContentAreaFilled(false);
-        ButtonBasketUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonBasketUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonBasketUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
-
-        ButtonQueryUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonQueryUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonQueryUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonQueryUser.setText("Queries");
-        ButtonQueryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonQueryUser.setContentAreaFilled(false);
-        ButtonQueryUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonQueryUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonQueryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 250, 160, 30));
-
-        ButtonSettingsUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonSettingsUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        ButtonSettingsUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonSettingsUser.setText("Profile settings");
-        ButtonSettingsUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ButtonSettingsUser.setContentAreaFilled(false);
-        ButtonSettingsUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonSettingsUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonSettingsUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 300, 160, 30));
-
-        ButtonWishlistUser.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonWishlistUser.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        ButtonWishlistUser.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonWishlistUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
-        ButtonWishlistUser.setText(" Wishlist");
-        ButtonWishlistUser.setBorder(null);
-        ButtonWishlistUser.setContentAreaFilled(false);
-        ButtonWishlistUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonWishlistUserActionPerformed(evt);
-            }
-        });
-        PanelUser.add(ButtonWishlistUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 350, 121, 50));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
-        PanelUser.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
-
-        PanelPrincipal.add(PanelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
         PanelAdmin.setBackground(new java.awt.Color(255, 255, 255));
         PanelAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -331,12 +246,111 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
                 ButtonWishlistActionPerformed(evt);
             }
         });
-        PanelAdmin.add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 400, 121, 50));
+        PanelAdmin.add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 121, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
         PanelAdmin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
+        ButtonSettingsAdmin1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonSettingsAdmin1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonSettingsAdmin1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonSettingsAdmin1.setText("System settings");
+        ButtonSettingsAdmin1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonSettingsAdmin1.setContentAreaFilled(false);
+        ButtonSettingsAdmin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSettingsAdmin1ActionPerformed(evt);
+            }
+        });
+        PanelAdmin.add(ButtonSettingsAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 400, 160, 30));
+
         PanelPrincipal.add(PanelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
+
+        PanelUser.setBackground(new java.awt.Color(255, 255, 255));
+        PanelUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ButtonProfileUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonProfileUser.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonProfileUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonProfileUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user(1).png"))); // NOI18N
+        ButtonProfileUser.setBorder(null);
+        ButtonProfileUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonProfileUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonProfileUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 30, 70, 70));
+
+        ButtonHistoryUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonHistoryUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonHistoryUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonHistoryUser.setText("My history");
+        ButtonHistoryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonHistoryUser.setContentAreaFilled(false);
+        ButtonHistoryUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonHistoryUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonHistoryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 150, 160, 30));
+
+        ButtonBasketUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBasketUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonBasketUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBasketUser.setText("Basket");
+        ButtonBasketUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonBasketUser.setContentAreaFilled(false);
+        ButtonBasketUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBasketUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonBasketUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 160, 30));
+
+        ButtonQueryUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonQueryUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonQueryUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonQueryUser.setText("Queries");
+        ButtonQueryUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonQueryUser.setContentAreaFilled(false);
+        ButtonQueryUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonQueryUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonQueryUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 250, 160, 30));
+
+        ButtonSettingsUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonSettingsUser.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        ButtonSettingsUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonSettingsUser.setText("Profile settings");
+        ButtonSettingsUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
+        ButtonSettingsUser.setContentAreaFilled(false);
+        ButtonSettingsUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSettingsUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonSettingsUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 300, 160, 30));
+
+        ButtonWishlistUser.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonWishlistUser.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonWishlistUser.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonWishlistUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
+        ButtonWishlistUser.setText(" Wishlist");
+        ButtonWishlistUser.setBorder(null);
+        ButtonWishlistUser.setContentAreaFilled(false);
+        ButtonWishlistUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonWishlistUserActionPerformed(evt);
+            }
+        });
+        PanelUser.add(ButtonWishlistUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 350, 121, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo.png"))); // NOI18N
+        PanelUser.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
+
+        PanelPrincipal.add(PanelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 580));
 
         getContentPane().add(PanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -489,6 +503,12 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonProfileMouseClicked
 
+    private void ButtonSettingsAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSettingsAdmin1ActionPerformed
+        SystemSettings w = new SystemSettings();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonSettingsAdmin1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -538,6 +558,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     private javax.swing.JButton ButtonQueryAdmin;
     private javax.swing.JButton ButtonQueryUser;
     private javax.swing.JButton ButtonSettingsAdmin;
+    private javax.swing.JButton ButtonSettingsAdmin1;
     private javax.swing.JButton ButtonSettingsUser;
     private javax.swing.JButton ButtonStatistics;
     private javax.swing.JButton ButtonWishlist;
