@@ -2,6 +2,7 @@ package Frame;
 
 import BL.product;
 import BL.shopping_cart;
+import BL.wish_list;
 import Connection.ConnectDB;
 import Connection.currentUser;
 import java.sql.ResultSet;
@@ -107,6 +108,7 @@ public class ProductView extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         ButtonConfirm1 = new javax.swing.JButton();
         FieldQuantity = new javax.swing.JTextField();
+        ButtonWishlist = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,7 +156,7 @@ public class ProductView extends javax.swing.JFrame {
                 ButtonConfirmActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 240, 50));
+        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 470, 240, 50));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -375,6 +377,19 @@ public class ProductView extends javax.swing.JFrame {
         });
         jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 476, 160, 30));
 
+        ButtonWishlist.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonWishlist.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonWishlist.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonWishlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/like.png"))); // NOI18N
+        ButtonWishlist.setText("Add to the wish list");
+        ButtonWishlist.setContentAreaFilled(false);
+        ButtonWishlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonWishlistActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonWishlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 520, 220, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -438,6 +453,25 @@ public class ProductView extends javax.swing.JFrame {
 	} 
     }//GEN-LAST:event_FieldQuantityKeyTyped
 
+    private void ButtonWishlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWishlistActionPerformed
+        String quantity_element = FieldQuantity.getText();
+        if(quantity_element.isEmpty())
+            JOptionPane.showMessageDialog(this, "Fill the quantity field.");
+        else
+        {
+            try{
+                currentUser cu = currentUser.getInstance(); 
+                ConnectDB c = new ConnectDB();
+                wish_list sc = new wish_list(cu.getUsername(),p.getId(), Integer.parseInt(quantity_element));
+                c.insertWishList(sc);
+                JOptionPane.showMessageDialog(this, "The product was added to the wish list succesfully.");
+            }catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(this, "The product was not added to the wish list.");
+            }
+        }
+    }//GEN-LAST:event_ButtonWishlistActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,6 +514,7 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonLeft;
     private javax.swing.JButton ButtonPicture;
     private javax.swing.JButton ButtonRight;
+    private javax.swing.JButton ButtonWishlist;
     private javax.swing.JPanel Decoration4;
     private javax.swing.JPanel Decoration5;
     private javax.swing.JPanel Decoration6;
