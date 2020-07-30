@@ -548,7 +548,7 @@ public class SystemSettings extends javax.swing.JFrame {
         try{
             ConnectDB c = new ConnectDB();
             String delivery_type = (String) BoxShippingMethod.getSelectedItem();
-            if(delivery_type.isEmpty())
+            if(delivery_type == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the shipping method box.");
             else
             {
@@ -573,7 +573,7 @@ public class SystemSettings extends javax.swing.JFrame {
         try{
             ConnectDB c = new ConnectDB();
             String nationality = (String) BoxNationality.getSelectedItem();
-            if(nationality.isEmpty())
+            if(nationality == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the nationality box.");
             else
             {
@@ -598,7 +598,7 @@ public class SystemSettings extends javax.swing.JFrame {
         try{
             ConnectDB c = new ConnectDB();
             String gender = (String) BoxGender.getSelectedItem();
-            if(gender.isEmpty())
+            if(gender == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the gender box.");
             else
             {
@@ -623,7 +623,7 @@ public class SystemSettings extends javax.swing.JFrame {
          try{
             ConnectDB c = new ConnectDB();
             String country = (String) BoxCountry.getSelectedItem();
-            if(country.isEmpty())
+            if(country == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the country box.");
             else
             {
@@ -638,7 +638,7 @@ public class SystemSettings extends javax.swing.JFrame {
         try{
             ConnectDB c = new ConnectDB();
             String state = (String) BoxState.getSelectedItem();
-            if(state.isEmpty())
+            if(state == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the state box.");
             else
             {
@@ -654,7 +654,7 @@ public class SystemSettings extends javax.swing.JFrame {
             String n = (String) JOptionPane.showInputDialog(null,"New state (will be refeence to the selected country): ",JOptionPane.QUESTION_MESSAGE);
             ConnectDB c = new ConnectDB();
             String country_element = (String) BoxCountry.getSelectedItem();
-            if(country_element.isEmpty())
+            if(country_element == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the country box.");
             else
             {
@@ -671,7 +671,7 @@ public class SystemSettings extends javax.swing.JFrame {
             String n = (String) JOptionPane.showInputDialog(null,"New city (will be refeence to the selected state): ",JOptionPane.QUESTION_MESSAGE);
             ConnectDB c = new ConnectDB();
             String state_element = (String) BoxState.getSelectedItem();
-            if(state_element.isEmpty())
+            if(state_element == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the state box to reference the state.");
             else
             {
@@ -687,7 +687,7 @@ public class SystemSettings extends javax.swing.JFrame {
         try{
             ConnectDB c = new ConnectDB();
             String city = (String) BoxCity.getSelectedItem();
-            if(city.isEmpty())
+            if(city == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the city box.");
             else
             {
@@ -702,7 +702,7 @@ public class SystemSettings extends javax.swing.JFrame {
         try{
             ConnectDB c = new ConnectDB();
             String district = (String) BoxDistrict.getSelectedItem();
-            if(district.isEmpty())
+            if(district == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please select the district box.");
             else
             {
@@ -718,11 +718,11 @@ public class SystemSettings extends javax.swing.JFrame {
             String n = (String) JOptionPane.showInputDialog(null,"New district (will be refeence to the selected city): ",JOptionPane.QUESTION_MESSAGE);
             ConnectDB c = new ConnectDB();
             String city_element = (String) BoxCity.getSelectedItem();
-            if(city_element.isEmpty())
+            if(city_element == "Default")
                 JOptionPane.showMessageDialog(this, "Error. Please fill the city box to reference the district.");
             else
             {
-                int id_district = c.getIntWithString(city_element, "getId_state", false);
+                int id_district = c.getIntWithString(city_element, "getId_city", false);
                 district x = new district(n,id_district);
                 c.insertDistrict(x);
                 JOptionPane.showMessageDialog(this, "The district was created successfully.");
