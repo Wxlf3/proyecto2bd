@@ -32,7 +32,6 @@ public class ProductView extends javax.swing.JFrame {
                                     prod.getString("description"),
                                     prod.getInt("quant_in_stock"),
                                     prod.getBoolean("is_visible"),
-                                    prod.getFloat("average_score"),
                                     prod.getInt("id_category"),
                                     prod.getString("username_seller"),
                                     prod.getInt("id_delivery_type"));
