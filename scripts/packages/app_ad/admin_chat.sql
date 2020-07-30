@@ -4,6 +4,8 @@ DROP PROCEDURE IF EXISTS update_chat;
 DROP PROCEDURE IF EXISTS remove_chat;
 DROP FUNCTION IF EXISTS getIdOrder_chat;
 DROP PROCEDURE IF EXISTS getAll_chat;
+DROP FUNCTION IF EXISTS get_idChat_with_idOrder;
+DROP FUNCTION IF EXISTS get_idChat_with_idOrder;
 DELIMITER //
 
 
@@ -44,4 +46,14 @@ CREATE PROCEDURE getAll_chat()
             SELECT id, id_order
             FROM chat;
     END//
+    
+CREATE FUNCTION get_idChat_with_idOrder(vidOrder INT) RETURNS INT
+BEGIN
+	DECLARE result INT;
+    SELECT id
+    INTO result
+    FROM chat
+    WHERE id_order = vidOrder;
+RETURN result;
+END//
 DELIMITER ;

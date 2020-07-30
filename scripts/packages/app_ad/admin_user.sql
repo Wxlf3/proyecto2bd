@@ -8,6 +8,7 @@ DROP FUNCTION IF EXISTS getAverageScoreSeller_user;
 DROP FUNCTION IF EXISTS getIdUserType_user;
 DROP PROCEDURE IF EXISTS getAll_user;
 DROP FUNCTION IF EXISTS check_login;
+DROP PROCEDURE IF EXISTS get_user_with_username;
 DELIMITER //
 
 CREATE PROCEDURE insert_user(IN pnUsername VARCHAR(45), IN pnPassword VARCHAR(30), IN pnIdUserType INT)
@@ -100,5 +101,13 @@ DETERMINISTIC
 		END IF;
 	RETURN result;
     END//
+    
+CREATE PROCEDURE get_user_with_username(IN pnUsername VARCHAR(45))
+BEGIN
+	SELECT u.username, u.average_score_buyer, u.average_score_seller, t.name
+    FROM `user` u
+    INNER JOIN `user_type` t ON t.id = u.id_user_type
+    WHERE u.username = pnUsername;
+END//
 		
 DELIMITER ;

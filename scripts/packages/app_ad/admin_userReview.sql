@@ -8,6 +8,7 @@ DROP FUNCTION IF EXISTS getIdTypeReview_userReview;
 DROP FUNCTION IF EXISTS getUsernameWriter_userReview;
 DROP FUNCTION IF EXISTS getUsernameReceiver_userReview;
 DROP PROCEDURE IF EXISTS getAll_userReview;
+DROP PROCEDURE IF EXISTS get_reviews_of_user;
 DELIMITER //
 
 CREATE PROCEDURE insert_userReview(IN pnScore DECIMAl(4,2), 
@@ -113,4 +114,12 @@ CREATE PROCEDURE getAll_userReview()
             SELECT id, score, comment, id_type_review, username_writer, username_receiver
             FROM user_review;
     END//
+    
+CREATE PROCEDURE get_reviews_of_user(IN pnUsername VARCHAR(45))
+BEGIN
+	SELECT r.id, r.score, r.comment, t.name, r.username_writer
+    FROM `user_review` r
+    INNER JOIN `review_type` t ON t.id = r.id_type_review
+    WHERE r.username_receiver = pnUsername;
+END//
 DELIMITER ;

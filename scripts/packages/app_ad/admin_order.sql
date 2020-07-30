@@ -8,6 +8,7 @@ DROP FUNCTION IF EXISTS getDate_order;
 DROP FUNCTION IF EXISTS getUserBuyer_order;
 DROP FUNCTION IF EXISTS getIdProduct_order;
 DROP PROCEDURE IF EXISTS getAll_order;
+DROP PROCEDURE IF EXISTS get_orders_of_2_users;
 DELIMITER //
 
 CREATE PROCEDURE insert_order(IN pnPrice DECIMAL(10,2), IN pnQuantity INT, IN pnUserBuyer VARCHAR(45), IN pnIdProduct INT)
@@ -104,4 +105,13 @@ CREATE PROCEDURE getAll_order()
             SELECT id, price, quantity, date, user_buyer, id_product
             FROM `order`;
     END//
+    
+CREATE PROCEDURE get_orders_of_2_users(IN pnBuyer VARCHAR(45), IN pnSeller VARCHAR(45))
+BEGIN
+	SELECT o.id, o.price, o.quantity, o.date, o.user_buyer, p.username_seller `user_seller`, p.name
+    FROM `order` o
+    INNER JOIN `product` p ON o.id_product = p.id
+    WHERE o.user_buyer = pnBuyer AND p.username_seller = pnSeller;
+END//
+
 DELIMITER ;

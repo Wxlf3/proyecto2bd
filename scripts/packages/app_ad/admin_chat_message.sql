@@ -7,6 +7,7 @@ DROP FUNCTION IF EXISTS getMessage_chat_message;
 DROP FUNCTION IF EXISTS getUsernameWriter_chat_message;
 DROP FUNCTION IF EXISTS getIdChat_chat_message;
 DROP PROCEDURE IF EXISTS getAll_chat_message;
+DROP PROCEDURE IF EXISTS getAll_chat_message_with_idChat;
 DELIMITER //
 
 
@@ -90,5 +91,12 @@ CREATE PROCEDURE getAll_chat_message()
             SELECT id, date, message, username_writer, id_chat
             FROM chat_message;
     END//
+    
+CREATE PROCEDURE getAll_chat_message_with_idChat(IN pnIdChat INT)
+BEGIN
+	SELECT id, date, message, username_writer, id_chat
+    FROM chat_message
+    WHERE id_chat = pnIdChat;
+END//
 
 DELIMITER ;

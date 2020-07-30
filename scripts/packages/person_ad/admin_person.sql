@@ -15,6 +15,7 @@ DROP function IF EXISTS `getIdGender_person`;
 DROP function IF EXISTS `getIdDistrict_person`;
 DROP function IF EXISTS `getUsername_person`;
 DROP procedure IF EXISTS `getAll_person`;
+DROP procedure IF EXISTS `get_person_with_username`;
 
 DELIMITER $$
 
@@ -184,6 +185,18 @@ CREATE PROCEDURE `getAll_person` ()
 BEGIN
 	SELECT id, first_name, middle_name, last_name, email, phone_number, birthday, picture_path, id_gender, id_district, username
     FROM person;
+END$$
+
+CREATE PROCEDURE `get_person_with_username`(IN pnUsername VARCHAR(45))
+BEGIN
+	SELECT p.id, p.first_name, p.middle_name, p.last_name, p.email, p.phone_number, p.birthday, p.picture_path, g.name `gender`, d.name `district`, ci.name `city`, s.name `state`, co.name `country`, p.username
+    FROM `person` p
+    INNER JOIN `gender` g ON p.id_gender = g.id
+    INNER JOIN `district` d ON p.id_district = d.id
+    INNER JOIN `city` ci ON d.id_city = ci.id
+    INNER JOIN `state` s ON ci.id_state = s.id
+    INNER JOIN `country` co ON s.id_country = co.id
+    WHERE username = pnUsername;
 END$$
 
 DELIMITER ;
