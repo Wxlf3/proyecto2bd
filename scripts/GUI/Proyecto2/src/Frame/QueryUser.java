@@ -463,7 +463,7 @@ public class QueryUser extends javax.swing.JFrame {
         String username = cu.getUsername();
         ConnectDB c = new ConnectDB();
         DefaultTableModel modelo = new DefaultTableModel();
-        TableAllProducts.setModel(modelo);
+        TablePurchaseHistory.setModel(modelo);
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
         int month_element = BoxMonth.getSelectedIndex();
@@ -478,7 +478,7 @@ public class QueryUser extends javax.swing.JFrame {
             month = 0;
         ResultSet q = c.queryWithStringAndInt(username, month,"purchase_history",true);
         try {
-            modelo = (DefaultTableModel)TableAllProducts.getModel();
+            modelo = (DefaultTableModel)TablePurchaseHistory.getModel();
             modelo.addColumn("Id");
             modelo.addColumn("Name");
             modelo.addColumn("Date");
@@ -496,7 +496,7 @@ public class QueryUser extends javax.swing.JFrame {
                                             q.getFloat("final_price"),
                                             q.getString("username_seller")});
             }
-            TableAllProducts.setModel(modelo);
+            TablePurchaseHistory.setModel(modelo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Is a problem with this query.");
         }
