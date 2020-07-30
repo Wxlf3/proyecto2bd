@@ -23,21 +23,138 @@ public class Wishlist extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        ButtonBack = new javax.swing.JButton();
+        ButtonClear = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PanelProducts = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableProducts = new javax.swing.JTable();
+        Decoration = new javax.swing.JPanel();
+        ButtonRefresh = new javax.swing.JButton();
+        ButtonConfirm = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel1.setText("Wishlist");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
+
+        ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        ButtonBack.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back-arrow.png"))); // NOI18N
+        ButtonBack.setBorder(null);
+        ButtonBack.setContentAreaFilled(false);
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        ButtonClear.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonClear.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonClear.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonClear.setText("Clear");
+        ButtonClear.setBorder(null);
+        ButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonClearActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 510, 110, 30));
+
+        PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
+        PanelProducts.setLayout(new java.awt.GridLayout(0, 3));
+
+        TableProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TableProducts);
+
+        PanelProducts.add(jScrollPane2);
+
+        jScrollPane1.setViewportView(PanelProducts);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 850, 390));
+
+        Decoration.setBackground(new java.awt.Color(239, 184, 16));
+
+        javax.swing.GroupLayout DecorationLayout = new javax.swing.GroupLayout(Decoration);
+        Decoration.setLayout(DecorationLayout);
+        DecorationLayout.setHorizontalGroup(
+            DecorationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        DecorationLayout.setVerticalGroup(
+            DecorationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 580, Short.MAX_VALUE)
         );
 
+        jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 100, 580));
+
+        ButtonRefresh.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonRefresh.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonRefresh.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonRefresh.setText("Refresh");
+        ButtonRefresh.setBorder(null);
+        ButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonRefreshActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 110, 30));
+
+        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shopping-basket.png"))); // NOI18N
+        ButtonConfirm.setText("  Add to the basket");
+        ButtonConfirm.setBorder(null);
+        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 240, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRefreshActionPerformed
+        fillInTable();
+    }//GEN-LAST:event_ButtonRefreshActionPerformed
+
+    private void ButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonClearActionPerformed
+        ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
+        for(product p : products){
+            c.removeWithStringandInt(cu.getUsername(),p.getId(),"remove_shoppingCart",true);
+        }
+        JOptionPane.showMessageDialog(this, "All products have been removed.");
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonClearActionPerformed
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        PanelPrincipalPage w = new PanelPrincipalPage();
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,5 +192,16 @@ public class Wishlist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonBack;
+    private javax.swing.JButton ButtonClear;
+    private javax.swing.JButton ButtonConfirm;
+    private javax.swing.JButton ButtonRefresh;
+    private javax.swing.JPanel Decoration;
+    private javax.swing.JPanel PanelProducts;
+    private javax.swing.JTable TableProducts;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
