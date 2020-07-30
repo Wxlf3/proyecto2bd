@@ -47,7 +47,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         FieldNumberMostSales = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
         TableUserMostSales = new javax.swing.JTable();
         PanelMostPurchases = new javax.swing.JPanel();
         ButtonBack1 = new javax.swing.JButton();
@@ -55,19 +55,19 @@ public class QueryAdmin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         FieldNumberMostPurchases = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         TableUserMostPurchases = new javax.swing.JTable();
         PanelBetterRatings = new javax.swing.JPanel();
         ButtonBack2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TableUserBetterRatings = new javax.swing.JTable();
         ButtonConfirm4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableUserBetterRatings = new javax.swing.JTable();
         PanelWorseRatings = new javax.swing.JPanel();
         ButtonBack3 = new javax.swing.JButton();
         ButtonBack6 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        TableUserWorseRatings = new javax.swing.JTable();
         ButtonConfirm5 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TableUserWorseRatings = new javax.swing.JTable();
         PanelExpensiveProducts = new javax.swing.JPanel();
         ButtonBack4 = new javax.swing.JButton();
         ButtonConfirm2 = new javax.swing.JButton();
@@ -76,12 +76,12 @@ public class QueryAdmin extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         BoxCategoryExpensive = new javax.swing.JComboBox<>();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TableMostExpensive = new javax.swing.JTable();
         PanelMinimumMaximumProducts = new javax.swing.JPanel();
         ButtonBack5 = new javax.swing.JButton();
         ButtonConfirm3 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
         TableMinMaxProducts = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +123,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(76, 40, 130));
         jLabel3.setText("Number of the top:");
-        PanelMostSales.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
+        PanelMostSales.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
 
         FieldNumberMostSales.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         FieldNumberMostSales.setForeground(new java.awt.Color(76, 40, 130));
@@ -134,23 +134,20 @@ public class QueryAdmin extends javax.swing.JFrame {
         jSeparator1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         PanelMostSales.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 80, 30));
 
-        TableUserMostSales.setAutoCreateColumnsFromModel(false);
-        TableUserMostSales.setAutoCreateRowSorter(true);
-        TableUserMostSales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        TableUserMostSales.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        TableUserMostSales.setForeground(new java.awt.Color(76, 40, 130));
         TableUserMostSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "User", "Sales"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TableUserMostSales.setGridColor(new java.awt.Color(76, 40, 130));
-        jScrollPane1.setViewportView(TableUserMostSales);
+        jScrollPane5.setViewportView(TableUserMostSales);
 
-        PanelMostSales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, 340));
+        PanelMostSales.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
         jTabbedPane1.addTab("Top users with the most sales", PanelMostSales);
 
@@ -186,7 +183,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(76, 40, 130));
         jLabel4.setText("Number of the top:");
-        PanelMostPurchases.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
+        PanelMostPurchases.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, -1));
 
         FieldNumberMostPurchases.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         FieldNumberMostPurchases.setForeground(new java.awt.Color(76, 40, 130));
@@ -197,23 +194,20 @@ public class QueryAdmin extends javax.swing.JFrame {
         jSeparator2.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         PanelMostPurchases.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 80, 30));
 
-        TableUserMostPurchases.setAutoCreateColumnsFromModel(false);
-        TableUserMostPurchases.setAutoCreateRowSorter(true);
-        TableUserMostPurchases.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        TableUserMostPurchases.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        TableUserMostPurchases.setForeground(new java.awt.Color(76, 40, 130));
         TableUserMostPurchases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "User", "Sales"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TableUserMostPurchases.setGridColor(new java.awt.Color(76, 40, 130));
-        jScrollPane2.setViewportView(TableUserMostPurchases);
+        jScrollPane1.setViewportView(TableUserMostPurchases);
 
-        PanelMostPurchases.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, 340));
+        PanelMostPurchases.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
 
         jTabbedPane1.addTab("Top users with the most purchases", PanelMostPurchases);
 
@@ -233,32 +227,6 @@ public class QueryAdmin extends javax.swing.JFrame {
         });
         PanelBetterRatings.add(ButtonBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        TableUserBetterRatings.setAutoCreateColumnsFromModel(false);
-        TableUserBetterRatings.setAutoCreateRowSorter(true);
-        TableUserBetterRatings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        TableUserBetterRatings.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        TableUserBetterRatings.setForeground(new java.awt.Color(76, 40, 130));
-        TableUserBetterRatings.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "Seller", "Buyer"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TableUserBetterRatings.setGridColor(new java.awt.Color(76, 40, 130));
-        jScrollPane3.setViewportView(TableUserBetterRatings);
-
-        PanelBetterRatings.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, 390));
-
         ButtonConfirm4.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm4.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm4.setForeground(new java.awt.Color(76, 40, 130));
@@ -269,6 +237,21 @@ public class QueryAdmin extends javax.swing.JFrame {
             }
         });
         PanelBetterRatings.add(ButtonConfirm4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 110, 30));
+
+        TableUserBetterRatings.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TableUserBetterRatings);
+
+        PanelBetterRatings.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, -1));
 
         jTabbedPane1.addTab("Users with better ratings", PanelBetterRatings);
 
@@ -301,32 +284,6 @@ public class QueryAdmin extends javax.swing.JFrame {
         });
         PanelWorseRatings.add(ButtonBack6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        TableUserWorseRatings.setAutoCreateColumnsFromModel(false);
-        TableUserWorseRatings.setAutoCreateRowSorter(true);
-        TableUserWorseRatings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        TableUserWorseRatings.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        TableUserWorseRatings.setForeground(new java.awt.Color(76, 40, 130));
-        TableUserWorseRatings.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "Seller", "Buyer"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TableUserWorseRatings.setGridColor(new java.awt.Color(76, 40, 130));
-        jScrollPane4.setViewportView(TableUserWorseRatings);
-
-        PanelWorseRatings.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, 390));
-
         ButtonConfirm5.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm5.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm5.setForeground(new java.awt.Color(76, 40, 130));
@@ -337,6 +294,21 @@ public class QueryAdmin extends javax.swing.JFrame {
             }
         });
         PanelWorseRatings.add(ButtonConfirm5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 110, 30));
+
+        TableUserWorseRatings.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(TableUserWorseRatings);
+
+        PanelWorseRatings.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
         jTabbedPane1.addTab("Users with worse ratings", PanelWorseRatings);
 
@@ -372,7 +344,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(76, 40, 130));
         jLabel5.setText("Number of the top:");
-        PanelExpensiveProducts.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+        PanelExpensiveProducts.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         FieldNumberMostSales1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         FieldNumberMostSales1.setForeground(new java.awt.Color(76, 40, 130));
@@ -393,7 +365,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         BoxCategoryExpensive.setForeground(new java.awt.Color(76, 40, 130));
         PanelExpensiveProducts.add(BoxCategoryExpensive, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 170, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableMostExpensive.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -404,9 +376,9 @@ public class QueryAdmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane7.setViewportView(jTable1);
+        jScrollPane4.setViewportView(TableMostExpensive);
 
-        PanelExpensiveProducts.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+        PanelExpensiveProducts.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
 
         jTabbedPane1.addTab("Top of most expensive products by category", PanelExpensiveProducts);
 
@@ -437,31 +409,20 @@ public class QueryAdmin extends javax.swing.JFrame {
         });
         PanelMinimumMaximumProducts.add(ButtonConfirm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 110, 30));
 
-        TableMinMaxProducts.setAutoCreateColumnsFromModel(false);
-        TableMinMaxProducts.setAutoCreateRowSorter(true);
-        TableMinMaxProducts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        TableMinMaxProducts.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        TableMinMaxProducts.setForeground(new java.awt.Color(76, 40, 130));
         TableMinMaxProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Product", "Minimum amount", "Maximum amount"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
+        ));
+        jScrollPane7.setViewportView(TableMinMaxProducts);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TableMinMaxProducts.setGridColor(new java.awt.Color(76, 40, 130));
-        jScrollPane6.setViewportView(TableMinMaxProducts);
-
-        PanelMinimumMaximumProducts.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 390));
+        PanelMinimumMaximumProducts.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         jTabbedPane1.addTab("Minimum and maximum amounts of products by category", PanelMinimumMaximumProducts);
 
@@ -488,13 +449,15 @@ public class QueryAdmin extends javax.swing.JFrame {
             modelo = (DefaultTableModel)TableUserMostSales.getModel();
             modelo.addColumn("Username");
             modelo.addColumn("Sales");
+            TableUserMostSales.setModel(modelo);
             while(q.next())
             {
-                modelo.addRow(new Object[]{q.getString("username"),q.getFloat("sales")});
+                modelo.addRow(new Object[]{q.getString("username"),q.getInt("sales")});
             }
             TableUserMostSales.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+            JOptionPane.showMessageDialog(this, "Is there a problem with this query.");
+            System.out.println("Error:" +ex);
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
@@ -518,11 +481,11 @@ public class QueryAdmin extends javax.swing.JFrame {
             modelo.addColumn("Purchases");
             while(q.next())
             {
-                modelo.addRow(new Object[]{q.getString("username"),q.getFloat("purchases")});
+                modelo.addRow(new Object[]{q.getString("username"),q.getInt("purchases")});
             }
             TableUserMostPurchases.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+            JOptionPane.showMessageDialog(this, "Is there a problem with this query.");
         }
     }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
@@ -553,7 +516,7 @@ public class QueryAdmin extends javax.swing.JFrame {
     private void ButtonConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm2ActionPerformed
         ConnectDB c = new ConnectDB();
         DefaultTableModel modelo = new DefaultTableModel();
-        TableUserBetterRatings.setModel(modelo);
+        TableMostExpensive.setModel(modelo);
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
         int top = Integer.parseInt(FieldNumberMostSales1.getText());
@@ -561,7 +524,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         int id_category = c.getIntWithString(category_element, "getId_category", true);
         ResultSet q = c.topExpensivesOfCategory(top, id_category);
         try {
-            modelo = (DefaultTableModel)TableUserBetterRatings.getModel();
+            modelo = (DefaultTableModel)TableMostExpensive.getModel();
             modelo.addColumn("Product id");
             modelo.addColumn("Name");
             modelo.addColumn("Price");
@@ -569,7 +532,7 @@ public class QueryAdmin extends javax.swing.JFrame {
             {
                 modelo.addRow(new Object[]{q.getInt("product_id"),q.getString("product_name"),q.getFloat("price")});
             }
-            TableUserBetterRatings.setModel(modelo);
+            TableMostExpensive.setModel(modelo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error.Try again later.");
         }
@@ -709,6 +672,7 @@ public class QueryAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel PanelMostSales;
     private javax.swing.JPanel PanelWorseRatings;
     private javax.swing.JTable TableMinMaxProducts;
+    private javax.swing.JTable TableMostExpensive;
     private javax.swing.JTable TableUserBetterRatings;
     private javax.swing.JTable TableUserMostPurchases;
     private javax.swing.JTable TableUserMostSales;
@@ -721,12 +685,11 @@ public class QueryAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
