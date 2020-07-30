@@ -367,6 +367,12 @@ public class ProductView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, 130, 30));
+
+        FieldQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FieldQuantityKeyTyped(evt);
+            }
+        });
         jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 476, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -423,6 +429,14 @@ public class ProductView extends javax.swing.JFrame {
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void FieldQuantityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FieldQuantityKeyTyped
+        char c=evt.getKeyChar();
+	if(Character.isLetter(c)) {
+		getToolkit().beep();
+		evt.consume();
+	} 
+    }//GEN-LAST:event_FieldQuantityKeyTyped
 
     /**
      * @param args the command line arguments
