@@ -560,8 +560,8 @@ public class QueryUser extends javax.swing.JFrame {
         TablePSold.setModel(modelo);
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
-        ResultSet q = c.queryWithString(username,"selling_history",true);
         try {
+             ResultSet q = c.queryWithString(username,"selling_history",true);
             modelo = (DefaultTableModel)TablePSold.getModel();
             modelo.addColumn("Id");
             modelo.addColumn("Name");
@@ -578,11 +578,11 @@ public class QueryUser extends javax.swing.JFrame {
                                             q.getInt("quantity"),
                                             q.getFloat("price_by_unit"),
                                             q.getFloat("final_price"),
-                                            q.getString("username_buyer")});
+                                            q.getString("user_buyer")});
             }
             TablePSold.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+            JOptionPane.showMessageDialog(this, "Is there a problem with this query.");
         }
     }//GEN-LAST:event_ButtonConfirm3ActionPerformed
 
