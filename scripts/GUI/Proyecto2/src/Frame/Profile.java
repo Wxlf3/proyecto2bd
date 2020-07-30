@@ -7,11 +7,18 @@ import Connection.currentUser;
 public class Profile extends javax.swing.JFrame {
 
     
-    public Profile() {
+    public Profile(String username) {
         initComponents();
         setLocationRelativeTo(null);
     }
+
+    private Profile() {
+        initComponents();
+    }
     
+    private void fillIn() {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +47,7 @@ public class Profile extends javax.swing.JFrame {
         TableBuyerReview = new javax.swing.JTable();
         SpaceRatingSeller1 = new javax.swing.JLabel();
         SpaceRatingSeller2 = new javax.swing.JLabel();
+        ContactComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +99,11 @@ public class Profile extends javax.swing.JFrame {
         ButtonContact.setText("Contact");
         ButtonContact.setBorder(null);
         ButtonContact.setContentAreaFilled(false);
+        ButtonContact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonContactActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 120, 40));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
@@ -173,6 +186,15 @@ public class Profile extends javax.swing.JFrame {
         SpaceRatingSeller2.setText("estrellitas");
         jPanel1.add(SpaceRatingSeller2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 120, -1));
 
+        ContactComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ContactComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default" }));
+        ContactComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContactComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ContactComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 200, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,6 +224,14 @@ public class Profile extends javax.swing.JFrame {
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void ButtonContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonContactActionPerformed
+
+    private void ContactComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContactComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +272,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonContact;
     private javax.swing.JButton ButtonPicture;
+    private javax.swing.JComboBox<String> ContactComboBox;
     private javax.swing.JPanel PanelProducts;
     private javax.swing.JLabel SpaceName;
     private javax.swing.JLabel SpaceRatingBuyer;
