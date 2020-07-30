@@ -6,8 +6,10 @@
 package Frame;
 
 import BL.person;
+import BL.product;
 import BL.user;
 import Connection.ConnectDB;
+import Connection.currentUser;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -84,13 +86,12 @@ public class AddProduct extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         PanelPictures = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        FieldDescription1 = new javax.swing.JTextArea();
         Decoration1 = new javax.swing.JPanel();
         Decoration3 = new javax.swing.JPanel();
         Decoration2 = new javax.swing.JPanel();
         Decoration4 = new javax.swing.JPanel();
+        FieldQuant = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,12 +190,12 @@ public class AddProduct extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel6.setText("Price:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
+        jLabel6.setText("Quantity in stock:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
 
         FieldPrice.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         FieldPrice.setForeground(new java.awt.Color(76, 40, 130));
-        jPanel1.add(FieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 190, 30));
+        jPanel1.add(FieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 190, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -216,19 +217,7 @@ public class AddProduct extends javax.swing.JFrame {
         PanelPictures.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane2.setViewportView(PanelPictures);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 250, 100));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel9.setText("Seller Rating:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
-
-        FieldDescription1.setColumns(20);
-        FieldDescription1.setRows(5);
-        jScrollPane3.setViewportView(FieldDescription1);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 240, 40));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 250, 70));
 
         Decoration1.setBackground(new java.awt.Color(239, 184, 16));
 
@@ -295,6 +284,16 @@ public class AddProduct extends javax.swing.JFrame {
 
         jPanel1.add(Decoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
 
+        FieldQuant.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        FieldQuant.setForeground(new java.awt.Color(76, 40, 130));
+        jPanel1.add(FieldQuant, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 90, 30));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(76, 40, 130));
+        jLabel9.setText("Price:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,9 +320,11 @@ public class AddProduct extends javax.swing.JFrame {
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
         ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
         var name = FieldName.getText();
         var description = FieldDescription.getText();
         var price = FieldPrice.getText();
+        var quant = FieldQuant.getText();
         var picture_path = "";
         String category_element = (String) BoxCategory.getSelectedItem();
         String delivery_type_element = (String) BoxShipping.getSelectedItem();
@@ -347,8 +348,8 @@ public class AddProduct extends javax.swing.JFrame {
         {
             var id_category = c.getIntWithString(category_element, "getId_category", true);
             var id_delivery_type = c.getIntWithString(delivery_type_element, "getId_delivery_type", true);
-            //product p = new product(price, name, description, quantityInStock, isVisible, id_category, usernameSeller, id_delivery_type);
-            //c.insertProduct(p);
+            product p = new product(Float.valueOf(price), name, description, Integer.valueOf(quant), true, id_category, cu.getUsername(), id_delivery_type);
+            c.insertProduct(p);
             JOptionPane.showMessageDialog(this, "The product was inserted successfully in the system.");
         }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
@@ -414,9 +415,9 @@ public class AddProduct extends javax.swing.JFrame {
     private javax.swing.JPanel Decoration3;
     private javax.swing.JPanel Decoration4;
     private javax.swing.JTextArea FieldDescription;
-    private javax.swing.JTextArea FieldDescription1;
     private javax.swing.JTextField FieldName;
     private javax.swing.JTextField FieldPrice;
+    private javax.swing.JTextField FieldQuant;
     private javax.swing.JPanel PanelPictures;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -429,6 +430,5 @@ public class AddProduct extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

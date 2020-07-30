@@ -44,7 +44,6 @@ public class Basket extends javax.swing.JFrame {
                     prod.getString("description"),
                     prod.getInt("quant_in_stock"),
                     prod.getBoolean("is_visible"),
-                    prod.getFloat("average_score"),
                     prod.getInt("id_category"),
                     prod.getString("username_seller"),
                     prod.getInt("id_delivery_type"));
@@ -221,6 +220,7 @@ public class Basket extends javax.swing.JFrame {
                 ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
                 cart.next();
                 int quantity = cart.getInt("quantity");
+                c.removeWithUsername(cu.getUsername(), "remove_shoppingCart_with_username", rootPaneCheckingEnabled);
                 order o = new order(p.getPrice(), quantity, username, p.getId());
                 c.insertOrder(o);
             }

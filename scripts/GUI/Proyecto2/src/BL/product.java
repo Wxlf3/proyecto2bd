@@ -12,18 +12,16 @@ public class product
     private String description;
     private int quant_in_stock;
     private boolean is_visible;
-    private float average_score;
     private int id_category;
     private String username_seller;
     private int id_delivery_type;
 
-    public product(float price, String name, String description, int quant_in_stock, boolean is_visible, float average_score, int id_category, String username_seller, int id_delivery_type) {
+    public product(float price, String name, String description, int quant_in_stock, boolean is_visible, int id_category, String username_seller, int id_delivery_type) {
         this.price = price;
         this.name = name;
         this.description = description;
         this.quant_in_stock = quant_in_stock;
         this.is_visible = is_visible;
-        this.average_score = average_score;
         this.id_category = id_category;
         this.username_seller = username_seller;
         this.id_delivery_type = id_delivery_type;
@@ -75,14 +73,6 @@ public class product
 
     public void setIs_visible(boolean is_visible) {
         this.is_visible = is_visible;
-    }
-
-    public float getAverage_score() {
-        return average_score;
-    }
-
-    public void setAverage_score(float average_score) {
-        this.average_score = average_score;
     }
 
     public int getId_category() {

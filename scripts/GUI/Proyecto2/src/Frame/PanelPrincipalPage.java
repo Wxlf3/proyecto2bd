@@ -464,7 +464,6 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
                                             pro.getString("description"),
                                             pro.getInt("quant_in_stock"),
                                             pro.getBoolean("is_visible"),
-                                            pro.getFloat("average_score"),
                                             pro.getInt("id_category"),
                                             pro.getString("username_seller"),
                                             pro.getInt("id_delivery_type"));

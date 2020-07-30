@@ -13,7 +13,7 @@ public class QueryAdmin extends javax.swing.JFrame {
         FillIn();
     }
         
-    public void FillIn(){
+    private void FillIn(){
         ConnectDB c = new ConnectDB();
         
         BoxCategoryExpensive.removeAllItems();
