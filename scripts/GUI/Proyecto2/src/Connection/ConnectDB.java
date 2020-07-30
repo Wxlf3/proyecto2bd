@@ -136,7 +136,7 @@ public class ConnectDB {
     public void insertProductReview(product_review p) {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_product(?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call insert_productReview(?,?,?,?)}");
             stmt.setFloat(1, p.getScore());
             stmt.setString(2, p.getComment());
             stmt.setString(3, p.getUsername_writer());

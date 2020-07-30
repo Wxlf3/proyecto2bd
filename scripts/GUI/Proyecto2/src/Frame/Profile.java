@@ -59,6 +59,7 @@ public class Profile extends javax.swing.JFrame {
                 " (" + reviews.getFloat("score") + ", " + 
                 reviews.getString("name") + "):" + reviews.getString("comment") + "\n";
             }
+            ReviewsTextArea.setText(reviewsText);
             while (orders.next()) {
                 ContactComboBox.addItem(orders.getInt("id") + " " + orders.getString("name"));
             }
