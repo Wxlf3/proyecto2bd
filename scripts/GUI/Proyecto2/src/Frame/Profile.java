@@ -3,20 +3,68 @@ package Frame;
 
 import Connection.ConnectDB;
 import Connection.currentUser;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Profile extends javax.swing.JFrame {
 
+    private String username;
     
     public Profile(String username) {
         initComponents();
         setLocationRelativeTo(null);
+        this.username = username;
+        fillIn();
+        
     }
 
     private Profile() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     private void fillIn() {
+        ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
+        
+        ContactComboBox.removeAllItems();
+        ContactComboBox.addItem("Default");
+        
+        
+        ReviewsTextArea.setEditable(false);
+        ReviewsTextArea.setLineWrap(true);
+        ReviewsTextArea.setWrapStyleWord(true);   
+        ReviewsTextArea.setText("");
+        
+        SpaceName.setText(username);
+        
+        ResultSet person = c.queryWithString(username, "get_person_with_username", false);
+        ResultSet reviews = c.queryWithString(username, "get_reviews_of_user", true);
+        ResultSet user = c.queryWithString(username, "get_user_with_username", true);
+        ResultSet orders = c.queryWithStrings(cu.getUsername(), username, "get_orders_of_2_users", true);
+        
+        try { 
+            person.next();
+            SpaceResidence.setText(person.getString("district") + ", " + 
+                    person.getString("city") + ", " +
+                    person.getString("state") + ", " +
+                    person.getString("country"));
+            user.next();
+            SpaceRatingSeller1.setText(user.getFloat("average_score_seller") + "/5");
+            SpaceRatingSeller2.setText(user.getFloat("average_score_buyer") + "/5");
+            String reviewsText = "";
+            while (reviews.next()) {
+                reviewsText = reviewsText + reviews.getString("username_writer") + 
+                " (" + reviews.getFloat("score") + ", " + 
+                reviews.getString("name") + "):" + reviews.getString("comment") + "\n";
+            }
+            while (orders.next()) {
+                ContactComboBox.addItem(orders.getInt("id") + " " + orders.getString("name"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error. Try later.");
+        }
         
     }
 
@@ -31,7 +79,6 @@ public class Profile extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         SpaceName = new javax.swing.JLabel();
         SpaceResidence = new javax.swing.JLabel();
@@ -39,15 +86,13 @@ public class Profile extends javax.swing.JFrame {
         SpaceRatingBuyer = new javax.swing.JLabel();
         ButtonContact = new javax.swing.JButton();
         ButtonBack = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        PanelProducts = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         ButtonPicture = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        TableBuyerReview = new javax.swing.JTable();
         SpaceRatingSeller1 = new javax.swing.JLabel();
         SpaceRatingSeller2 = new javax.swing.JLabel();
         ContactComboBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ReviewsTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,17 +102,11 @@ public class Profile extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/location.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 132, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel2.setText("Products");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 200, -1));
-
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(76, 40, 130));
-        jLabel3.setText("Comments");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 280, 200, -1));
+        jLabel3.setText("Reviews");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 200, -1));
 
         SpaceName.setBackground(new java.awt.Color(255, 255, 255));
         SpaceName.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -79,7 +118,7 @@ public class Profile extends javax.swing.JFrame {
         SpaceResidence.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         SpaceResidence.setForeground(new java.awt.Color(76, 40, 130));
         SpaceResidence.setText("City, Country Residence");
-        jPanel1.add(SpaceResidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 200, -1));
+        jPanel1.add(SpaceResidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 420, -1));
 
         SpaceRatingSeller.setBackground(new java.awt.Color(255, 255, 255));
         SpaceRatingSeller.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -104,7 +143,7 @@ public class Profile extends javax.swing.JFrame {
                 ButtonContactActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 120, 40));
+        jPanel1.add(ButtonContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 120, 40));
 
         ButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         ButtonBack.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -118,12 +157,6 @@ public class Profile extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
-
-        PanelProducts.setBackground(new java.awt.Color(255, 255, 255));
-        PanelProducts.setLayout(new java.awt.GridLayout(0, 3));
-        jScrollPane1.setViewportView(PanelProducts);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 320, 220));
 
         jPanel2.setBackground(new java.awt.Color(239, 184, 16));
 
@@ -148,32 +181,6 @@ public class Profile extends javax.swing.JFrame {
         ButtonPicture.setContentAreaFilled(false);
         jPanel1.add(ButtonPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, 150));
 
-        jScrollPane4.setForeground(new java.awt.Color(76, 40, 130));
-
-        TableBuyerReview.setAutoCreateColumnsFromModel(false);
-        TableBuyerReview.setAutoCreateRowSorter(true);
-        TableBuyerReview.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        TableBuyerReview.setForeground(new java.awt.Color(76, 40, 130));
-        TableBuyerReview.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "User", "Comment"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(TableBuyerReview);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 320, 220));
-
         SpaceRatingSeller1.setBackground(new java.awt.Color(255, 255, 255));
         SpaceRatingSeller1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         SpaceRatingSeller1.setForeground(new java.awt.Color(76, 40, 130));
@@ -193,7 +200,13 @@ public class Profile extends javax.swing.JFrame {
                 ContactComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(ContactComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 200, 30));
+        jPanel1.add(ContactComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 200, 30));
+
+        ReviewsTextArea.setColumns(20);
+        ReviewsTextArea.setRows(5);
+        jScrollPane1.setViewportView(ReviewsTextArea);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 620, 210));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,7 +239,24 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContactActionPerformed
-        // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
+        String contact_order = (String) ContactComboBox.getSelectedItem();
+        try {
+            if("Default".equals(contact_order))
+                JOptionPane.showMessageDialog(this, "Error. Please select an order from the contact box.");
+            else
+            {
+                int id_order = Integer.valueOf(contact_order.substring(0, contact_order.indexOf(" ")));
+                int id_chat = c.getIntWithId(id_order, "get_idChat_with_idOrder", true);
+                Chat chat = new Chat(id_chat, SpaceName.getText(), cu.getUsername());
+                chat.show();
+                this.dispose();
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error. Try later.");
+        }
     }//GEN-LAST:event_ButtonContactActionPerformed
 
     private void ContactComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactComboBoxActionPerformed
@@ -273,20 +303,17 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton ButtonContact;
     private javax.swing.JButton ButtonPicture;
     private javax.swing.JComboBox<String> ContactComboBox;
-    private javax.swing.JPanel PanelProducts;
+    private javax.swing.JTextArea ReviewsTextArea;
     private javax.swing.JLabel SpaceName;
     private javax.swing.JLabel SpaceRatingBuyer;
     private javax.swing.JLabel SpaceRatingSeller;
     private javax.swing.JLabel SpaceRatingSeller1;
     private javax.swing.JLabel SpaceRatingSeller2;
     private javax.swing.JLabel SpaceResidence;
-    private javax.swing.JTable TableBuyerReview;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,13 +7,11 @@ package BL;
 public class chat_message 
 {
     private int id;
-    private java.sql.Date date;
     private String message;
     private String username_writer;
     private int id_chat;
 
-    public chat_message(java.sql.Date date, String message, String username_writer, int id_chat) {
-        this.date = date;
+    public chat_message(String message, String username_writer, int id_chat) {
         this.message = message;
         this.username_writer = username_writer;
         this.id_chat = id_chat;
@@ -25,14 +23,6 @@ public class chat_message
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public java.sql.Date getDate() {
-        return date;
-    }
-
-    public void setDate(java.sql.Date date) {
-        this.date = date;
     }
 
     public String getMessage() {

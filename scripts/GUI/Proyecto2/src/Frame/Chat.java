@@ -5,9 +5,15 @@
  */
 package Frame;
 
+import BL.chat_message;
+import Connection.ConnectDB;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +24,45 @@ public class Chat extends javax.swing.JFrame {
     /**
      * Creates new form Chat
      */
+    int id_chat;
+    String other_user;
+    String self_user;
+    
     public Chat() {
         initComponents();
+    }
+    public Chat(int id_chat, String other_user, String self_user) {
+        this.id_chat = id_chat;
+        this.other_user = other_user;
+        this.self_user = self_user;
+        initComponents();
+        fillIn();
+    }
+    
+    private void fillIn() {
+        ConnectDB c = new ConnectDB();
+        
+        ChatTextArea.setEditable(false);
+        ChatTextArea.setLineWrap(true);
+        ChatTextArea.setWrapStyleWord(true);   
+        ChatTextArea.setText("");
+        
+        MessageTextArea.setEditable(true);
+        MessageTextArea.setLineWrap(true);
+        MessageTextArea.setWrapStyleWord(true);   
+        MessageTextArea.setText("");
+        
+        ResultSet messages = c.queryWithInt(id_chat, "getAll_chat_message_with_idChat", true);
+        try {
+            String chattxt = "";
+            while (messages.next()) {
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, hh:mm:ss a");
+                String date = formatter.format(messages.getDate("date"));
+                chattxt = chattxt + messages.getString("username_writer") + " (" + date + "):" + messages.getString("message") + "\n";
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error. Try later.");         
+        }
     }
 
     /**
@@ -35,10 +78,10 @@ public class Chat extends javax.swing.JFrame {
         ButtonBack = new javax.swing.JButton();
         ButtonConfirm = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        FieldDescription = new javax.swing.JTextArea();
+        MessageTextArea = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        PanelChat = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ChatTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,21 +114,20 @@ public class Chat extends javax.swing.JFrame {
         });
         jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, 110, 30));
 
-        FieldDescription.setColumns(20);
-        FieldDescription.setRows(5);
-        jScrollPane1.setViewportView(FieldDescription);
+        MessageTextArea.setColumns(20);
+        MessageTextArea.setRows(5);
+        jScrollPane1.setViewportView(MessageTextArea);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 360, 40));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 370, 60));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 530, 10));
 
-        PanelChat.setBackground(new java.awt.Color(255, 255, 255));
-        PanelChat.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        PanelChat.setLayout(new java.awt.GridLayout(0, 2));
-        jScrollPane2.setViewportView(PanelChat);
+        ChatTextArea.setColumns(20);
+        ChatTextArea.setRows(5);
+        jScrollPane3.setViewportView(ChatTextArea);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 450, 390));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 400, 390));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 580));
 
@@ -99,11 +141,12 @@ public class Chat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
-        JTextArea globe = new JTextArea();
-        globe.setBackground(new java.awt.Color(76, 40, 130));
-        globe.setEditable(false);
-        globe.setForeground(Color.WHITE);
-        PanelChat.add(globe);
+        ConnectDB c = new ConnectDB();
+        String text = MessageTextArea.getText();
+        chat_message cm = new chat_message(text, self_user, id_chat);
+        c.insertChatMessage(cm);
+        MessageTextArea.setText("");
+        fillIn();
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     /**
@@ -144,11 +187,11 @@ public class Chat extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonConfirm;
-    private javax.swing.JTextArea FieldDescription;
-    private javax.swing.JPanel PanelChat;
+    private javax.swing.JTextArea ChatTextArea;
+    private javax.swing.JTextArea MessageTextArea;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

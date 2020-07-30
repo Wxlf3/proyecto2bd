@@ -53,10 +53,9 @@ public class ConnectDB {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call insert_chat_message(?,?,?,?)}");
-            stmt.setDate(1, p.getDate());
-            stmt.setString(2, p.getMessage());
-            stmt.setString(3, p.getUsername_writer());
-            stmt.setInt(4, p.getId_chat());
+            stmt.setString(1, p.getMessage());
+            stmt.setString(2, p.getUsername_writer());
+            stmt.setInt(3, p.getId_chat());
             stmt.execute();
         }
         catch (Exception e){
@@ -388,10 +387,9 @@ public class ConnectDB {
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
             CallableStatement stmt = con.prepareCall("{call update_chat_message(?,?,?,?,?)}");
             stmt.setInt(1, p.getId());
-            stmt.setDate(2, p.getDate());
-            stmt.setString(3, p.getMessage());
-            stmt.setString(4, p.getUsername_writer());
-            stmt.setInt(5, p.getId_chat());
+            stmt.setString(2, p.getMessage());
+            stmt.setString(3, p.getUsername_writer());
+            stmt.setInt(4, p.getId_chat());
             stmt.execute();
         }
         catch (Exception e){
