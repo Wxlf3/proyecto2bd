@@ -48,13 +48,6 @@ public class ProductView extends javax.swing.JFrame {
     {
         currentUser cu = currentUser.getInstance();    
         ConnectDB c = new ConnectDB();
-        FieldName.setEnabled(false);
-        FieldDescription.setEnabled(false);
-        FieldCategory.setEnabled(false);
-        FieldPrice.setEnabled(false);
-        FieldSeller.setEnabled(false);
-        FieldReviewSeller.setEnabled(false);
-        FieldQuantity.setEnabled(true);
         
         FieldName.setText(p.getName());
         FieldDescription.setText(p.getDescription());
@@ -113,7 +106,7 @@ public class ProductView extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         ButtonConfirm1 = new javax.swing.JButton();
-        FieldQuantity = new javax.swing.JLabel();
+        FieldQuantity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -374,7 +367,7 @@ public class ProductView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, 130, 30));
-        jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, 150, 30));
+        jPanel1.add(FieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 476, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -482,7 +475,7 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JLabel FieldName;
     private javax.swing.JLabel FieldName1;
     private javax.swing.JLabel FieldPrice;
-    private javax.swing.JLabel FieldQuantity;
+    private javax.swing.JTextField FieldQuantity;
     private javax.swing.JTextArea FieldReviewSeller;
     private javax.swing.JLabel FieldSeller;
     private javax.swing.JTable TableBuyerReview;
