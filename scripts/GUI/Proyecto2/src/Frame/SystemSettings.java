@@ -1,7 +1,17 @@
 
 package Frame;
 
+import BL.city;
+import BL.country;
+import BL.delivery_type;
+import BL.district;
+import BL.gender;
+import BL.nationality;
+import BL.state;
 import Connection.ConnectDB;
+import Connection.currentUser;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class SystemSettings extends javax.swing.JFrame {
 
@@ -11,6 +21,80 @@ public class SystemSettings extends javax.swing.JFrame {
     public SystemSettings() {
         initComponents();
         setLocationRelativeTo(null);
+        fillIn();
+    }
+    
+    public void fillIn()
+    {
+        ConnectDB c = new ConnectDB();
+        
+        BoxShippingMethod.removeAllItems();
+        BoxShippingMethod.addItem("Default");
+        
+        ResultSet shippingMethod = c.query("`getAll_delivery_type`",true);
+        
+        BoxNationality.removeAllItems();
+        BoxNationality.addItem("Default");
+        
+        ResultSet nationality = c.query("`getAll_nationality`",false);
+        
+        BoxGender.removeAllItems();
+        BoxGender.addItem("Default");
+        
+        ResultSet gender = c.query("`getAll_gender` ",false);
+        
+        BoxCountry.removeAllItems();
+        BoxCountry.addItem("Default");
+        
+        ResultSet country = c.query("`getAll_country` ",false);
+        
+        BoxState.removeAllItems();
+        BoxState.addItem("Default");
+        
+        ResultSet state = c.query("`getAll_state` ",false);
+        
+        BoxCity.removeAllItems();
+        BoxCity.addItem("Default");
+        
+        ResultSet city = c.query("`getAll_city` ",false);
+        
+        BoxDistrict.removeAllItems();
+        BoxDistrict.addItem("Default");
+        
+        ResultSet district = c.query("`getAll_district` ",false);
+        
+        try {
+            while(shippingMethod.next())
+            {
+                BoxShippingMethod.addItem(String.valueOf(shippingMethod.getString("description")));
+            }
+            while(nationality.next())
+            {
+                BoxNationality.addItem(String.valueOf(nationality.getString("name")));
+            }
+            while(gender.next())
+            {
+                BoxGender.addItem(String.valueOf(gender.getString("name")));
+            }
+            while(country.next())
+            {
+                BoxCountry.addItem(String.valueOf(country.getString("name")));
+            }
+            while(state.next())
+            {
+                BoxState.addItem(String.valueOf(state.getString("name")));
+            }
+            while(city.next())
+            {
+                BoxCity.addItem(String.valueOf(city.getString("name")));
+            }
+            while(district.next())
+            {
+                BoxDistrict.addItem(String.valueOf(district.getString("name")));
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
     }
 
     /**
@@ -36,7 +120,6 @@ public class SystemSettings extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         ButtonCancel = new javax.swing.JButton();
-        ButtonConfirm = new javax.swing.JButton();
         ButtonAddPic = new javax.swing.JButton();
         ButtonDeletePic = new javax.swing.JButton();
         ButtonAddPic1 = new javax.swing.JButton();
@@ -61,6 +144,8 @@ public class SystemSettings extends javax.swing.JFrame {
         Decoration = new javax.swing.JPanel();
         PanelDecoration1 = new javax.swing.JPanel();
         PanelDecoration2 = new javax.swing.JPanel();
+        ButtonConfirm1 = new javax.swing.JButton();
+        ButtonConfirm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,18 +243,6 @@ public class SystemSettings extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 110, 30));
-
-        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm.setText("Confirm");
-        ButtonConfirm.setBorder(null);
-        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonConfirmActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, 110, 30));
 
         ButtonAddPic.setBackground(new java.awt.Color(255, 255, 255));
         ButtonAddPic.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
@@ -414,6 +487,29 @@ public class SystemSettings extends javax.swing.JFrame {
 
         Decoration.add(PanelDecoration2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 580));
 
+        ButtonConfirm1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm1.setText("Refresh");
+        ButtonConfirm1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirm1ActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 520, 110, 30));
+
+        ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonConfirm.setText("Confirm");
+        ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
+        Decoration.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 110, 30));
+
         jPanel1.add(Decoration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -429,79 +525,7 @@ public class SystemSettings extends javax.swing.JFrame {
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
         ConnectDB c = new ConnectDB();
-        /*var id = FieldId.getText();
-        var first_name = FieldName.getText();
-        var middle_name = " ";
-        try {
-            middle_name = FieldMiddleName.getText();
-        }
-        catch (NullPointerException e) {}
-        var last_name = FieldLastName.getText();
-        var email = FieldEmail.getText();
-        var phone_number = FieldPhone.getText();
-        java.util.Date birthday = null;
-        try {
-            birthday = new SimpleDateFormat("dd/MM/yy").parse(FieldBirthday.getText());
-        }
-        catch (Exception e){}
-        java.sql.Date birthday_sql = new java.sql.Date(birthday.getTime());
-        var picture_path = "";
-        var username = FieldUsername.getText();
-        var password = FieldPassword.getText();
-        String id_gender_element = (String) BoxGender.getSelectedItem();
-        String id_district_element = (String) BoxDistrict.getSelectedItem();
-        String id_nationality_element = (String) BoxShippingMethod.getSelectedItem();
-        if(id_gender_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the gender box.");
-        else if(id_district_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the district box.");
-        else if(id_nationality_element == "Default")
-        JOptionPane.showMessageDialog(this, "Select the nationality box.");
-        else if(id == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the id field.");
-        }
-        else if(first_name == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the first name field.");
-        }
-        else if(last_name == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the last name field.");
-        }
-        else if(email == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the email field.");
-        }
-        else if(phone_number == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the email field.");
-        }
-        else if(FieldBirthday.getText() == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the birthday field.");
-        }
-        else if(username == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the username field.");
-        }
-        else if(password == "")
-        {
-            JOptionPane.showMessageDialog(this, "Fill the username field.");
-        }
-        else
-        {
-            var id_gender = c.getIntWithString(id_gender_element, "getId_gender", false);
-            var id_district = c.getIntWithString(id_district_element, "getId_district", false);
-            var id_nationality = c.getIntWithString(id_nationality_element, "getId_nationality", false);
-            person p = new person(id, first_name, middle_name, last_name, email, phone_number, birthday_sql, picture_path, id_gender, id_district, username);
-            c.insertPerson(p);
-            user u = new user(username, password, 0, 0, 2);
-            c.insertUser(u);
-            person_X_nationality n = new person_X_nationality(id,id_nationality);
-            c.insertPersonXNationality(n);
-            JOptionPane.showMessageDialog(this, "The person was created successfully in the system.");
-        }*/
+        
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
@@ -511,60 +535,204 @@ public class SystemSettings extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonBackActionPerformed
 
     private void ButtonAddPicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPicActionPerformed
-        // TODO add your handling code here:
+        try{
+            String new_method = (String) JOptionPane.showInputDialog(null,"New shipping method: ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            delivery_type dt = new delivery_type(new_method);
+            c.insertDeliveryType(dt);
+            JOptionPane.showMessageDialog(this, "The shipping method was created successfully.");
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The shipping method was not created successfully.");}
     }//GEN-LAST:event_ButtonAddPicActionPerformed
 
     private void ButtonDeletePicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePicActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConnectDB c = new ConnectDB();
+            String delivery_type = (String) BoxShippingMethod.getSelectedItem();
+            if(delivery_type == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the shipping method box.");
+            else
+            {
+                int id_delivery_type = c.getIntWithString(delivery_type, "getId_delivery_type", true);
+                c.removeWithId(id_delivery_type,"remove_delivery_type",true);
+                JOptionPane.showMessageDialog(this, "The shipping method was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The shipping method was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePicActionPerformed
 
     private void ButtonAddPic1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic1ActionPerformed
-        // TODO add your handling code here:
+        try{    
+            String n = (String) JOptionPane.showInputDialog(null,"New nationality: ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            nationality x = new nationality(n);
+            c.insertNationality(x);
+            JOptionPane.showMessageDialog(this, "The nationality was created successfully.");
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The nationality was not created successfully.");}
     }//GEN-LAST:event_ButtonAddPic1ActionPerformed
 
     private void ButtonDeletePic1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConnectDB c = new ConnectDB();
+            String nationality = (String) BoxNationality.getSelectedItem();
+            if(nationality == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the nationality box.");
+            else
+            {
+                int id_nationality = c.getIntWithString(nationality, "`getId_nationality`", false);
+                c.removeWithId(id_nationality,"`remove_nationality`",false);
+                JOptionPane.showMessageDialog(this, "The nationality was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The nationality was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePic1ActionPerformed
 
     private void ButtonAddPic2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic2ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String n = (String) JOptionPane.showInputDialog(null,"New gender: ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            gender x = new gender(n);
+            c.insertGender(x);
+            JOptionPane.showMessageDialog(this, "The gender was created successfully.");
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The gender was not created successfully.");} 
     }//GEN-LAST:event_ButtonAddPic2ActionPerformed
 
     private void ButtonDeletePic2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic2ActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConnectDB c = new ConnectDB();
+            String gender = (String) BoxGender.getSelectedItem();
+            if(gender == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the gender box.");
+            else
+            {
+                int id_gender = c.getIntWithString(gender, "`getId_gender`", false);
+                c.removeWithId(id_gender,"`remove_gender`",false);
+                JOptionPane.showMessageDialog(this, "The gender was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The gender was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePic2ActionPerformed
 
     private void ButtonAddPic3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic3ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String n = (String) JOptionPane.showInputDialog(null,"New country: ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            country x = new country(n);
+            c.insertCountry(x);
+            JOptionPane.showMessageDialog(this, "The country was created successfully.");
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The country was not created successfully.");} 
     }//GEN-LAST:event_ButtonAddPic3ActionPerformed
 
     private void ButtonDeletePic3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic3ActionPerformed
-        // TODO add your handling code here:
+         try{
+            ConnectDB c = new ConnectDB();
+            String country = (String) BoxCountry.getSelectedItem();
+            if(country == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the country box.");
+            else
+            {
+                int id_country= c.getIntWithString(country, "`getId_country`", false);
+                c.removeWithId(id_country,"`remove_country`",false);
+                JOptionPane.showMessageDialog(this, "The country was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The country was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePic3ActionPerformed
 
     private void ButtonDeletePic4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic4ActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConnectDB c = new ConnectDB();
+            String state = (String) BoxState.getSelectedItem();
+            if(state == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the state box.");
+            else
+            {
+                int id_state= c.getIntWithString(state, "`getId_state`", false);
+                c.removeWithId(id_state,"`remove_state`",false);
+                JOptionPane.showMessageDialog(this, "The state was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The state was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePic4ActionPerformed
 
     private void ButtonAddPic4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic4ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String n = (String) JOptionPane.showInputDialog(null,"New state (will be refeence to the selected country): ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            String country_element = (String) BoxCountry.getSelectedItem();
+            if(country_element == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the country box.");
+            else
+            {
+                int id_country = c.getIntWithString(country_element, "getId_country", false);
+                state x = new state(n,id_country);
+                c.insertState(x);
+                JOptionPane.showMessageDialog(this, "The state was created successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The state was not created successfully.");} 
     }//GEN-LAST:event_ButtonAddPic4ActionPerformed
 
     private void ButtonAddPic5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic5ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String n = (String) JOptionPane.showInputDialog(null,"New city (will be refeence to the selected state): ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            String state_element = (String) BoxState.getSelectedItem();
+            if(state_element == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the state box to reference the state.");
+            else
+            {
+                int id_state = c.getIntWithString(state_element, "getId_state", false);
+                city x = new city(n,id_state);
+                c.insertCity(x);
+                JOptionPane.showMessageDialog(this, "The city was created successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The city was not created successfully.");} 
     }//GEN-LAST:event_ButtonAddPic5ActionPerformed
 
     private void ButtonDeletePic5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic5ActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConnectDB c = new ConnectDB();
+            String city = (String) BoxCity.getSelectedItem();
+            if(city == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the city box.");
+            else
+            {
+                int id_city= c.getIntWithString(city, "`getId_city`", false);
+                c.removeWithId(id_city,"`remove_city`",false);
+                JOptionPane.showMessageDialog(this, "The city was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The city was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePic5ActionPerformed
 
     private void ButtonDeletePic6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletePic6ActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConnectDB c = new ConnectDB();
+            String district = (String) BoxDistrict.getSelectedItem();
+            if(district == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please select the district box.");
+            else
+            {
+                int id_district = c.getIntWithString(district, "`getId_district`", false);
+                c.removeWithId(id_district,"`remove_district`",false);
+                JOptionPane.showMessageDialog(this, "The district was deleted successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The district was not deleted successfully.");} 
     }//GEN-LAST:event_ButtonDeletePic6ActionPerformed
 
     private void ButtonAddPic6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddPic6ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String n = (String) JOptionPane.showInputDialog(null,"New district (will be refeence to the selected city): ",JOptionPane.QUESTION_MESSAGE);
+            ConnectDB c = new ConnectDB();
+            String city_element = (String) BoxCity.getSelectedItem();
+            if(city_element == "Default")
+                JOptionPane.showMessageDialog(this, "Error. Please fill the city box to reference the district.");
+            else
+            {
+                int id_district = c.getIntWithString(city_element, "getId_city", false);
+                district x = new district(n,id_district);
+                c.insertDistrict(x);
+                JOptionPane.showMessageDialog(this, "The district was created successfully.");
+            }
+        }catch(Exception e){JOptionPane.showMessageDialog(this, "The district was not created successfully.");} 
     }//GEN-LAST:event_ButtonAddPic6ActionPerformed
+
+    private void ButtonConfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirm1ActionPerformed
+        fillIn();
+    }//GEN-LAST:event_ButtonConfirm1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -619,6 +787,7 @@ public class SystemSettings extends javax.swing.JFrame {
     private javax.swing.JButton ButtonBack;
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JButton ButtonConfirm;
+    private javax.swing.JButton ButtonConfirm1;
     private javax.swing.JButton ButtonDeletePic;
     private javax.swing.JButton ButtonDeletePic1;
     private javax.swing.JButton ButtonDeletePic2;

@@ -5,6 +5,7 @@ USE `app_ad`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `app_ad`.`order_BEFORE_INSERT` BEFORE INSERT ON `order` FOR EACH ROW
 BEGIN
 	SET NEW.creation_user = current_user();
+    SET NEW.date = current_timestamp();
 	SET NEW.creation_date = current_timestamp();
 END$$
 DELIMITER ;

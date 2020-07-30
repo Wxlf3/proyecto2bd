@@ -10,10 +10,10 @@ DROP PROCEDURE IF EXISTS getAll_chat_message;
 DELIMITER //
 
 
-CREATE PROCEDURE insert_chat_message(IN pnDate DATETIME, IN pnMessage VARCHAR(200), IN pnUsernameWriter VARCHAR(45), IN pnId_chat INT)
+CREATE PROCEDURE insert_chat_message(IN pnMessage VARCHAR(200), IN pnUsernameWriter VARCHAR(45), IN pnId_chat INT)
     BEGIN
-            INSERT INTO chat_message(date, message, username_writer, id_chat)
-            VALUES (pnDate, pnMessage, pnUsernameWriter, pnId_chat);
+            INSERT INTO chat_message(message, username_writer, id_chat)
+            VALUES (pnMessage, pnUsernameWriter, pnId_chat);
     END //
 
 CREATE PROCEDURE update_chat_message(IN pnId INT, IN pnDate DATETIME, IN pnMessage VARCHAR(200), IN pnUsernameWriter VARCHAR(45), IN pnId_chat INT)

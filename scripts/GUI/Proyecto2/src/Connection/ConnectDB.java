@@ -79,12 +79,11 @@ public class ConnectDB {
     public void insertOrder(order o) {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call insert_order(?,?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call insert_order(?,?,?,?)}");
             stmt.setFloat(1, o.getPrice());
             stmt.setInt(2, o.getQuantity());
-            stmt.setDate(3, o.getDate());
-            stmt.setString(4, o.getUser_buyer());
-            stmt.setInt(5, o.getId_product());
+            stmt.setString(3, o.getUser_buyer());
+            stmt.setInt(4, o.getId_product());
             stmt.execute();
         }
         catch (Exception e){
@@ -416,13 +415,12 @@ public class ConnectDB {
     public void updateOrder(order o) {
         try{
             con=  DriverManager.getConnection(url_app, user_app, pass_app);
-            CallableStatement stmt = con.prepareCall("{call update_order(?,?,?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{call update_order(?,?,?,?,?)}");
             stmt.setInt(1, o.getId());
             stmt.setFloat(2, o.getPrice());
             stmt.setInt(3, o.getQuantity());
-            stmt.setDate(4, o.getDate());
-            stmt.setString(5, o.getUser_buyer());
-            stmt.setInt(6, o.getId_product());
+            stmt.setString(4, o.getUser_buyer());
+            stmt.setInt(5, o.getId_product());
             stmt.execute();
         }
         catch (Exception e){
