@@ -75,6 +75,7 @@ public class QueryUser extends javax.swing.JFrame {
         BoxMonth = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePurchaseHistory = new javax.swing.JTable();
+        ButtonShow1 = new javax.swing.JButton();
         PanelRecentlyViewed = new javax.swing.JPanel();
         ButtonBack2 = new javax.swing.JButton();
         ButtonRefreshRecentlyViewedProducts = new javax.swing.JButton();
@@ -83,9 +84,10 @@ public class QueryUser extends javax.swing.JFrame {
         ButtonShow = new javax.swing.JButton();
         PanelListProductsSold = new javax.swing.JPanel();
         ButtonBack3 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        ListProductsSold = new javax.swing.JList<>();
         ButtonConfirm3 = new javax.swing.JButton();
+        ButtonShow2 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TablePSold = new javax.swing.JTable();
         PanelPurchasesMade = new javax.swing.JPanel();
         ButtonBack4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -222,6 +224,17 @@ public class QueryUser extends javax.swing.JFrame {
 
         PanelPurchaseHistory.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, 290));
 
+        ButtonShow1.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonShow1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonShow1.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonShow1.setText("View Product");
+        ButtonShow1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonShow1ActionPerformed(evt);
+            }
+        });
+        PanelPurchaseHistory.add(ButtonShow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 270, -1, -1));
+
         jTabbedPane1.addTab("Purchase history", PanelPurchaseHistory);
 
         PanelRecentlyViewed.setBackground(new java.awt.Color(255, 255, 255));
@@ -295,18 +308,6 @@ public class QueryUser extends javax.swing.JFrame {
         });
         PanelListProductsSold.add(ButtonBack3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        jScrollPane6.setBorder(null);
-        jScrollPane6.setForeground(new java.awt.Color(76, 40, 130));
-        jScrollPane6.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-
-        ListProductsSold.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
-        ListProductsSold.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        ListProductsSold.setForeground(new java.awt.Color(76, 40, 130));
-        ListProductsSold.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane6.setViewportView(ListProductsSold);
-
-        PanelListProductsSold.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 340, 430));
-
         ButtonConfirm3.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm3.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm3.setForeground(new java.awt.Color(76, 40, 130));
@@ -318,6 +319,32 @@ public class QueryUser extends javax.swing.JFrame {
             }
         });
         PanelListProductsSold.add(ButtonConfirm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 110, 30));
+
+        ButtonShow2.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonShow2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        ButtonShow2.setForeground(new java.awt.Color(76, 40, 130));
+        ButtonShow2.setText("View User");
+        ButtonShow2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonShow2ActionPerformed(evt);
+            }
+        });
+        PanelListProductsSold.add(ButtonShow2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, -1, -1));
+
+        TablePSold.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(TablePSold);
+
+        PanelListProductsSold.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
 
         jTabbedPane1.addTab("List of products sold for each user", PanelListProductsSold);
 
@@ -483,12 +510,12 @@ public class QueryUser extends javax.swing.JFrame {
         String username = cu.getUsername();
         ConnectDB c = new ConnectDB();
         DefaultTableModel modelo = new DefaultTableModel();
-        TableAllProducts.setModel(modelo);
+        TablePSold.setModel(modelo);
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
         ResultSet q = c.queryWithString(username,"selling_history",true);
         try {
-            modelo = (DefaultTableModel)TableAllProducts.getModel();
+            modelo = (DefaultTableModel)TablePSold.getModel();
             modelo.addColumn("Id");
             modelo.addColumn("Name");
             modelo.addColumn("Date");
@@ -506,7 +533,7 @@ public class QueryUser extends javax.swing.JFrame {
                                             q.getFloat("final_price"),
                                             q.getString("username_buyer")});
             }
-            TableAllProducts.setModel(modelo);
+            TablePSold.setModel(modelo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Is a problem with this query.");
         }
@@ -567,6 +594,22 @@ public class QueryUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonShowActionPerformed
 
+    private void ButtonShow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonShow1ActionPerformed
+        int row = TablePurchaseHistory.getSelectedRow();
+        int pid = (int) TablePurchaseHistory.getModel().getValueAt(row, 0);
+        ProductView w = new ProductView(pid);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonShow1ActionPerformed
+
+    private void ButtonShow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonShow2ActionPerformed
+        int row = TablePSold.getSelectedRow();
+        String username = (String) TablePSold.getModel().getValueAt(row, 6);
+        Profile w = new Profile(username);
+        w.show();
+        this.dispose();
+    }//GEN-LAST:event_ButtonShow2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -616,8 +659,9 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConfirm4;
     private javax.swing.JButton ButtonRefreshRecentlyViewedProducts;
     private javax.swing.JButton ButtonShow;
+    private javax.swing.JButton ButtonShow1;
+    private javax.swing.JButton ButtonShow2;
     private javax.swing.JTextField FieldNameProduct;
-    private javax.swing.JList<String> ListProductsSold;
     private javax.swing.JPanel PanelListProductsSold;
     private javax.swing.JPanel PanelPurchaseHistory;
     private javax.swing.JPanel PanelPurchasesMade;
@@ -625,6 +669,7 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JPanel PanelSearchingProduct;
     private javax.swing.JTable TableAllProducts;
     private javax.swing.JTable TableHistoryProducts;
+    private javax.swing.JTable TablePSold;
     private javax.swing.JTable TablePurchaseHistory;
     private javax.swing.JTable TableUserPurchases;
     private javax.swing.JLabel jLabel6;
@@ -634,7 +679,7 @@ public class QueryUser extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
