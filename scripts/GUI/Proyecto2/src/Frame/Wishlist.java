@@ -1,17 +1,58 @@
 
 package Frame;
 
+import BL.product;
+import Connection.ConnectDB;
+import Connection.currentUser;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class Wishlist extends javax.swing.JFrame {
     
-    public String user;
+    private List<product> products = new ArrayList<>();
     
     public Wishlist() {
         initComponents();
+        fillInTable();
     }
-    
-    public Wishlist(String puser) {
-        initComponents();
-        user = puser;
+   private void fillInTable() {
+        currentUser cu = currentUser.getInstance();    
+        products.clear();
+        ConnectDB c = new ConnectDB();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableProducts.setModel(modelo);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        ResultSet wish = c.queryWithString(cu.getUsername(), "get_wishList_with_username",true);
+        try {
+            modelo = (DefaultTableModel)TableProducts.getModel();
+            modelo.addColumn("Id product");
+            modelo.addColumn("Quantity");
+            while(wish.next()){
+                modelo.addRow(new Object[]{ wish.getInt("id_product"),
+                                            wish.getInt("quantity")});
+                int id_product = wish.getInt("id_product");
+                ResultSet prod = c.queryWithInt(id_product, "get_product_with_id", true);
+                //prod.next();
+                product p = new product(prod.getFloat("price"),
+                                        prod.getString("name"),
+                                        prod.getString("description"),
+                                        prod.getInt("quant_in_stock"),
+                                        prod.getBoolean("is_visible"),
+                                        prod.getFloat("average_score"),
+                                        prod.getInt("id_category"),
+                                        prod.getString("username_seller"),
+                                        prod.getInt("id_delivery_type"));
+                p.setId(id_product);
+                products.add(p);
+            }
+            TableProducts.setModel(modelo);        
+        } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error. Try later.");
+        }
     }
 
     /**
@@ -127,6 +168,11 @@ public class Wishlist extends javax.swing.JFrame {
         ButtonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shopping-basket.png"))); // NOI18N
         ButtonConfirm.setText("  Add to the basket");
         ButtonConfirm.setBorder(null);
+        ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonConfirmActionPerformed(evt);
+            }
+        });
         jPanel1.add(ButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 240, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
@@ -155,6 +201,10 @@ public class Wishlist extends javax.swing.JFrame {
         w.show();
         this.dispose();
     }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     /**
      * @param args the command line arguments

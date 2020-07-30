@@ -1,6 +1,7 @@
 
 package Frame;
 
+import BL.order;
 import BL.product;
 import Connection.ConnectDB;
 import Connection.currentUser;
@@ -17,6 +18,7 @@ public class Basket extends javax.swing.JFrame {
     public Basket() {
         initComponents();
         setLocationRelativeTo(null);
+        fillInTable();
     }
     
     private void fillInTable() {
@@ -30,11 +32,10 @@ public class Basket extends javax.swing.JFrame {
         ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
         try {
             modelo = (DefaultTableModel)TableProducts.getModel();
-            modelo.addColumn("Id product");
+            modelo.addColumn("Id Product");
+            modelo.addColumn("Name Product");
             modelo.addColumn("Quantity");
             while(cart.next()){
-                modelo.addRow(new Object[]{ cart.getInt("id_product"),
-                                            cart.getInt("quantity")});
                 int id_product = cart.getInt("id_product");
                 ResultSet prod = c.queryWithInt(id_product, "get_product_with_id", true);
                 prod.next();
@@ -49,6 +50,9 @@ public class Basket extends javax.swing.JFrame {
                     prod.getInt("id_delivery_type"));
                 p.setId(id_product);
                 products.add(p);
+                modelo.addRow(new Object[]{ cart.getInt("id_product"), 
+                                            prod.getString("name"),
+                                            cart.getInt("quantity")});
             }
             TableProducts.setModel(modelo);        
         } catch (Exception ex) {
@@ -204,7 +208,7 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonClearActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        fillInTable();
+        //fillInTable();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
@@ -214,19 +218,22 @@ public class Basket extends javax.swing.JFrame {
         try {
             for(product p : products)
             {
-                int quantity;
-
-                    ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
-                    quantity = cart.getInt("quantity");
-                    //order o = new order(p.getPrice(), quantity, date, username, p.getId());
-                    //c.insertOrder(o);
+                System.out.println("here");
+                ResultSet cart = c.queryWithString(cu.getUsername(), "get_shoppingCart_with_username",true);
+                System.out.println("heree x1");
+                cart.next();
+                int quantity = cart.getInt("quantity");
+                System.out.println("heree x2");
+                order o = new order(p.getPrice(), quantity, p.getUsername_seller(), username, p.getId());
+                System.out.println("heree x3");
+                c.insertOrder(o);
             }
             JOptionPane.showMessageDialog(this, "Your purchase has been successful.");
             PanelPrincipalPage w = new PanelPrincipalPage();
             w.show();
             this.dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error. Try again later.");
+            JOptionPane.showMessageDialog(this, "Error. Try again later." + ex);
         }
         
     }//GEN-LAST:event_ButtonConfirmActionPerformed
