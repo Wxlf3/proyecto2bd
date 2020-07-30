@@ -11,14 +11,12 @@ public class order
     private int id;
     private float price;
     private int quantity;
-    private String user_seller;
     private String user_buyer;
     private int id_product;
 
-    public order(float price, int quantity, String user_seller, String user_buyer, int id_product) {
+    public order(float price, int quantity, String user_buyer, int id_product) {
         this.price = price;
         this.quantity = quantity;
-        this.user_seller = user_seller;
         this.user_buyer = user_buyer;
         this.id_product = id_product;
     }
@@ -45,14 +43,6 @@ public class order
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getUser_seller() {
-        return user_seller;
-    }
-
-    public void setUser_seller(String user_seller) {
-        this.user_seller = user_seller;
     }
 
     public String getUser_buyer() {
