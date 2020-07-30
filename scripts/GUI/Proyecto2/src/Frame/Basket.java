@@ -143,7 +143,7 @@ public class Basket extends javax.swing.JFrame {
         ButtonConfirm.setBackground(new java.awt.Color(255, 255, 255));
         ButtonConfirm.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         ButtonConfirm.setForeground(new java.awt.Color(76, 40, 130));
-        ButtonConfirm.setText("Confirm");
+        ButtonConfirm.setText("Buy all");
         ButtonConfirm.setBorder(null);
         ButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
