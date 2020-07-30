@@ -2,9 +2,11 @@
 package Frame;
 
 import BL.product;
+import BL.shopping_cart;
 import Connection.ConnectDB;
 import Connection.currentUser;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -36,7 +38,7 @@ public class Wishlist extends javax.swing.JFrame {
                                             wish.getInt("quantity")});
                 int id_product = wish.getInt("id_product");
                 ResultSet prod = c.queryWithInt(id_product, "get_product_with_id", true);
-                //prod.next();
+                prod.next();
                 product p = new product(prod.getFloat("price"),
                                         prod.getString("name"),
                                         prod.getString("description"),
@@ -51,7 +53,7 @@ public class Wishlist extends javax.swing.JFrame {
             }
             TableProducts.setModel(modelo);        
         } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Error. Try later.");
+            JOptionPane.showMessageDialog(this, "Error. Try later.");
         }
     }
 
@@ -188,7 +190,7 @@ public class Wishlist extends javax.swing.JFrame {
         ConnectDB c = new ConnectDB();
         currentUser cu = currentUser.getInstance();
         for(product p : products){
-            c.removeWithStringandInt(cu.getUsername(),p.getId(),"remove_shoppingCart",true);
+            c.removeWithStringandInt(cu.getUsername(),p.getId(),"remove_wishList",true);
         }
         JOptionPane.showMessageDialog(this, "All products have been removed.");
         PanelPrincipalPage w = new PanelPrincipalPage();
@@ -204,6 +206,23 @@ public class Wishlist extends javax.swing.JFrame {
 
     private void ButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConfirmActionPerformed
         // TODO add your handling code here:
+        ConnectDB c = new ConnectDB();
+        currentUser cu = currentUser.getInstance();
+        ResultSet wish = c.queryWithString(cu.getUsername(), "get_wishList_with_username",true);
+        try {
+            while (wish.next()) {
+                shopping_cart s = new shopping_cart(wish.getString("username"), wish.getInt("id_product"), wish.getInt("quantity"));
+                c.insertShoppingCart(s);
+            }
+            for(product p : products){
+                c.removeWithStringandInt(cu.getUsername(),p.getId(),"remove_wishList",true);
+            }
+            JOptionPane.showMessageDialog(this, "All products have been added to your basket.");
+            PanelPrincipalPage w = new PanelPrincipalPage();
+            w.show();
+            this.dispose();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error. Try later.");
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     /**
