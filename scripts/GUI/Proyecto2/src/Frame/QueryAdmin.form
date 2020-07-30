@@ -862,8 +862,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Minimum and maximum amounts of products by category">
-                <Property name="tabTitle" type="java.lang.String" value="Minimum and maximum amounts of products by category"/>
+              <JTabbedPaneConstraints tabName="TOP 5 USERS BEST SELLERS">
+                <Property name="tabTitle" type="java.lang.String" value="TOP 5 USERS BEST SELLERS"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -958,8 +958,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Minimum and maximum amounts of products by category">
-                <Property name="tabTitle" type="java.lang.String" value="Minimum and maximum amounts of products by category"/>
+              <JTabbedPaneConstraints tabName="TOP 10 MOST EXPENSIVE PURCHASES">
+                <Property name="tabTitle" type="java.lang.String" value="TOP 10 MOST EXPENSIVE PURCHASES"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
