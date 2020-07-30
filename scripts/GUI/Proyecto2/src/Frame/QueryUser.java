@@ -364,9 +364,6 @@ public class QueryUser extends javax.swing.JFrame {
         });
         PanelPurchasesMade.add(ButtonBack4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        TableUserPurchases.setAutoCreateColumnsFromModel(false);
-        TableUserPurchases.setAutoCreateRowSorter(true);
-        TableUserPurchases.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 40, 130)));
         TableUserPurchases.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         TableUserPurchases.setForeground(new java.awt.Color(76, 40, 130));
         TableUserPurchases.setModel(new javax.swing.table.DefaultTableModel(
@@ -544,22 +541,21 @@ public class QueryUser extends javax.swing.JFrame {
         String username = cu.getUsername();
         ConnectDB c = new ConnectDB();
         DefaultTableModel modelo = new DefaultTableModel();
-        TableAllProducts.setModel(modelo);
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
+        modelo.addColumn("Category");
+        modelo.addColumn("Purchases over 1000");
+        TableUserPurchases.setModel(modelo);
         ResultSet q = c.queryWithString(username,"purchases_quantity_over_1000_by_category",true);
         try {
-            modelo = (DefaultTableModel)TableAllProducts.getModel();
-            modelo.addColumn("Category");
-            modelo.addColumn("Purchases over 1000");
             while(q.next())
             {
-                modelo.addRow(new Object[]{q.getInt("category"),
-                                            q.getString("purchases_over_1000"),});
+                modelo.addRow(new Object[]{q.getString("category"),
+                                            q.getInt("purchases_over_1000"),});
             }
-            TableAllProducts.setModel(modelo);
+            TableUserPurchases.setModel(modelo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Is a problem with this query.");
+            JOptionPane.showMessageDialog(this, "Please try again later.");
         }
     }//GEN-LAST:event_ButtonConfirm4ActionPerformed
 
