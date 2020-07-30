@@ -223,6 +223,7 @@ public class Wishlist extends javax.swing.JFrame {
             this.dispose();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error. Try later.");
+        }
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 
     /**
