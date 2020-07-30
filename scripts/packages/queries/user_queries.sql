@@ -14,9 +14,10 @@ BEGIN
 		SET pid_category = NULL;
 	END IF;
     
-    SELECT id, price, name, description
-    FROM `product`
-	WHERE name LIKE CONCAT('%',search_text,'%') AND id_category = IFNULL(pid_category, id_category);
+    SELECT p.id, p.price, p.name, p.description, c.name `category`
+    FROM `product` p
+    INNER JOIN `category` c ON p.id_category = c.id
+	WHERE p.name LIKE CONCAT('%',search_text,'%') AND p.id_category = IFNULL(pid_category, p.id_category);
 END//
 
 CREATE PROCEDURE `purchase_history`(IN pusername VARCHAR(45), IN months INT)

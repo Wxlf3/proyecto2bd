@@ -33,7 +33,7 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
         modelo.addColumn("Id");
         modelo.addColumn("Price");
         modelo.addColumn("Name");
-        modelo.addColumn("Description");
+        modelo.addColumn("Category");
        
         ConnectDB c = new ConnectDB();
         
@@ -565,9 +565,9 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSettingsAdminActionPerformed
 
     private void ButtonStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonStatisticsActionPerformed
-        /*Statistics w = new Statistics();
+        Statistics w = new Statistics();
         w.show();
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_ButtonStatisticsActionPerformed
 
     private void ButtonWishlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWishlistActionPerformed
@@ -607,10 +607,10 @@ public class PanelPrincipalPage extends javax.swing.JFrame {
             modelo.addColumn("Id");
             modelo.addColumn("Price");
             modelo.addColumn("Name");
-            modelo.addColumn("Description");
+            modelo.addColumn("Category");
             while(q.next())
             {
-                modelo.addRow(new Object[]{q.getInt("id"),q.getFloat("price"),q.getString("name"),q.getString("description")});
+                modelo.addRow(new Object[]{q.getInt("id"),q.getFloat("price"),q.getString("name"),q.getString("category")});
             }
             TableAllProducts.setModel(modelo);
         } catch (Exception ex) {
