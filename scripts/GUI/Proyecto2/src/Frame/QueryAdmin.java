@@ -478,7 +478,7 @@ public class QueryAdmin extends javax.swing.JFrame {
 
         PanelTop5BestSellers.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
-        jTabbedPane1.addTab("Minimum and maximum amounts of products by category", PanelTop5BestSellers);
+        jTabbedPane1.addTab("TOP 5 USERS BEST SELLERS", PanelTop5BestSellers);
 
         PanelTop10MostExpensivePurchases.setBackground(new java.awt.Color(255, 255, 255));
         PanelTop10MostExpensivePurchases.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -522,7 +522,7 @@ public class QueryAdmin extends javax.swing.JFrame {
 
         PanelTop10MostExpensivePurchases.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
-        jTabbedPane1.addTab("Minimum and maximum amounts of products by category", PanelTop10MostExpensivePurchases);
+        jTabbedPane1.addTab("TOP 10 MOST EXPENSIVE PURCHASES", PanelTop10MostExpensivePurchases);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
